@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Why Hey Hon | Rare Jamaican Honey</title>
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & RESET
+           ========================================================================== */
+        :root {
+            --cream: #FFFDF9;
+            --white: #FFFFFF;
+            --amber: #D98A2B;
+            --amber-dark: #B86E18;
+            --espresso: #221F1D;
+            --slate: #5A544F;
+            --gold-border: rgba(217, 138, 43, 0.15);
+            
+            --font-sans: 'Inter', system-ui, sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 4px 12px rgba(34, 31, 29, 0.05);
+            --shadow-md: 0 8px 24px rgba(217, 138, 43, 0.08);
+            --shadow-drawer: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--slate);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--espresso); line-height: 1.2; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+        input, select, textarea { font-size: 16px !important; }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* ==========================================================================
+           2. BACKGROUND ANIMATIONS
+           ========================================================================== */
+        .background-layer {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2; pointer-events: none;
+        }
+        .honeycomb-pattern {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='69.28203230275509' viewBox='0 0 40 69.28203230275509' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 11.547L40 23.094L30 28.867L20 23.094L20 11.547L30 5.773L40 11.547ZM20 46.188L20 57.735L10 63.508L0 57.735L0 46.188L10 40.414L20 46.188ZM40 46.188L40 57.735L30 63.508L20 57.735L20 46.188L30 40.414L40 46.188ZM20 11.547L20 23.094L10 28.867L0 23.094L0 11.547L10 5.773L20 11.547Z' fill='%23D98A2B' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        canvas { display: block; }
+
+        /* ==========================================================================
+           3. HEADER & NAVIGATION
+           ========================================================================== */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 1.25rem 0;
+            z-index: 100; transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+        }
+        header.scrolled, header.menu-open {
+            background: rgba(255, 253, 249, 0.95); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); box-shadow: var(--shadow-sm);
+        }
+        header.scrolled { padding: 1rem 0; }
+
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .brand-logo {
+            font-family: var(--font-serif); font-size: 1.75rem; font-weight: 700;
+            color: var(--espresso); display: flex; align-items: center; gap: 0.5rem; z-index: 101;
+        }
+        .brand-logo i { color: var(--amber); }
+
+        .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+        .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--espresso); transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--amber); }
+
+        .nav-utils { display: flex; align-items: center; gap: 1.5rem; z-index: 101; }
+        .nav-utils .currency { font-size: 0.85rem; font-weight: 500; }
+        .cart-btn {
+            display: flex; align-items: center; gap: 0.5rem; font-size: 1rem;
+            font-weight: 500; color: var(--espresso); transition: color 0.2s;
+        }
+        .cart-btn:hover { color: var(--amber); }
+        .cart-badge {
+            background: var(--amber); color: var(--white); font-size: 0.75rem;
+            padding: 2px 6px; border-radius: 10px; font-weight: 600;
+        }
+        .mobile-menu-btn { display: none; font-size: 1.8rem; color: var(--espresso); }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2rem; font-weight: 500; font-size: 0.95rem; border-radius: 4px;
+            transition: var(--transition); text-align: center;
+        }
+        .btn-primary { background: var(--amber); color: var(--white); }
+        .btn-primary:hover { background: var(--amber-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        /* ==========================================================================
+           4. WHY HEY HON PAGE SPECIFIC LAYOUT
+           ========================================================================== */
+        .page-header {
+            padding-top: 160px;
+            padding-bottom: 4rem;
+            text-align: center;
+        }
+        
+        .page-header .eyebrow {
+            display: inline-block; font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber);
+            margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--amber);
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-banner {
+            width: 100%; height: 60vh; min-height: 400px;
+            object-fit: cover; border-radius: 12px; box-shadow: var(--shadow-md);
+            margin-bottom: 6rem; display: block;
+        }
+
+        .feature-section {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+            align-items: center; margin-bottom: 8rem;
+        }
+
+        .feature-section.reverse { direction: rtl; }
+        .feature-section.reverse > * { direction: ltr; }
+
+        .feature-text h2 { font-size: 2.2rem; margin-bottom: 1.5rem; }
+        .feature-text p { font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--slate); }
+
+        .feature-image-wrap img {
+            width: 100%; border-radius: 8px; box-shadow: var(--shadow-md);
+            aspect-ratio: 4/5; object-fit: cover;
+        }
+
+        .invitation-box {
+            text-align: center; max-width: 800px; margin: 0 auto 8rem;
+            padding: 4rem 2rem; background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px); border: 1px solid var(--gold-border);
+            border-radius: 8px; box-shadow: var(--shadow-sm);
+        }
+        .invitation-box h3 { font-size: 2.5rem; color: var(--espresso); margin-bottom: 1.5rem; }
+        .invitation-box p { font-size: 1.1rem; margin-bottom: 2.5rem; }
+
+        /* ==========================================================================
+           5. FOOTER & CART
+           ========================================================================== */
+        footer { background: var(--cream); padding: 4rem 0 2rem; border-top: 1px solid var(--gold-border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 2rem; margin-bottom: 4rem; }
+        .footer-col h4 { font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .footer-col ul li { margin-bottom: 0.85rem; }
+        .footer-col ul li a { font-size: 0.95rem; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: var(--amber); }
+
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 2rem; border-top: 1px solid var(--gold-border); font-size: 0.85rem;
+        }
+        .payment-icons i { font-size: 1.6rem; margin-left: 0.75rem; color: var(--slate); vertical-align: middle; }
+
+        .cart-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(34, 31, 29, 0.4); backdrop-filter: blur(4px);
+            z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .cart-overlay.active { opacity: 1; pointer-events: all; }
+
+        .cart-drawer {
+            position: fixed; top: 0; right: 0; width: 100%; max-width: 450px; height: 100vh;
+            background: var(--cream); z-index: 1000; box-shadow: var(--shadow-drawer);
+            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column;
+        }
+        .cart-drawer.active { transform: translateX(0); }
+        .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--gold-border); display: flex; justify-content: space-between; align-items: center; }
+        .close-cart { font-size: 1.5rem; color: var(--espresso); padding: 0.5rem; }
+        .cart-items { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
+        .empty-cart-msg { text-align: center; color: var(--slate); margin-top: 2rem; font-style: italic; }
+        
+        .cart-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--gold-border); }
+        .cart-item-img { width: 85px; height: 85px; border-radius: 4px; object-fit: cover; }
+        .cart-item-details { flex-grow: 1; display: flex; flex-direction: column; }
+        .cart-item-title { font-weight: 600; font-family: var(--font-serif); font-size: 1.05rem; color: var(--espresso); }
+        .cart-item-price { color: var(--slate); font-size: 0.95rem; margin-top: 0.2rem; }
+        .cart-qty-controls { display: flex; align-items: center; gap: 1rem; margin-top: auto; background: var(--white); border: 1px solid var(--gold-border); width: fit-content; padding: 0.25rem 0.75rem; border-radius: 4px; }
+        .qty-btn { font-size: 1.1rem; color: var(--espresso); font-weight: 500; padding: 0 0.25rem; }
+        .item-remove { margin-left: auto; color: var(--slate); font-size: 0.85rem; text-decoration: underline; cursor: pointer; }
+        
+        .cart-footer { padding: 1.5rem; background: var(--white); border-top: 1px solid var(--gold-border); }
+        .cart-subtotal { display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 600; color: var(--espresso); margin-bottom: 1rem; }
+        .cart-footer .btn { width: 100%; padding: 1.15rem; font-size: 1.05rem; }
+
+        /* ==========================================================================
+           6. RESPONSIVE DESIGN
+           ========================================================================== */
+        @media (max-width: 1024px) { .feature-section { gap: 3rem; } }
+
+        @media (max-width: 768px) {
+            .nav-utils .currency { display: none; }
+            .mobile-menu-btn { display: block; }
+            
+            .nav-links {
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(255, 253, 249, 0.98); backdrop-filter: blur(10px);
+                flex-direction: column; align-items: flex-start; padding: 2rem; gap: 1.5rem;
+                border-top: 1px solid var(--gold-border); box-shadow: var(--shadow-md);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: clip-path 0.4s ease-out;
+            }
+            .nav-links.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            .nav-links a { font-size: 1.2rem; width: 100%; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.5rem; }
+
+            .page-header { padding-top: 120px; padding-bottom: 2rem; }
+            .hero-banner { height: 40vh; margin-bottom: 4rem; }
+            
+            .feature-section, .feature-section.reverse {
+                grid-template-columns: 1fr; gap: 2rem; margin-bottom: 5rem; direction: ltr;
+            }
+            
+            .feature-image-wrap { order: -1; }
+            .invitation-box { padding: 3rem 1.5rem; margin-bottom: 5rem; }
+            .invitation-box h3 { font-size: 2rem; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Canvas & CSS Pattern -->
+    <div class="background-layer">
+        <div class="honeycomb-pattern"></div>
+        <canvas id="bee-canvas"></canvas>
+    </div>
+
+    <!-- Sticky Header -->
+    <header id="header">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="brand-logo">
+                Hey Hon <i class="ph-fill ph-drop"></i>
+            </a>
+            
+            <nav class="nav-links" id="nav-links">
+                <a href="shop.html">Shop</a>
+                <a href="story.html">Our Story</a>
+                <a href="why-hey-hon.html" class="active">Why Hey Hon?</a>
+                <a href="recipes.html">Recipes</a>
+                <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
+            </nav>
+
+            <div class="nav-utils">
+                <span class="currency">JMD / 🇯🇲</span>
+                <button aria-label="Search"><i class="ph ph-magnifying-glass" style="font-size: 1.2rem;"></i></button>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="ph ph-tote" style="font-size: 1.3rem;"></i> <span style="display:none;">Bag</span>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header container">
+            <span class="eyebrow">The Hey Hon Difference</span>
+            <h1>Why settle for ordinary when you can experience the extraordinary?</h1>
+        </section>
+
+        <!-- Main Hero Banner -->
+        <div class="container">
+            <video src="honeycomb-drip.mp4" autoplay loop muted playsinline class="hero-banner"></video>
+        </div>
+
+        <!-- Section 1: Taste & Terroir -->
+        <section class="container feature-section">
+            <div class="feature-text">
+                <h2>A Symphony of Tropical Blooms</h2>
+                <p>The flavor of a truly great honey is written by the landscape it comes from. Our bees forage freely across the pristine, pesticide free hills of St. Mary, gathering nectar from a remarkably diverse tapestry of wild flora.</p>
+                <p>This vibrant ecosystem creates a deeply layered flavor profile that mass produced commercial brands simply cannot replicate. Every single spoonful offers a rich, velvety texture and complex aromatic notes that are completely unique to our island.</p>
+            </div>
+            <div class="feature-image-wrap">
+                <img src="https://images.unsplash.com/photo-1471943311424-646960669fbc?auto=format&fit=crop&w=800&q=80" alt="Wild tropical flowers">
+            </div>
+        </section>
+
+        <!-- Section 2: Wellness & Purity -->
+        <section class="container feature-section reverse">
+            <div class="feature-text">
+                <h2>Pure Vitality in Every Drop</h2>
+                <p>For those who deeply value their health and wellness, purity is non negotiable. We believe in preserving exactly what the bees create. Our gentle, cold extracted process ensures that every jar remains entirely raw and alive.</p>
+                <p>Because we never expose our harvest to destructive high temperatures, your honey arrives brimming with natural enzymes, beneficial antioxidants, and immune supporting propolis. This is not just a sweetener it is nature at its absolute most potent.</p>
+            </div>
+            <div class="feature-image-wrap">
+                <img src="raw-honey.png" alt="Pure Vitality in Every Drop of Hey Hon">
+            </div>
+        </section>
+
+        <!-- Section 3: Rarity & Limitedness -->
+        <section class="container feature-section">
+            <div class="feature-text">
+                <h2>Strictly Governed by Nature</h2>
+                <p>We do not force our harvests to meet commercial demands. Our yield is strictly limited and entirely dependent on the natural blooming cycles of the Jamaican hills.</p>
+                <p>This means every batch is rare, unique, and available only while nature allows. Once a season's harvest is gone, you must patiently wait for the next. This exclusivity ensures that when you secure a jar of Hey Hon, you are holding a fleeting piece of the environment in your hands.</p>
+            </div>
+            <div class="feature-image-wrap">
+                <img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=800&q=80" alt="Single jar of Hey Hon honey">
+            </div>
+        </section>
+
+        <!-- Call to Action Box -->
+        <section class="container">
+            <div class="invitation-box">
+                <h3>An Experience You Must Taste</h3>
+                <p>Whether you are a dedicated wellness seeker looking for pure vitality, or simply someone who appreciates the finer things in life, tasting Hey Hon is a revelation. It will transform your morning tea, elevate your culinary creations, and completely redefine your standard for real honey.</p>
+                <a href="shop.html" class="btn btn-primary">Taste The Difference</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">Hey Hon</a>
+                    <p style="font-size: 0.95rem; max-width: 250px;">Rare, single origin Jamaican honey. A velvety, cold extracted elixir harvested directly from the hills of St. Mary.<br><br>Rooted in St. Mary, Jamaica 🇯🇲</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html">Raw Honey</a></li>
+                        <li><a href="shop.html">Whipped Honey</a></li>
+                        <li><a href="index.html#wholesale">Wholesale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Brand</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="why-hey-hon.html">Why Hey Hon?</a></li>
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="index.html#faq">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Delivery Info</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hey Hon Artisanal Honey. All rights reserved.</p>
+                <div class="payment-icons">
+                    <i class="ph ph-credit-card"></i>
+                    <i class="ph ph-apple-logo"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer UI -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Harvest Bag (<span id="drawer-count">0</span>)</h3>
+            <button class="close-cart" onclick="toggleCart()"><i class="ph ph-x"></i></button>
+        </div>
+        
+        <div class="cart-items" id="cart-items-container">
+            <div class="empty-cart-msg">Your bag is currently empty.</div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cart-total">JMD $0</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 1.25rem; text-align: center;">Taxes and shipping calculated at checkout.</p>
+            <button class="btn btn-primary" onclick="checkoutToWhatsApp()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         JAVASCRIPT LOGIC (WITH LOCALSTORAGE PERSISTENCE)
+         ========================================================================== -->
+    <script>
+        const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('en-JM', { style: 'currency', currency: 'JMD', minimumFractionDigits: 0 }).format(amount);
+        };
+
+        const header = document.getElementById('header');
+        const navLinks = document.getElementById('nav-links');
+        const menuIcon = document.querySelector('.mobile-menu-btn i');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            header.classList.toggle('menu-open');
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.replace('ph-list', 'ph-x');
+            } else {
+                menuIcon.classList.replace('ph-x', 'ph-list');
+            }
+        }
+
+        // --- Persistent Cart System via LocalStorage ---
+        let cart = JSON.parse(localStorage.getItem('heyHonCart')) || [];
+
+        function toggleCart() {
+            document.getElementById('cart-drawer').classList.toggle('active');
+            document.getElementById('cart-overlay').classList.toggle('active');
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total');
+            const countBadge = document.getElementById('cart-count');
+            const drawerCount = document.getElementById('drawer-count');
+            
+            container.innerHTML = '';
+            let total = 0;
+            let itemCount = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-cart-msg">Your bag is currently empty.</div>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+                    itemCount += item.quantity;
+
+                    const itemHTML = `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <div class="cart-item-title">${item.title}</div>
+                                <div class="cart-item-price">${formatCurrency(item.price)}</div>
+                                <div class="cart-qty-controls">
+                                    <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                                    <span>${item.quantity}</span>
+                                    <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                                </div>
+                            </div>
+                            <span class="item-remove" onclick="removeItem(${index})">Remove</span>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', itemHTML);
+                });
+            }
+
+            totalEl.innerText = formatCurrency(total);
+            countBadge.innerText = itemCount;
+            drawerCount.innerText = itemCount;
+        }
+
+        function changeQty(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) cart.splice(index, 1);
+            saveCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            saveCart();
+        }
+
+        function saveCart() {
+            localStorage.setItem('heyHonCart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function checkoutToWhatsApp() {
+            if (cart.length === 0) {
+                alert("Your bag is empty! Please add some honey to checkout.");
+                return;
+            }
+            
+            const phone = "16582182734"; 
+            let message = "Hey Hon! I would like to place an order:\n\n";
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                message += `- ${item.quantity}x ${item.title} - ${formatCurrency(itemTotal)}\n`;
+            });
+            
+            message += `\nSubtotal: ${formatCurrency(total)}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Initialize Cart on Load
+        updateCartUI();
+
+        // Background Animation
+        const canvas = document.getElementById('bee-canvas');
+        const ctx = canvas.getContext('2d');
+        let bees = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class RealisticBee {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.angle = Math.random() * Math.PI * 2;
+                this.state = 'hover';
+                this.timer = Math.random() * 100 + 50; 
+                this.targetX = this.x;
+                this.targetY = this.y;
+                this.targetAngle = this.angle;
+                this.baseSpeed = Math.random() * 2 + 2.5; 
+                this.hoverJitter = Math.random() * Math.PI * 2;
+                this.size = Math.random() * 1.2 + 1.5; 
+                this.opacity = Math.random() * 0.6 + 0.4; 
+                this.flapOffset = Math.random() * 100;
+                this.flapSpeed = 0.5;
+            }
+
+            update() {
+                this.timer--;
+                if (this.state === 'hover') {
+                    this.x += Math.sin(Date.now() * 0.002 + this.hoverJitter) * 0.5;
+                    this.y += Math.cos(Date.now() * 0.003 + this.hoverJitter) * 0.5;
+                    this.angle += (Math.random() - 0.5) * 0.08;
+                    this.flapSpeed = 0.4;
+
+                    if (this.timer <= 0) {
+                        this.state = 'dart';
+                        this.timer = Math.random() * 50 + 30; 
+                        const dist = Math.random() * 150 + 100;
+                        const dir = this.angle + (Math.random() - 0.5) * Math.PI; 
+                        this.targetX = this.x + Math.cos(dir) * dist;
+                        this.targetY = this.y + Math.sin(dir) * dist;
+                        this.targetAngle = Math.atan2(this.targetY - this.y, this.targetX - this.x);
+                    }
+                } else if (this.state === 'dart') {
+                    let angleDiff = this.targetAngle - this.angle;
+                    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+                    this.angle += angleDiff * 0.2; 
+                    this.x += Math.cos(this.angle) * this.baseSpeed;
+                    this.y += Math.sin(this.angle) * this.baseSpeed;
+                    this.flapSpeed = 0.8;
+
+                    const distToTarget = Math.hypot(this.targetX - this.x, this.targetY - this.y);
+                    if (this.timer <= 0 || distToTarget < 10) {
+                        this.state = 'hover';
+                        this.timer = Math.random() * 150 + 80; 
+                    }
+                }
+
+                const margin = 30;
+                if (this.x < -margin) this.x = canvas.width + margin;
+                if (this.x > canvas.width + margin) this.x = -margin;
+                if (this.y < -margin) this.y = canvas.height + margin;
+                if (this.y > canvas.height + margin) this.y = -margin;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+
+                const bodyLength = this.size * 2;
+                const bodyWidth = this.size * 1.2;
+
+                ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.moveTo(-bodyLength + 1, 0);
+                ctx.lineTo(-bodyLength - 2, 0);
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.fillStyle = `rgba(217, 138, 43, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, bodyLength, bodyWidth, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity * 0.85})`;
+                ctx.beginPath();
+                ctx.ellipse(-bodyLength * 0.3, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                ctx.ellipse(bodyLength * 0.2, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(bodyLength * 0.8, 0, this.size * 0.9, 0, Math.PI * 2);
+                ctx.fill();
+
+                const flap = Math.sin(Date.now() * this.flapSpeed + this.flapOffset);
+                const wingSweep = flap * 0.5;
+
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
+                
+                ctx.save();
+                ctx.translate(bodyLength * 0.2, -bodyWidth * 0.4); 
+                ctx.rotate(-1 + wingSweep); 
+                ctx.beginPath();
+                ctx.ellipse(0, -this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+
+                ctx.save();
+                ctx.translate(bodyLength * 0.2, bodyWidth * 0.4);
+                ctx.rotate(1 - wingSweep); 
+                ctx.beginPath();
+                ctx.ellipse(0, this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+
+                ctx.restore();
+            }
+        }
+
+        function initBees() {
+            bees = [];
+            const beeCount = window.innerWidth < 768 ? 4 : 8; 
+            for (let i = 0; i < beeCount; i++) {
+                bees.push(new RealisticBee());
+            }
+        }
+
+        function animateBees() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            bees.forEach(bee => {
+                bee.update();
+                bee.draw();
+            });
+            requestAnimationFrame(animateBees);
+        }
+
+        initBees();
+        animateBees();
+
+    </script>
+</body>
+</html>

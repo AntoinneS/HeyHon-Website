@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hey Hon | Rare Jamaican Honey</title>
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & RESET
+           ========================================================================== */
+        :root {
+            --cream: #FFFDF9;
+            --white: #FFFFFF;
+            --amber: #D98A2B;
+            --amber-dark: #B86E18;
+            --espresso: #221F1D;
+            --slate: #5A544F;
+            --gold-border: rgba(217, 138, 43, 0.15);
+            
+            --font-sans: 'Inter', system-ui, sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 4px 12px rgba(34, 31, 29, 0.05);
+            --shadow-md: 0 8px 24px rgba(217, 138, 43, 0.08);
+            --shadow-drawer: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--slate);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            color: var(--espresso);
+            line-height: 1.2;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+        input, select, textarea { font-size: 16px !important; }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ==========================================================================
+           2. BACKGROUND ANIMATIONS
+           ========================================================================== */
+        .background-layer {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2; pointer-events: none;
+        }
+
+        .honeycomb-pattern {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='69.28203230275509' viewBox='0 0 40 69.28203230275509' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 11.547L40 23.094L30 28.867L20 23.094L20 11.547L30 5.773L40 11.547ZM20 46.188L20 57.735L10 63.508L0 57.735L0 46.188L10 40.414L20 46.188ZM40 46.188L40 57.735L30 63.508L20 57.735L20 46.188L30 40.414L40 46.188ZM20 11.547L20 23.094L10 28.867L0 23.094L0 11.547L10 5.773L20 11.547Z' fill='%23D98A2B' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+
+        canvas { display: block; }
+
+        /* ==========================================================================
+           3. HEADER & NAVIGATION
+           ========================================================================== */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 1.25rem 0;
+            z-index: 100; transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+        }
+
+        header.scrolled, header.menu-open {
+            background: rgba(255, 253, 249, 0.95);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-sm);
+        }
+        header.scrolled { padding: 1rem 0; }
+
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+
+        .brand-logo {
+            font-family: var(--font-serif); font-size: 1.75rem; font-weight: 700;
+            color: var(--espresso); display: flex; align-items: center; gap: 0.5rem; z-index: 101;
+        }
+        .brand-logo i { color: var(--amber); }
+
+        .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+        .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--espresso); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--amber); }
+
+        .nav-utils { display: flex; align-items: center; gap: 1.5rem; z-index: 101; }
+        .nav-utils .currency { font-size: 0.85rem; font-weight: 500; }
+
+        .cart-btn {
+            display: flex; align-items: center; gap: 0.5rem; font-size: 1rem;
+            font-weight: 500; color: var(--espresso); transition: color 0.2s;
+        }
+        .cart-btn:hover { color: var(--amber); }
+
+        .cart-badge {
+            background: var(--amber); color: var(--white); font-size: 0.75rem;
+            padding: 2px 6px; border-radius: 10px; font-weight: 600;
+        }
+        .mobile-menu-btn { display: none; font-size: 1.8rem; color: var(--espresso); }
+
+        /* ==========================================================================
+           4. HERO SECTION
+           ========================================================================== */
+        .hero { padding-top: 140px; padding-bottom: 4rem; min-height: 85vh; display: flex; align-items: center; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
+        .hero-content .eyebrow {
+            display: inline-block; font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber);
+            margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--amber);
+        }
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .hero-content p { font-size: 1.1rem; max-width: 480px; margin-bottom: 2.5rem; }
+
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2rem; font-weight: 500; font-size: 0.95rem; border-radius: 4px;
+            transition: var(--transition); text-align: center;
+        }
+        .btn-primary { background: var(--amber); color: var(--white); }
+        .btn-primary:hover { background: var(--amber-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-outline { border: 1px solid var(--espresso); color: var(--espresso); }
+        .btn-outline:hover { background: var(--espresso); color: var(--white); }
+
+        .hero-image { position: relative; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); }
+        .hero-image img { width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3; }
+
+        /* ==========================================================================
+           5. TRUST BANNER
+           ========================================================================== */
+        .trust-banner {
+            border-top: 1px solid var(--gold-border); border-bottom: 1px solid var(--gold-border);
+            padding: 2rem 0; background: rgba(255, 255, 255, 0.4);
+        }
+        .trust-grid { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+        .trust-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; font-weight: 500; color: var(--espresso); }
+        .trust-item i { font-size: 1.25rem; color: var(--amber); }
+
+        /* ==========================================================================
+           6. SHOPPING GRID & FILTERS
+           ========================================================================== */
+        .shop-section { padding: 6rem 0; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+        .filters {
+            display: flex; justify-content: center; gap: 0.75rem;
+            margin-bottom: 3rem; flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 0.5rem 1.25rem; border: 1px solid var(--gold-border);
+            border-radius: 30px; font-size: 0.9rem; color: var(--slate);
+            transition: var(--transition); font-weight: 500;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--amber); color: var(--white); border-color: var(--amber);
+        }
+
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--white); border: 1px solid var(--gold-border);
+            border-radius: 8px; overflow: hidden; transition: var(--transition);
+            display: flex; flex-direction: column;
+        }
+        .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+        .product-image { position: relative; aspect-ratio: 1/1; overflow: hidden; background: #f5f5f5; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .product-card:hover .product-image img { transform: scale(1.05); }
+
+        .product-badge {
+            position: absolute; top: 1rem; left: 1rem; background: var(--cream);
+            color: var(--espresso); font-size: 0.75rem; font-weight: 600;
+            padding: 0.35rem 0.75rem; border-radius: 2px; text-transform: uppercase; box-shadow: var(--shadow-sm);
+        }
+
+        .product-info { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        
+        .size-selector {
+            width: 100%; padding: 0.6rem; margin-bottom: 1.25rem;
+            border: 1px solid var(--gold-border); border-radius: 4px;
+            font-family: var(--font-sans); font-size: 0.85rem; color: var(--espresso);
+            background: var(--cream); cursor: pointer; outline: none; transition: border-color 0.2s;
+        }
+        .size-selector:focus { border-color: var(--amber); }
+
+        .product-meta { font-size: 0.85rem; color: var(--slate); margin-bottom: 1.25rem; }
+
+        .product-bottom { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
+        .product-price { font-weight: 600; color: var(--espresso); font-size: 1.15rem; }
+        .add-to-cart {
+            background: var(--cream); border: 1px solid var(--gold-border);
+            color: var(--espresso); padding: 0.6rem 1rem; font-size: 0.85rem;
+            font-weight: 600; border-radius: 4px; transition: var(--transition);
+        }
+        .add-to-cart:hover { background: var(--amber); color: var(--white); border-color: var(--amber); }
+
+        /* ==========================================================================
+           7. STORY SECTION
+           ========================================================================== */
+        .story-section { padding: 6rem 0; background: var(--white); border-top: 1px solid var(--gold-border); border-bottom: 1px solid var(--gold-border); }
+        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .story-image img { width: 100%; border-radius: 8px; box-shadow: var(--shadow-md); aspect-ratio: 4/3; object-fit: cover; }
+        .story-content h2 { margin-bottom: 1.5rem; font-size: clamp(2rem, 4vw, 2.75rem); }
+        .story-content p { margin-bottom: 1.5rem; font-size: 1.05rem; }
+        
+        .spec-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+            border-top: 1px solid var(--gold-border); padding-top: 2rem; margin-top: 1rem;
+        }
+        .spec-item { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; color: var(--espresso); font-size: 0.95rem; }
+        .spec-item i { color: var(--amber); font-size: 1.2rem; }
+
+        /* ==========================================================================
+           8. DELIVERY INFO & FAQ & WHOLESALE
+           ========================================================================== */
+        .delivery-section {
+            background: var(--white); border-bottom: 1px solid var(--gold-border);
+            padding: 4rem 0; margin-bottom: 4rem;
+        }
+        .delivery-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+        }
+        .delivery-info h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .delivery-info p { font-size: 1.05rem; margin-bottom: 1.5rem; }
+
+        .dual-section { padding: 2rem 0 10rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+        .faq-item { border-bottom: 1px solid var(--gold-border); padding: 1.5rem 0; }
+        .faq-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; color: var(--espresso); font-size: 1.1rem; }
+        .faq-header i { transition: transform 0.3s ease; color: var(--amber); font-size: 1.2rem; }
+        .faq-item.active .faq-header i { transform: rotate(180deg); }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-content p { padding-top: 1rem; font-size: 0.95rem; color: var(--slate); }
+
+        .wholesale-box { background: var(--white); padding: 3rem; border: 1px solid var(--gold-border); border-radius: 8px; box-shadow: var(--shadow-sm); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500; color: var(--espresso); }
+        .form-group input, .form-group select {
+            width: 100%; padding: 0.85rem; border: 1px solid var(--gold-border);
+            border-radius: 4px; font-family: var(--font-sans); background: var(--cream);
+            color: var(--espresso); appearance: none;
+        }
+        .wholesale-box .btn { width: 100%; margin-top: 0.5rem; }
+
+        /* ==========================================================================
+           9. NEWSLETTER & FOOTER
+           ========================================================================== */
+        .newsletter { text-align: center; padding: 5rem 1.5rem; background: var(--espresso); color: var(--cream); }
+        .newsletter h3 { color: var(--cream); margin-bottom: 1rem; font-size: 2.2rem; }
+        .newsletter p { margin-bottom: 2rem; opacity: 0.8; font-size: 1.05rem; }
+        .subscribe-form { display: flex; max-width: 450px; margin: 0 auto; gap: 0.5rem; }
+        .subscribe-form input { flex-grow: 1; padding: 0.85rem 1rem; border: none; border-radius: 4px; }
+        .subscribe-form button { padding: 0.85rem 2rem; }
+
+        footer { background: var(--cream); padding: 4rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 2rem; margin-bottom: 4rem; }
+        .footer-col h4 { font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .footer-col ul li { margin-bottom: 0.85rem; }
+        .footer-col ul li a { font-size: 0.95rem; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: var(--amber); }
+
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 2rem; border-top: 1px solid var(--gold-border); font-size: 0.85rem;
+        }
+        .payment-icons i { font-size: 1.6rem; margin-left: 0.75rem; color: var(--slate); vertical-align: middle; }
+
+        /* ==========================================================================
+           10. CART DRAWER (SIDEBAR)
+           ========================================================================== */
+        .cart-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(34, 31, 29, 0.4); backdrop-filter: blur(4px);
+            z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .cart-overlay.active { opacity: 1; pointer-events: all; }
+
+        .cart-drawer {
+            position: fixed; top: 0; right: 0; width: 100%; max-width: 450px; height: 100vh;
+            background: var(--cream); z-index: 1000; box-shadow: var(--shadow-drawer);
+            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column;
+        }
+        .cart-drawer.active { transform: translateX(0); }
+        .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--gold-border); display: flex; justify-content: space-between; align-items: center; }
+        .close-cart { font-size: 1.5rem; color: var(--espresso); padding: 0.5rem; }
+        .free-shipping-bar { padding: 1.25rem 1.5rem; background: var(--white); border-bottom: 1px solid var(--gold-border); text-align: center; font-size: 0.85rem; font-weight: 500; }
+        .progress-container { height: 6px; background: #f0f0f0; border-radius: 3px; margin-top: 0.75rem; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--amber); width: 0%; transition: width 0.4s ease; }
+        .cart-items { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
+        .empty-cart-msg { text-align: center; color: var(--slate); margin-top: 2rem; font-style: italic; }
+        
+        .cart-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--gold-border); }
+        .cart-item-img { width: 85px; height: 85px; border-radius: 4px; object-fit: cover; }
+        .cart-item-details { flex-grow: 1; display: flex; flex-direction: column; }
+        .cart-item-title { font-weight: 600; font-family: var(--font-serif); font-size: 1.05rem; color: var(--espresso); }
+        .cart-item-price { color: var(--slate); font-size: 0.95rem; margin-top: 0.2rem; }
+        .cart-qty-controls { display: flex; align-items: center; gap: 1rem; margin-top: auto; background: var(--white); border: 1px solid var(--gold-border); width: fit-content; padding: 0.25rem 0.75rem; border-radius: 4px; }
+        .qty-btn { font-size: 1.1rem; color: var(--espresso); font-weight: 500; padding: 0 0.25rem; }
+        .item-remove { margin-left: auto; color: var(--slate); font-size: 0.85rem; text-decoration: underline; cursor: pointer; }
+        
+        .cart-footer { padding: 1.5rem; background: var(--white); border-top: 1px solid var(--gold-border); }
+        .cart-subtotal { display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 600; color: var(--espresso); margin-bottom: 1rem; }
+        .cart-footer .btn { width: 100%; padding: 1.15rem; font-size: 1.05rem; }
+
+        /* ==========================================================================
+           11. MOBILE / RESPONSIVE DESIGN
+           ========================================================================== */
+        @media (max-width: 1024px) { .hero-grid, .story-grid, .dual-section, .delivery-grid { gap: 3rem; } }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1.25rem; }
+            .nav-utils .currency { display: none; }
+            .mobile-menu-btn { display: block; }
+            
+            .nav-links {
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(255, 253, 249, 0.98); backdrop-filter: blur(10px);
+                flex-direction: column; align-items: flex-start; padding: 2rem; gap: 1.5rem;
+                border-top: 1px solid var(--gold-border); box-shadow: var(--shadow-md);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: clip-path 0.4s ease-out;
+            }
+            .nav-links.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            .nav-links a { font-size: 1.2rem; width: 100%; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.5rem; }
+
+            .hero { padding-top: 120px; text-align: center; }
+            .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-content p { margin: 0 auto 2rem; font-size: 1.05rem; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .btn-outline, .btn-primary { width: 100%; }
+
+            .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .trust-item { font-size: 0.8rem; flex-direction: column; text-align: center; gap: 0.25rem; }
+            .trust-item i { font-size: 1.5rem; }
+
+            .shop-section { padding: 4rem 0; }
+            .filters { gap: 0.5rem; }
+            .filter-btn { font-size: 0.8rem; padding: 0.4rem 1rem; }
+            .product-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+            .story-section { padding: 4rem 0; }
+            .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .story-image { order: -1; }
+
+            .delivery-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .dual-section { grid-template-columns: 1fr; padding: 4rem 0 7rem 0; gap: 4rem; }
+            .wholesale-box { padding: 2rem 1.5rem; }
+
+            .subscribe-form { flex-direction: column; }
+            .subscribe-form button { width: 100%; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Canvas & CSS Pattern -->
+    <div class="background-layer">
+        <div class="honeycomb-pattern"></div>
+        <canvas id="bee-canvas"></canvas>
+    </div>
+
+    <!-- Sticky Header -->
+    <header id="header">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="brand-logo">
+                Hey Hon <i class="ph-fill ph-drop"></i>
+            </a>
+            
+            <nav class="nav-links" id="nav-links">
+                <a href="shop.html" onclick="closeMenu()">Shop</a>
+                <a href="story.html" onclick="closeMenu()">Our Story</a>
+                <a href="why-hey-hon.html" onclick="closeMenu()">Why Hey Hon?</a>
+                <a href="recipes.html" onclick="closeMenu()">Recipes</a>
+                <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
+            </nav>
+
+            <div class="nav-utils">
+                <span class="currency">JMD / 🇯🇲</span>
+                <button aria-label="Search"><i class="ph ph-magnifying-glass" style="font-size: 1.2rem;"></i></button>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="ph ph-tote" style="font-size: 1.3rem;"></i> <span style="display:none;">Bag</span>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="eyebrow">100% Pure & Unfiltered • St. Mary, Jamaica</span>
+                    <h1>Rare, Single Origin Jamaican Honey.</h1>
+                    <p>Sourced from untouched tropical blooms in the hills of St. Mary. A golden, velvety elixir bursting with complex floral notes pure tableside elegance.</p>
+                    <div class="hero-buttons">
+                        <a href="shop.html" class="btn btn-primary">Shop The Harvest</a>
+                        <a href="story.html" class="btn btn-outline">Explore Our Story</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="hey-hon-hero.png" alt="Premium jar of raw Hey Hon honey on table">
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Banner -->
+        <section class="trust-banner">
+            <div class="container trust-grid">
+                <div class="trust-item"><i class="ph ph-sparkle"></i> 100% Raw & Cold Extracted</div>
+                <div class="trust-item"><i class="ph ph-map-pin"></i> Harvested in St. Mary, JA</div>
+                <div class="trust-item"><i class="ph ph-moped"></i> Kingston & Portmore Delivery</div>
+                <div class="trust-item"><i class="ph ph-plant"></i> Sustainably Farmed Apiaries</div>
+            </div>
+        </section>
+
+        <!-- Shop / Product Grid -->
+        <section id="shop" class="shop-section container">
+            <div class="section-header">
+                <h2>The Current Harvest</h2>
+            </div>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All Products</button>
+                <button class="filter-btn" data-filter="raw">Raw Honey</button>
+                <button class="filter-btn" data-filter="whipped">Whipped Honey</button>
+            </div>
+
+            <div class="product-grid" id="product-grid">
+                <!-- 1. Regular Raw Honey -->
+                <div class="product-card" data-category="raw">
+                    <div class="product-image">
+                        <span class="product-badge">Signature</span>
+                        <img src="raw-honey.png" alt="Raw St. Mary Wildflower Honey Dripping">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Raw St. Mary Wildflower</h3>
+                        <select class="size-selector" id="raw-honey-size" onchange="updateDynamicPrice('raw-honey')">
+                            <option value="266ml" data-price="2200">266ml Glass Jar</option>
+                            <option value="500ml" data-price="3200">500ml Glass Jar</option>
+                            <option value="750ml" data-price="4000">750ml Glass Jar</option>
+                        </select>
+                        <div class="product-bottom">
+                            <span class="product-price" id="raw-honey-price">JMD $2,200</span>
+                            <button class="add-to-cart" data-id="1" data-title="Raw St. Mary Wildflower" data-img="raw-honey.png" data-select-id="raw-honey-size">Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Pure Whipped Honey -->
+                <div class="product-card" data-category="whipped">
+                    <div class="product-image">
+                        <span class="product-badge">Creamed</span>
+                        <img src="whipped-honey.png" alt="Pure Whipped Honey">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Pure Whipped Honey</h3>
+                        <p class="product-meta">266ml Glass Jar • Smooth, Spreadable</p>
+                        <div class="product-bottom">
+                            <span class="product-price">JMD $2,500</span>
+                            <button class="add-to-cart" data-id="2" data-title="Pure Whipped Honey" data-price="2500" data-img="whipped-honey.png">Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Cinnamon Infused Whipped Honey -->
+                <div class="product-card" data-category="whipped">
+                    <div class="product-image">
+                        <span class="product-badge">Infusion</span>
+                        <img src="cinnamon-whipped-honey.png" alt="Cinnamon Infused Whipped Honey">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Cinnamon Whipped Honey</h3>
+                        <p class="product-meta">266ml Glass Jar • Warm Spiced Spread</p>
+                        <div class="product-bottom">
+                            <span class="product-price">JMD $3,000</span>
+                            <button class="add-to-cart" data-id="3" data-title="Cinnamon Whipped Honey" data-price="3000" data-img="cinnamon-whipped-honey.png">Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="story-section">
+            <div class="container story-grid">
+                <div class="story-image">
+                    <img src="st-mary-hills.jpg" alt="Lush St. Mary hills apiary">
+                </div>
+                <div class="story-content">
+                    <h2>From the Hills of St. Mary to Your Table</h2>
+                    <p>Our apiculture practice relies on low intervention, ethical methods. Nestled in the rural hills of St. Mary, our bees forage on diverse, pesticide free tropical blooms. The result is a complex, rich floral nectar unique to the island.</p>
+                    <p>Every jar of Hey Hon is strictly cold extracted to preserve its delicate floral aromas, living enzymes, and natural propolis. We present honey exactly as nature intended, a rich, velvety gold with unmatched depth of flavor.</p>
+                    
+                    <div class="spec-grid">
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Unfiltered & Raw</div>
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Zero Added Sugar</div>
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Ethical Beekeeping</div>
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> 100% Local</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Delivery Info Section -->
+        <section class="delivery-section">
+            <div class="container delivery-grid">
+                <div class="delivery-info">
+                    <h3>Islandwide Delivery</h3>
+                    <p>We believe every home deserves access to pure honey. That is why we offer direct courier delivery across Kingston and Portmore.</p>
+                    <p>For our customers across the rest of Jamaica, we partner securely with <strong>Knutsford Express</strong> and trusted local couriers to ensure your harvest arrives safely right at your doorstep.</p>
+                </div>
+                <div>
+                    <img src="islandwide.png" alt="Delivery package" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-sm);">
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ & Wholesale -->
+        <section class="container dual-section">
+            <div id="faq" class="faq-container">
+                <h2 style="margin-bottom: 2rem; font-size: 2.2rem;">Frequently Asked</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-header">Where are your apiaries located? <i class="ph ph-caret-down"></i></div>
+                    <div class="faq-content"><p>All our hives are located deep in the rural, pristine hills of St. Mary, Jamaica, far away from commercial agriculture and pollution.</p></div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-header">What makes cold extracted raw honey superior? <i class="ph ph-caret-down"></i></div>
+                    <div class="faq-content"><p>Commercial honey is often heavily processed and pasteurized, stripping away natural floral aromas, beneficial enzymes, and antioxidants. Our cold extracted raw honey preserves every nuance of St. Mary's wildflower terroir, delivering unmatched depth, aroma, and vitality.</p></div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">What is Whipped Honey? <i class="ph ph-caret-down"></i></div>
+                    <div class="faq-content"><p>Whipped (or creamed) honey is pure raw honey that has been gently mixed in a controlled process to form very small crystals. It contains nothing but 100% honey, yielding a smooth, buttery, spreadable texture that never sets hard.</p></div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">How should I store my Hey Hon? <i class="ph ph-caret-down"></i></div>
+                    <div class="faq-content"><p>Store at room temperature in a dry cupboard. Never refrigerate raw honey. If your regular raw honey crystallizes over time, simply place the glass jar in warm water.</p></div>
+                </div>
+            </div>
+
+            <div id="wholesale" class="wholesale-box">
+                <h2 style="margin-bottom: 1rem; font-size: 1.8rem;">Wholesale & Gifting</h2>
+                <p style="margin-bottom: 2rem; font-size: 0.95rem; color: var(--slate);">Partner with us for corporate gifting, boutique retail, or culinary sourcing.</p>
+                
+                <form onsubmit="event.preventDefault(); alert('Request sent successfully! Our team will contact you soon.');">
+                    <div class="form-group">
+                        <label>Name / Company</label>
+                        <input type="text" required placeholder="Your business name">
+                    </div>
+                    <div class="form-group">
+                        <label>Inquiry Type</label>
+                        <select>
+                            <option>Retail / Boutique</option>
+                            <option>Corporate Gifting</option>
+                            <option>Restaurant / Culinary</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" required placeholder="hello@example.com">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Request Wholesale Catalog</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <h3>Join the Hive</h3>
+                <p>Get priority access to limited seasonal extractions & reserve batch releases.</p>
+                <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Welcome to the inner circle!');">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Join</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">Hey Hon</a>
+                    <p style="font-size: 0.95rem; max-width: 250px;">Rare, single origin Jamaican honey. A velvety, cold extracted elixir harvested directly from the hills of St. Mary.<br><br>Rooted in St. Mary, Jamaica 🇯🇲</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html">Raw Honey</a></li>
+                        <li><a href="shop.html">Whipped Honey</a></li>
+                        <li><a href="#wholesale">Wholesale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Brand</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="why-hey-hon.html">Why Hey Hon?</a></li>
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="#faq">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Delivery Info</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hey Hon Artisanal Honey. All rights reserved.</p>
+                <div class="payment-icons">
+                    <i class="ph ph-credit-card"></i>
+                    <i class="ph ph-apple-logo"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer UI -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Harvest Bag (<span id="drawer-count">0</span>)</h3>
+            <button class="close-cart" onclick="toggleCart()"><i class="ph ph-x"></i></button>
+        </div>
+        
+        <div class="free-shipping-bar">
+            <div id="shipping-msg">Add $6,000 JMD more for free Kingston delivery</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="shipping-progress"></div>
+            </div>
+        </div>
+
+        <div class="cart-items" id="cart-items-container"></div>
+
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cart-total">JMD $0</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 1.25rem; text-align: center;">Taxes and shipping calculated at checkout.</p>
+            <button class="btn btn-primary" onclick="checkoutToWhatsApp()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         JAVASCRIPT LOGIC
+         ========================================================================== -->
+    <script>
+        const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('en-JM', { style: 'currency', currency: 'JMD', minimumFractionDigits: 0 }).format(amount);
+        };
+
+        function updateDynamicPrice(productId) {
+            const select = document.getElementById(`${productId}-size`);
+            const price = select.options[select.selectedIndex].getAttribute('data-price');
+            document.getElementById(`${productId}-price`).innerText = formatCurrency(price);
+        }
+
+        const header = document.getElementById('header');
+        const navLinks = document.getElementById('nav-links');
+        const menuIcon = document.querySelector('.mobile-menu-btn i');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            header.classList.toggle('menu-open');
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.replace('ph-list', 'ph-x');
+   
