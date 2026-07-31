@@ -223,31 +223,19 @@
         @media (max-width: 768px) {
             .nav-utils .currency { display: none; }
             .mobile-menu-btn { display: block; }
-
+            
+            /* FIXED BULLETPROOF MOBILE NAV */
             .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 253, 249, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-top: 1px solid var(--gold-border);
-                box-shadow: var(--shadow-md);
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-10px);
-                transition: all 0.3s ease;
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(255, 253, 249, 0.98); backdrop-filter: blur(10px);
+                flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
+                border-top: 1px solid var(--gold-border); box-shadow: var(--shadow-md);
+                max-height: 0; overflow: hidden; opacity: 0; padding: 0;
+                transition: all 0.3s ease-in-out;
             }
-
-                .nav-links.active {
-                    opacity: 1;
-                    visibility: visible;
-                    transform: translateY(0);
-                }
+            .nav-links.active { 
+                max-height: 400px; opacity: 1; padding: 2rem 0;
+            }
             .nav-links a { font-size: 1.2rem; width: 100%; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.5rem; }
 
             .page-header { padding-top: 120px; padding-bottom: 2rem; }
@@ -282,10 +270,10 @@
             </a>
             
             <nav class="nav-links" id="nav-links">
-                <a href="shop.html">Shop</a>
-                <a href="story.html">Our Story</a>
-                <a href="why-hey-hon.html" class="active">Why Hey Hon?</a>
-                <a href="recipes.html">Recipes</a>
+                <a href="shop.html" onclick="closeMenu()">Shop</a>
+                <a href="story.html" onclick="closeMenu()">Our Story</a>
+                <a href="why-hey-hon.html" class="active" onclick="closeMenu()">Why Hey Hon?</a>
+                <a href="recipes.html" onclick="closeMenu()">Recipes</a>
                 <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
             </nav>
 
@@ -443,19 +431,31 @@
             else header.classList.remove('scrolled');
         });
 
+        // FIXED MOBILE MENU JS
         function toggleMenu() {
             navLinks.classList.toggle('active');
             header.classList.toggle('menu-open');
-
-            // Safe icon toggle
-            const menuIcon = document.querySelector('.mobile-menu-btn i');
-            if (menuIcon) {
+            
+            const icon = document.querySelector('.mobile-menu-btn i');
+            if (icon) {
                 if (navLinks.classList.contains('active')) {
-                    menuIcon.classList.remove('ph-list');
-                    menuIcon.classList.add('ph-x');
+                    icon.classList.remove('ph-list');
+                    icon.classList.add('ph-x');
                 } else {
-                    menuIcon.classList.remove('ph-x');
-                    menuIcon.classList.add('ph-list');
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                }
+            }
+        }
+
+        function closeMenu() {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                header.classList.remove('menu-open');
+                const icon = document.querySelector('.mobile-menu-btn i');
+                if (icon) {
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
                 }
             }
         }
@@ -532,7 +532,7 @@
             }
             
             const phone = "16582182734"; 
-            let message = "Hey Hon! I would like to place an order:\n\n";
+            let message = "Hello Hey Hon! I would like to place an order:\n\n";
             let total = 0;
             
             cart.forEach(item => {
@@ -552,7 +552,7 @@
         // Initialize Cart on Load
         updateCartUI();
 
-        // Background Animation
+        // Background Animation (Reduced count for reading pages)
         const canvas = document.getElementById('bee-canvas');
         const ctx = canvas.getContext('2d');
         let bees = [];
@@ -679,7 +679,7 @@
 
         function initBees() {
             bees = [];
-            const beeCount = window.innerWidth < 768 ? 4 : 8; 
+            const beeCount = window.innerWidth < 768 ? 3 : 7; 
             for (let i = 0; i < beeCount; i++) {
                 bees.push(new RealisticBee());
             }

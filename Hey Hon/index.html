@@ -241,7 +241,7 @@
         .spec-item i { color: var(--amber); font-size: 1.2rem; }
 
         /* ==========================================================================
-           8. DELIVERY INFO & FAQ & WHOLESALE
+           8. DELIVERY, FAQ & WHOLESALE
            ========================================================================== */
         .delivery-section {
             background: var(--white); border-bottom: 1px solid var(--gold-border);
@@ -333,7 +333,7 @@
         .cart-footer .btn { width: 100%; padding: 1.15rem; font-size: 1.05rem; }
 
         /* ==========================================================================
-           11. MOBILE / RESPONSIVE DESIGN
+           11. MOBILE / RESPONSIVE DESIGN (FOOLPROOF FIX APPLIED)
            ========================================================================== */
         @media (max-width: 1024px) { .hero-grid, .story-grid, .dual-section, .delivery-grid { gap: 3rem; } }
 
@@ -341,32 +341,20 @@
             .container { padding: 0 1.25rem; }
             .nav-utils .currency { display: none; }
             .mobile-menu-btn { display: block; }
-
+            
+            /* UPDATED BULLETPROOF MOBILE NAV */
             .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 253, 249, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-top: 1px solid var(--gold-border);
-                box-shadow: var(--shadow-md);
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-10px);
-                transition: all 0.3s ease;
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(255, 253, 249, 0.98); backdrop-filter: blur(10px);
+                flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
+                border-top: 1px solid var(--gold-border); box-shadow: var(--shadow-md);
+                max-height: 0; overflow: hidden; opacity: 0; padding: 0;
+                transition: all 0.3s ease-in-out;
             }
-
-                .nav-links.active {
-                    opacity: 1;
-                    visibility: visible;
-                    transform: translateY(0);
-                }
-            .nav-links a { font-size: 1.2rem; width: 100%; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.5rem; }
+            .nav-links.active { 
+                max-height: 400px; opacity: 1; padding: 2rem 0;
+            }
+            .nav-links a { font-size: 1.2rem; }
 
             .hero { padding-top: 120px; text-align: center; }
             .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -418,7 +406,7 @@
                 <a href="story.html" onclick="closeMenu()">Our Story</a>
                 <a href="why-hey-hon.html" onclick="closeMenu()">Why Hey Hon?</a>
                 <a href="recipes.html" onclick="closeMenu()">Recipes</a>
-                <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
+                <a href="#faq" onclick="closeMenu()">FAQ</a>
             </nav>
 
             <div class="nav-utils">
@@ -505,7 +493,7 @@
                         <p class="product-meta">266ml Glass Jar • Smooth, Spreadable</p>
                         <div class="product-bottom">
                             <span class="product-price">JMD $2,500</span>
-                            <button class="add-to-cart" data-id="2" data-title="Pure Whipped Honey" data-price="2500" data-img="whipped-honey.png">Add to Bag</button>
+                            <button class="add-to-cart" data-id="2" data-title="Pure Whipped Honey (266ml)" data-price="2500" data-img="whipped-honey.png">Add to Bag</button>
                         </div>
                     </div>
                 </div>
@@ -521,7 +509,7 @@
                         <p class="product-meta">266ml Glass Jar • Warm Spiced Spread</p>
                         <div class="product-bottom">
                             <span class="product-price">JMD $3,000</span>
-                            <button class="add-to-cart" data-id="3" data-title="Cinnamon Whipped Honey" data-price="3000" data-img="cinnamon-whipped-honey.png">Add to Bag</button>
+                            <button class="add-to-cart" data-id="3" data-title="Cinnamon Whipped Honey (266ml)" data-price="3000" data-img="cinnamon-whipped-honey.png">Add to Bag</button>
                         </div>
                     </div>
                 </div>
@@ -723,20 +711,363 @@
             else header.classList.remove('scrolled');
         });
 
+        // UPDATED FOOLPROOF MENU TOGGLE 
         function toggleMenu() {
             navLinks.classList.toggle('active');
             header.classList.toggle('menu-open');
-
-            // Safe icon toggle
-            const menuIcon = document.querySelector('.mobile-menu-btn i');
-            if (menuIcon) {
+            
+            const icon = document.querySelector('.mobile-menu-btn i');
+            if (icon) {
                 if (navLinks.classList.contains('active')) {
-                    menuIcon.classList.remove('ph-list');
-                    menuIcon.classList.add('ph-x');
+                    icon.classList.remove('ph-list');
+                    icon.classList.add('ph-x');
                 } else {
-                    menuIcon.classList.remove('ph-x');
-                    menuIcon.classList.add('ph-list');
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
                 }
             }
         }
-   
+
+        function closeMenu() {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                header.classList.remove('menu-open');
+                const icon = document.querySelector('.mobile-menu-btn i');
+                if (icon) {
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                }
+            }
+        }
+
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const faqHeader = item.querySelector('.faq-header');
+            faqHeader.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-content').style.maxHeight = null;
+                });
+                if (!isActive) {
+                    item.classList.add('active');
+                    const content = item.querySelector('.faq-content');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const products = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                products.forEach(product => {
+                    if (filterValue === 'all' || product.getAttribute('data-category') === filterValue) {
+                        product.style.display = 'flex';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        let cart = JSON.parse(localStorage.getItem('heyHonCart')) || [];
+        const FREE_SHIPPING_THRESHOLD = 6000;
+
+        function toggleCart() {
+            document.getElementById('cart-drawer').classList.toggle('active');
+            document.getElementById('cart-overlay').classList.toggle('active');
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total');
+            const countBadge = document.getElementById('cart-count');
+            const drawerCount = document.getElementById('drawer-count');
+            
+            container.innerHTML = '';
+            let total = 0;
+            let itemCount = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-cart-msg">Your bag is currently empty.</div>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+                    itemCount += item.quantity;
+
+                    const itemHTML = `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <div class="cart-item-title">${item.title}</div>
+                                <div class="cart-item-price">${formatCurrency(item.price)}</div>
+                                <div class="cart-qty-controls">
+                                    <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                                    <span>${item.quantity}</span>
+                                    <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                                </div>
+                            </div>
+                            <span class="item-remove" onclick="removeItem(${index})">Remove</span>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', itemHTML);
+                });
+            }
+
+            totalEl.innerText = formatCurrency(total);
+            countBadge.innerText = itemCount;
+            drawerCount.innerText = itemCount;
+
+            const shippingMsg = document.getElementById('shipping-msg');
+            const progressBar = document.getElementById('shipping-progress');
+            
+            if (total >= FREE_SHIPPING_THRESHOLD) {
+                shippingMsg.innerHTML = "You've unlocked <strong>Free Kingston Delivery!</strong>";
+                progressBar.style.width = '100%';
+                progressBar.style.backgroundColor = '#2ecc71';
+            } else {
+                const remaining = FREE_SHIPPING_THRESHOLD - total;
+                shippingMsg.innerHTML = `Add ${formatCurrency(remaining)} more for free delivery`;
+                const progressPercentage = (total / FREE_SHIPPING_THRESHOLD) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+                progressBar.style.backgroundColor = 'var(--amber)';
+            }
+        }
+
+        function changeQty(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) cart.splice(index, 1);
+            saveCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            saveCart();
+        }
+
+        function saveCart() {
+            localStorage.setItem('heyHonCart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function checkoutToWhatsApp() {
+            if (cart.length === 0) {
+                alert("Your bag is empty! Please add some honey to checkout.");
+                return;
+            }
+            
+            const phone = "18765550000"; 
+            let message = "Hello Hey Hon! I would like to place an order:\n\n";
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                message += `- ${item.quantity}x ${item.title} - ${formatCurrency(itemTotal)}\n`;
+            });
+            
+            message += `\nSubtotal: ${formatCurrency(total)}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        const addButtons = document.querySelectorAll('.add-to-cart');
+        addButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                let id = button.getAttribute('data-id');
+                let title = button.getAttribute('data-title');
+                let price = parseInt(button.getAttribute('data-price'));
+                let img = button.getAttribute('data-img');
+
+                const selectId = button.getAttribute('data-select-id');
+                if (selectId) {
+                    const selectEl = document.getElementById(selectId);
+                    const selectedOption = selectEl.options[selectEl.selectedIndex];
+                    const size = selectedOption.value;
+                    price = parseInt(selectedOption.getAttribute('data-price'));
+                    title = `${title} (${size})`;
+                    id = `${id}-${size}`; 
+                }
+
+                const originalText = button.innerText;
+                button.innerText = "Adding... ✓";
+                button.style.backgroundColor = "var(--amber)";
+                button.style.color = "var(--white)";
+                
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.backgroundColor = "";
+                    button.style.color = "";
+                }, 1000);
+
+                const existingItem = cart.find(item => item.id === id);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ id, title, price, img, quantity: 1 });
+                }
+
+                saveCart();
+            });
+        });
+
+        updateCartUI();
+
+        // Background Animation
+        const canvas = document.getElementById('bee-canvas');
+        const ctx = canvas.getContext('2d');
+        let bees = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class RealisticBee {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.angle = Math.random() * Math.PI * 2;
+                this.state = 'hover';
+                this.timer = Math.random() * 100 + 50; 
+                this.targetX = this.x;
+                this.targetY = this.y;
+                this.targetAngle = this.angle;
+                this.baseSpeed = Math.random() * 2 + 2.5; 
+                this.hoverJitter = Math.random() * Math.PI * 2;
+                this.size = Math.random() * 1.2 + 1.5; 
+                this.opacity = Math.random() * 0.6 + 0.4; 
+                this.flapOffset = Math.random() * 100;
+                this.flapSpeed = 0.5;
+            }
+
+            update() {
+                this.timer--;
+                if (this.state === 'hover') {
+                    this.x += Math.sin(Date.now() * 0.002 + this.hoverJitter) * 0.5;
+                    this.y += Math.cos(Date.now() * 0.003 + this.hoverJitter) * 0.5;
+                    this.angle += (Math.random() - 0.5) * 0.08;
+                    this.flapSpeed = 0.4;
+
+                    if (this.timer <= 0) {
+                        this.state = 'dart';
+                        this.timer = Math.random() * 50 + 30; 
+                        const dist = Math.random() * 150 + 100;
+                        const dir = this.angle + (Math.random() - 0.5) * Math.PI; 
+                        this.targetX = this.x + Math.cos(dir) * dist;
+                        this.targetY = this.y + Math.sin(dir) * dist;
+                        this.targetAngle = Math.atan2(this.targetY - this.y, this.targetX - this.x);
+                    }
+                } else if (this.state === 'dart') {
+                    let angleDiff = this.targetAngle - this.angle;
+                    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+                    this.angle += angleDiff * 0.2; 
+                    this.x += Math.cos(this.angle) * this.baseSpeed;
+                    this.y += Math.sin(this.angle) * this.baseSpeed;
+                    this.flapSpeed = 0.8;
+
+                    const distToTarget = Math.hypot(this.targetX - this.x, this.targetY - this.y);
+                    if (this.timer <= 0 || distToTarget < 10) {
+                        this.state = 'hover';
+                        this.timer = Math.random() * 150 + 80; 
+                    }
+                }
+
+                const margin = 30;
+                if (this.x < -margin) this.x = canvas.width + margin;
+                if (this.x > canvas.width + margin) this.x = -margin;
+                if (this.y < -margin) this.y = canvas.height + margin;
+                if (this.y > canvas.height + margin) this.y = -margin;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+
+                const bodyLength = this.size * 2;
+                const bodyWidth = this.size * 1.2;
+
+                ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.moveTo(-bodyLength + 1, 0);
+                ctx.lineTo(-bodyLength - 2, 0);
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.fillStyle = `rgba(217, 138, 43, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, bodyLength, bodyWidth, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity * 0.85})`;
+                ctx.beginPath();
+                ctx.ellipse(-bodyLength * 0.3, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                ctx.ellipse(bodyLength * 0.2, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(bodyLength * 0.8, 0, this.size * 0.9, 0, Math.PI * 2);
+                ctx.fill();
+
+                const flap = Math.sin(Date.now() * this.flapSpeed + this.flapOffset);
+                const wingSweep = flap * 0.5;
+
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
+                
+                ctx.save();
+                ctx.translate(bodyLength * 0.2, -bodyWidth * 0.4); 
+                ctx.rotate(-1 + wingSweep); 
+                ctx.beginPath();
+                ctx.ellipse(0, -this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+
+                ctx.save();
+                ctx.translate(bodyLength * 0.2, bodyWidth * 0.4);
+                ctx.rotate(1 - wingSweep); 
+                ctx.beginPath();
+                ctx.ellipse(0, this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+
+                ctx.restore();
+            }
+        }
+
+        function initBees() {
+            bees = [];
+            const beeCount = window.innerWidth < 768 ? 4 : 8; 
+            for (let i = 0; i < beeCount; i++) {
+                bees.push(new RealisticBee());
+            }
+        }
+
+        function animateBees() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            bees.forEach(bee => {
+                bee.update();
+                bee.draw();
+            });
+            requestAnimationFrame(animateBees);
+        }
+
+        initBees();
+        animateBees();
+
+    </script>
+</body>
+</html>

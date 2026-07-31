@@ -106,14 +106,6 @@
         }
         .mobile-menu-btn { display: none; font-size: 1.8rem; color: var(--espresso); }
 
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 1rem 2rem; font-weight: 500; font-size: 0.95rem; border-radius: 4px;
-            transition: var(--transition); text-align: center;
-        }
-        .btn-primary { background: var(--amber); color: var(--white); }
-        .btn-primary:hover { background: var(--amber-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-
         /* ==========================================================================
            4. RECIPES PAGE LAYOUT
            ========================================================================== */
@@ -266,31 +258,19 @@
         @media (max-width: 768px) {
             .nav-utils .currency { display: none; }
             .mobile-menu-btn { display: block; }
-
+            
+            /* UPDATED BULLETPROOF MOBILE NAV */
             .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 253, 249, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-top: 1px solid var(--gold-border);
-                box-shadow: var(--shadow-md);
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-10px);
-                transition: all 0.3s ease;
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(255, 253, 249, 0.98); backdrop-filter: blur(10px);
+                flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
+                border-top: 1px solid var(--gold-border); box-shadow: var(--shadow-md);
+                max-height: 0; overflow: hidden; opacity: 0; padding: 0;
+                transition: all 0.3s ease-in-out;
             }
-
-                .nav-links.active {
-                    opacity: 1;
-                    visibility: visible;
-                    transform: translateY(0);
-                }
+            .nav-links.active { 
+                max-height: 400px; opacity: 1; padding: 2rem 0;
+            }
             .nav-links a { font-size: 1.2rem; width: 100%; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.5rem; }
 
             .page-header { padding-top: 120px; padding-bottom: 1rem; }
@@ -351,7 +331,7 @@
                 <div class="recipe-card">
                     <div class="recipe-image">
                         <span class="recipe-badge">Aesthetic Sips</span>
-                        <img src="matcha-latte.png" alt="Iced Strawberry Matcha Latte">
+                        <img src="matcha-latte.jpg" alt="Iced Strawberry Matcha Latte">
                     </div>
                     <div class="recipe-info">
                         <h3 class="recipe-title">Iced Strawberry Matcha with Honey Cloud Foam</h3>
@@ -394,7 +374,7 @@
                 <div class="recipe-card">
                     <div class="recipe-image">
                         <span class="recipe-badge">Morning Rituals</span>
-                        <img src="shaken-espresso.png" alt="Iced Shaken Espresso">
+                        <img src="shaken-espresso.jpg" alt="Iced Shaken Espresso">
                     </div>
                     <div class="recipe-info">
                         <h3 class="recipe-title">Cinnamon Whipped Honey Shaken Espresso</h3>
@@ -435,7 +415,7 @@
                 <div class="recipe-card">
                     <div class="recipe-image">
                         <span class="recipe-badge">Savory Cravings</span>
-                        <img src="ricotta-toast.png" alt="Ricotta and Honey Toast">
+                        <img src="ricotta-toast.jpg" alt="Ricotta and Honey Toast">
                     </div>
                     <div class="recipe-info">
                         <h3 class="recipe-title">Whipped Ricotta & Chili Honey Artisan Toast</h3>
@@ -549,7 +529,7 @@
          JAVASCRIPT LOGIC
          ========================================================================== -->
     <script>
-        // 1. Recipe Toggle Logic (Accordion style)
+        // 1. Recipe Accordion Toggle
         function toggleRecipe(btn) {
             const details = btn.nextElementSibling;
             const icon = btn.querySelector('i');
@@ -565,7 +545,7 @@
             }
         }
 
-        // 2. Header & Mobile Menu Logic
+        // 2. Header Scroll & Mobile Menu Toggle
         const header = document.getElementById('header');
         const navLinks = document.getElementById('nav-links');
         const menuIcon = document.querySelector('.mobile-menu-btn i');
@@ -578,21 +558,32 @@
         function toggleMenu() {
             navLinks.classList.toggle('active');
             header.classList.toggle('menu-open');
-
-            // Safe icon toggle
-            const menuIcon = document.querySelector('.mobile-menu-btn i');
-            if (menuIcon) {
+            
+            const icon = document.querySelector('.mobile-menu-btn i');
+            if (icon) {
                 if (navLinks.classList.contains('active')) {
-                    menuIcon.classList.remove('ph-list');
-                    menuIcon.classList.add('ph-x');
+                    icon.classList.remove('ph-list');
+                    icon.classList.add('ph-x');
                 } else {
-                    menuIcon.classList.remove('ph-x');
-                    menuIcon.classList.add('ph-list');
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
                 }
             }
         }
 
-        // 3. Persistent Cart System via LocalStorage
+        function closeMenu() {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                header.classList.remove('menu-open');
+                const icon = document.querySelector('.mobile-menu-btn i');
+                if (icon) {
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                }
+            }
+        }
+
+        // 3. Persistent Cart via LocalStorage
         const formatCurrency = (amount) => {
             return new Intl.NumberFormat('en-JM', { style: 'currency', currency: 'JMD', minimumFractionDigits: 0 }).format(amount);
         };
@@ -668,7 +659,7 @@
             }
             
             const phone = "16582182734"; 
-            let message = "Hey Hon! I would like to place an order:\n\n";
+            let message = "Hello Hey Hon! I would like to place an order:\n\n";
             let total = 0;
             
             cart.forEach(item => {
@@ -688,7 +679,7 @@
         // Initialize Cart on Load
         updateCartUI();
 
-        // 4. Background Animation
+        // 4. Background "House Bee" Animation
         const canvas = document.getElementById('bee-canvas');
         const ctx = canvas.getContext('2d');
         let bees = [];
@@ -815,7 +806,7 @@
 
         function initBees() {
             bees = [];
-            const beeCount = window.innerWidth < 768 ? 3 : 7; 
+            const beeCount = window.innerWidth < 768 ? 4 : 8; 
             for (let i = 0; i < beeCount; i++) {
                 bees.push(new RealisticBee());
             }
