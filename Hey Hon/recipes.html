@@ -3,7 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Recipes | Hey Hon</title>
+    
+    <!-- Advanced SEO & LLM Optimization -->
+    <title>Recipes | Hey Hon Rare Single Origin Jamaican Honey</title>
+    <meta name="description" content="Elevate your everyday rituals with Hey Hon raw honey. Discover recipes for iced strawberry matcha, cinnamon whipped honey shaken espresso, and savory ricotta toast.">
+    <meta name="keywords" content="Hey Hon recipes, honey matcha latte, honey shaken espresso, hot honey ricotta toast, raw honey recipes, Jamaican honey recipes">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.com/recipes.html">
+    
+    <!-- Open Graph & Social Sharing Meta Tags -->
+    <meta property="og:title" content="The Tasting Room | Hey Hon Recipes">
+    <meta property="og:description" content="Curated morning rituals and savory cravings. Elevate your everyday with Hey Hon rare Jamaican honey.">
+    <meta property="og:image" content="https://yourdomain.com/matcha-latte.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/recipes.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hey Hon Recipes">
+    <meta name="twitter:description" content="Curated morning rituals and savory cravings. Elevate your everyday with Hey Hon.">
+    <meta name="twitter:image" content="https://yourdomain.com/matcha-latte.png">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Hey Hon Honey Recipes",
+      "description": "A collection of aesthetic and savory recipes using Hey Hon raw cold extracted Jamaican honey.",
+      "publisher": {
+        "@type": "Brand",
+        "name": "Hey Hon"
+      }
+    }
+    </script>
     
     <!-- Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,6 +137,34 @@
         }
         .mobile-menu-btn { display: none; font-size: 1.8rem; color: var(--espresso); }
 
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2rem; font-weight: 500; font-size: 0.95rem; border-radius: 4px;
+            transition: var(--transition); text-align: center;
+        }
+        .btn-primary { background: var(--amber); color: var(--white); }
+        .btn-primary:hover { background: var(--amber-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        /* ==========================================================================
+           3.B. VISUAL TOAST NOTIFICATION
+           ========================================================================== */
+        .toast-notification {
+            position: fixed; top: 20px; right: 20px; background: var(--espresso);
+            color: var(--cream); padding: 1rem 1.25rem; border-radius: 8px;
+            box-shadow: var(--shadow-md); display: flex; align-items: center;
+            justify-content: space-between; gap: 1.5rem; z-index: 2000;
+            transform: translateY(-150%); opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 4px solid var(--amber); max-width: 420px; width: 90%;
+        }
+        .toast-notification.show { transform: translateY(0); opacity: 1; }
+        .toast-msg { font-size: 0.9rem; line-height: 1.4; display: flex; align-items: center; gap: 0.5rem; }
+        .toast-msg i { color: var(--amber); font-size: 1.3rem; flex-shrink: 0; }
+        .toast-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+        .toast-btn { background: transparent; color: var(--amber); font-size: 0.85rem; font-weight: 600; text-decoration: underline; padding: 0 0.25rem; }
+        .toast-btn-primary { background: var(--amber); color: var(--white); text-decoration: none; padding: 0.35rem 0.75rem; border-radius: 4px; }
+        .toast-btn-primary:hover { background: var(--amber-dark); color: var(--white); }
+
         /* ==========================================================================
            4. RECIPES PAGE LAYOUT
            ========================================================================== */
@@ -205,27 +264,76 @@
         .recipe-steps li { margin-bottom: 0.75rem; line-height: 1.6; }
 
         /* ==========================================================================
-           5. FOOTER & CART
+           5. SLEEK DARK FOOTER
            ========================================================================== */
-        footer { background: var(--cream); padding: 4rem 0 2rem; border-top: 1px solid var(--gold-border); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 2rem; margin-bottom: 4rem; }
-        .footer-col h4 { font-size: 1.1rem; margin-bottom: 1.5rem; }
-        .footer-col ul li { margin-bottom: 0.85rem; }
-        .footer-col ul li a { font-size: 0.95rem; transition: color 0.2s; }
-        .footer-col ul li a:hover { color: var(--amber); }
-
-        .footer-bottom {
-            display: flex; justify-content: space-between; align-items: center;
-            padding-top: 2rem; border-top: 1px solid var(--gold-border); font-size: 0.85rem;
+        .site-footer {
+            background: var(--espresso); color: var(--cream);
+            padding: 6rem 0 3rem; text-align: center;
         }
-        .payment-icons i { font-size: 1.6rem; margin-left: 0.75rem; color: var(--slate); vertical-align: middle; }
+        .footer-logo {
+            font-family: var(--font-serif); font-size: 3.2rem; font-weight: 700;
+            color: var(--amber); margin-bottom: 2rem; letter-spacing: 0.05em; display: inline-block;
+        }
+        .footer-nav {
+            display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 3.5rem;
+        }
+        .footer-nav a { font-size: 1.05rem; font-weight: 500; color: var(--cream); transition: color 0.2s ease; }
+        .footer-nav a:hover { color: var(--amber); }
+        
+        .footer-contact { display: flex; justify-content: center; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap; }
+        .footer-contact a { display: flex; align-items: center; gap: 0.6rem; font-size: 1.15rem; font-weight: 500; color: var(--cream); transition: color 0.2s; }
+        .footer-contact a:hover { color: var(--amber); }
+        .footer-contact i { font-size: 1.6rem; color: var(--amber); }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 253, 249, 0.1); padding-top: 2rem;
+            display: flex; flex-direction: column; align-items: center; gap: 1rem;
+            font-size: 0.85rem; opacity: 0.8;
+        }
 
-        .cart-overlay {
+        /* DISCREET AGENCY CREDIT FOOTER */
+        .agency-credit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            font-size: 0.75rem;
+            color: rgba(255, 253, 249, 0.6);
+            transition: color 0.2s ease;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap; /* Prevents the text from wrapping onto a new line */
+            flex-wrap: nowrap;
+        }
+
+            .agency-credit:hover {
+                color: var(--cream);
+            }
+
+        .agency-logo {
+            height: 52px; /* Doubled the size from 16px */
+            width: auto;
+            vertical-align: middle;
+            filter: brightness(0) invert(1);
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+        }
+
+        .agency-credit:hover .agency-logo {
+            opacity: 1;
+        }
+
+        /* ==========================================================================
+           6. CART DRAWER & CHECKOUT MODAL
+           ========================================================================== */
+        .cart-overlay, .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(34, 31, 29, 0.4); backdrop-filter: blur(4px);
             z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s;
         }
-        .cart-overlay.active { opacity: 1; pointer-events: all; }
+        .cart-overlay.active, .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-overlay { z-index: 1050; }
 
         .cart-drawer {
             position: fixed; top: 0; right: 0; width: 100%; max-width: 450px; height: 100vh;
@@ -236,6 +344,9 @@
         .cart-drawer.active { transform: translateX(0); }
         .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--gold-border); display: flex; justify-content: space-between; align-items: center; }
         .close-cart { font-size: 1.5rem; color: var(--espresso); padding: 0.5rem; }
+        .free-shipping-bar { padding: 1.25rem 1.5rem; background: var(--white); border-bottom: 1px solid var(--gold-border); text-align: center; font-size: 0.85rem; font-weight: 500; }
+        .progress-container { height: 6px; background: #f0f0f0; border-radius: 3px; margin-top: 0.75rem; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--amber); width: 0%; transition: width 0.4s ease; }
         .cart-items { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
         .empty-cart-msg { text-align: center; color: var(--slate); margin-top: 2rem; font-style: italic; }
         
@@ -252,14 +363,32 @@
         .cart-subtotal { display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 600; color: var(--espresso); margin-bottom: 1rem; }
         .cart-footer .btn { width: 100%; padding: 1.15rem; font-size: 1.05rem; }
 
+        /* PRE-CHECKOUT DELIVERY MODAL */
+        .checkout-modal {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -45%);
+            background: var(--white); border: 1px solid var(--gold-border);
+            border-radius: 12px; box-shadow: var(--shadow-drawer);
+            width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto;
+            z-index: 1100; opacity: 0; pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 2rem;
+        }
+        .checkout-modal.active { transform: translate(-50%, -50%); opacity: 1; pointer-events: all; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--gold-border); padding-bottom: 1rem; }
+        .delivery-summary { background: var(--cream); border: 1px solid var(--gold-border); padding: 1rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .delivery-summary-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .delivery-summary-row.total { font-weight: 700; font-size: 1.05rem; color: var(--espresso); border-top: 1px dashed var(--gold-border); padding-top: 0.5rem; margin-bottom: 0; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500; color: var(--espresso); }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.85rem; border: 1px solid var(--gold-border); border-radius: 4px; font-family: var(--font-sans); background: var(--cream); color: var(--espresso); appearance: none; }
+
         /* ==========================================================================
-           6. RESPONSIVE DESIGN
+           7. RESPONSIVE DESIGN
            ========================================================================== */
         @media (max-width: 768px) {
             .nav-utils .currency { display: none; }
             .mobile-menu-btn { display: block; }
             
-            /* UPDATED BULLETPROOF MOBILE NAV */
+            /* FIXED BULLETPROOF MOBILE NAV */
             .nav-links {
                 position: absolute; top: 100%; left: 0; width: 100%;
                 background: rgba(255, 253, 249, 0.98); backdrop-filter: blur(10px);
@@ -268,17 +397,20 @@
                 max-height: 0; overflow: hidden; opacity: 0; padding: 0;
                 transition: all 0.3s ease-in-out;
             }
-            .nav-links.active { 
-                max-height: 400px; opacity: 1; padding: 2rem 0;
-            }
-            .nav-links a { font-size: 1.2rem; width: 100%; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.5rem; }
+            .nav-links.active { max-height: 400px; opacity: 1; padding: 2rem 0; }
+            .nav-links a { font-size: 1.2rem; width: 100%; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.5rem; text-align: center; }
 
             .page-header { padding-top: 120px; padding-bottom: 1rem; }
             .recipe-grid { grid-template-columns: 1fr; gap: 2rem; }
             .recipe-info { padding: 1.5rem; }
 
-            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            .site-footer { padding: 4rem 1.5rem 2rem; }
+            .footer-logo { font-size: 2.5rem; }
+            .footer-nav { gap: 1.5rem; flex-direction: column; align-items: center; margin-bottom: 2.5rem;}
+            .footer-contact { gap: 1.5rem; flex-direction: column; align-items: center; margin-bottom: 3rem;}
+            
+            .toast-notification { top: 10px; right: 5%; width: 90%; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+            .toast-actions { width: 100%; justify-content: flex-end; }
         }
     </style>
 </head>
@@ -288,6 +420,18 @@
     <div class="background-layer">
         <div class="honeycomb-pattern"></div>
         <canvas id="bee-canvas"></canvas>
+    </div>
+
+    <!-- Visual Toast Feedback -->
+    <div class="toast-notification" id="toast">
+        <div class="toast-msg">
+            <i class="ph-fill ph-check-circle"></i>
+            <span id="toast-text">Item added to your Harvest Bag.</span>
+        </div>
+        <div class="toast-actions">
+            <button class="toast-btn" onclick="toggleCart(); hideToast();">View Bag</button>
+            <button class="toast-btn toast-btn-primary" onclick="toggleCart(); openCheckoutModal(); hideToast();">Checkout</button>
+        </div>
     </div>
 
     <!-- Sticky Header -->
@@ -458,47 +602,37 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Sleek Jybe-Inspired Footer -->
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">Hey Hon</a>
-                    <p style="font-size: 0.95rem; max-width: 250px;">Rare, single origin Jamaican honey. A velvety, cold extracted elixir harvested directly from the hills of St. Mary.<br><br>Rooted in St. Mary, Jamaica 🇯🇲</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Shop</h4>
-                    <ul>
-                        <li><a href="shop.html">All Products</a></li>
-                        <li><a href="shop.html">Raw Honey</a></li>
-                        <li><a href="shop.html">Whipped Honey</a></li>
-                        <li><a href="index.html#wholesale">Wholesale</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Brand</h4>
-                    <ul>
-                        <li><a href="story.html">Our Story</a></li>
-                        <li><a href="why-hey-hon.html">Why Hey Hon?</a></li>
-                        <li><a href="recipes.html">Recipes</a></li>
-                        <li><a href="index.html#faq">FAQs</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Customer Care</h4>
-                    <ul>
-                        <li><a href="#">Delivery Info</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
+            <a href="index.html" class="footer-logo">HEY HON</a>
+            
+            <nav class="footer-nav">
+                <a href="shop.html">Shop</a>
+                <a href="recipes.html">Recipes</a>
+                <a href="story.html">Our Story</a>
+                <a href="index.html#wholesale">Wholesale</a>
+                <a href="index.html#faq">FAQs</a>
+            </nav>
+            
+            <div class="footer-contact">
+                <a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer">
+                    <i class="ph-fill ph-whatsapp-logo"></i> 1 (658) 218-2734
+                </a>
+                <a href="https://instagram.com/heyhonja" target="_blank" rel="noopener noreferrer">
+                    <i class="ph-fill ph-instagram-logo"></i> @heyhonja
+                </a>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Hey Hon Artisanal Honey. All rights reserved.</p>
-                <div class="payment-icons">
-                    <i class="ph ph-credit-card"></i>
-                    <i class="ph ph-apple-logo"></i>
-                </div>
+                <p>Kingston, Jamaica. Rooted in St. Mary 🇯🇲</p>
+                <p>&copy; 2026 Hey Hon Artisanal Honey.</p>
+                
+                <!-- Discreet Agency Credit -->
+                <a href="https://avancejm.com" target="_blank" rel="noopener noreferrer" class="agency-credit">
+                    <span>Designed & Automated by</span>
+                    <img src="avance-logo.png" alt="Avance Web Design Jamaica" class="agency-logo" />
+                </a>
             </div>
         </div>
     </footer>
@@ -511,9 +645,14 @@
             <button class="close-cart" onclick="toggleCart()"><i class="ph ph-x"></i></button>
         </div>
         
-        <div class="cart-items" id="cart-items-container">
-            <div class="empty-cart-msg">Your bag is currently empty.</div>
+        <div class="free-shipping-bar">
+            <div id="shipping-msg">Add $6,000 JMD more for free Kingston delivery</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="shipping-progress"></div>
+            </div>
         </div>
+
+        <div class="cart-items" id="cart-items-container"></div>
 
         <div class="cart-footer">
             <div class="cart-subtotal">
@@ -521,8 +660,73 @@
                 <span id="cart-total">JMD $0</span>
             </div>
             <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 1.25rem; text-align: center;">Taxes and shipping calculated at checkout.</p>
-            <button class="btn btn-primary" onclick="checkoutToWhatsApp()">Proceed to Checkout</button>
+            <button class="btn btn-primary" onclick="openCheckoutModal()">Proceed to Checkout</button>
         </div>
+    </div>
+
+    <!-- Pre-Checkout Delivery Details Collector Modal -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeCheckoutModal()"></div>
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="modal-header">
+            <h3>Delivery Details</h3>
+            <button class="close-cart" onclick="closeCheckoutModal()"><i class="ph ph-x"></i></button>
+        </div>
+        
+        <div class="delivery-summary">
+            <div class="delivery-summary-row">
+                <span>Items Subtotal:</span>
+                <span id="modal-subtotal">JMD $0</span>
+            </div>
+            <div class="delivery-summary-row">
+                <span>Estimated Shipping:</span>
+                <span id="modal-shipping">TBD</span>
+            </div>
+            <div class="delivery-summary-row total">
+                <span>Total:</span>
+                <span id="modal-total">JMD $0</span>
+            </div>
+        </div>
+
+        <form id="delivery-form" onsubmit="event.preventDefault(); submitToWhatsApp();">
+            <div class="form-group">
+                <label>Recipient Name *</label>
+                <input type="text" id="cust-name" required placeholder="Full Name">
+            </div>
+            <div class="form-group">
+                <label>Contact Phone Number *</label>
+                <input type="tel" id="cust-phone" required placeholder="e.g. 876-555-0123">
+            </div>
+            <div class="form-group">
+                <label>Delivery Parish / Zone *</label>
+                <select id="cust-location" required onchange="calculateShipping()">
+                    <option value="">Select Delivery Zone...</option>
+                    <option value="Kingston">Kingston (Direct Courier)</option>
+                    <option value="St. Andrew">St. Andrew (Direct Courier)</option>
+                    <option value="Portmore">Portmore (Direct Courier)</option>
+                    <option value="St. Catherine">St. Catherine / Spanish Town (Courier)</option>
+                    <option value="Knutsford Express - Clarendon">Clarendon (Knutsford Express)</option>
+                    <option value="Knutsford Express - Hanover">Hanover (Knutsford Express)</option>
+                    <option value="Knutsford Express - Manchester">Manchester (Knutsford Express)</option>
+                    <option value="Knutsford Express - Portland">Portland (Knutsford Express)</option>
+                    <option value="Knutsford Express - St. Ann">St. Ann (Knutsford Express)</option>
+                    <option value="Knutsford Express - St. Elizabeth">St. Elizabeth (Knutsford Express)</option>
+                    <option value="Knutsford Express - St. James">St. James (Knutsford Express)</option>
+                    <option value="Knutsford Express - St. Mary">St. Mary (Knutsford Express)</option>
+                    <option value="Knutsford Express - St. Thomas">St. Thomas (Knutsford Express)</option>
+                    <option value="Knutsford Express - Trelawny">Trelawny (Knutsford Express)</option>
+                    <option value="Knutsford Express - Westmoreland">Westmoreland (Knutsford Express)</option>
+                </select>
+            </div>
+            <div class="form-group" id="knutsford-field" style="display:none;">
+                <label>Preferred Knutsford Express Station</label>
+                <input type="text" id="cust-station" placeholder="e.g. Drax Hall, Mandeville, Falmouth">
+            </div>
+            <div class="form-group">
+                <label>Custom Gift Note (Optional)</label>
+                <textarea id="cust-note" rows="2" placeholder="Include a special handwritten message..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Order via WhatsApp</button>
+        </form>
     </div>
 
     <!-- ==========================================================================
@@ -548,7 +752,6 @@
         // 2. Header Scroll & Mobile Menu Toggle
         const header = document.getElementById('header');
         const navLinks = document.getElementById('nav-links');
-        const menuIcon = document.querySelector('.mobile-menu-btn i');
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) header.classList.add('scrolled');
@@ -583,16 +786,24 @@
             }
         }
 
-        // 3. Persistent Cart via LocalStorage
+        // 3. Persistent Cart System via LocalStorage
         const formatCurrency = (amount) => {
             return new Intl.NumberFormat('en-JM', { style: 'currency', currency: 'JMD', minimumFractionDigits: 0 }).format(amount);
         };
 
         let cart = JSON.parse(localStorage.getItem('heyHonCart')) || [];
+        const FREE_SHIPPING_THRESHOLD = 6000;
+        let currentSubtotal = 0;
+        let currentShippingFee = 0;
 
         function toggleCart() {
             document.getElementById('cart-drawer').classList.toggle('active');
             document.getElementById('cart-overlay').classList.toggle('active');
+        }
+
+        function saveCart() {
+            localStorage.setItem('heyHonCart', JSON.stringify(cart));
+            updateCartUI();
         }
 
         function updateCartUI() {
@@ -602,14 +813,14 @@
             const drawerCount = document.getElementById('drawer-count');
             
             container.innerHTML = '';
-            let total = 0;
+            currentSubtotal = 0;
             let itemCount = 0;
 
             if (cart.length === 0) {
                 container.innerHTML = '<div class="empty-cart-msg">Your bag is currently empty.</div>';
             } else {
                 cart.forEach((item, index) => {
-                    total += item.price * item.quantity;
+                    currentSubtotal += item.price * item.quantity;
                     itemCount += item.quantity;
 
                     const itemHTML = `
@@ -631,9 +842,24 @@
                 });
             }
 
-            totalEl.innerText = formatCurrency(total);
+            totalEl.innerText = formatCurrency(currentSubtotal);
             countBadge.innerText = itemCount;
             drawerCount.innerText = itemCount;
+
+            const shippingMsg = document.getElementById('shipping-msg');
+            const progressBar = document.getElementById('shipping-progress');
+            
+            if (currentSubtotal >= FREE_SHIPPING_THRESHOLD) {
+                shippingMsg.innerHTML = "You've unlocked <strong>Free Kingston Delivery!</strong>";
+                progressBar.style.width = '100%';
+                progressBar.style.backgroundColor = '#2ecc71';
+            } else {
+                const remaining = FREE_SHIPPING_THRESHOLD - currentSubtotal;
+                shippingMsg.innerHTML = `Add ${formatCurrency(remaining)} more for free delivery`;
+                const progressPercentage = (currentSubtotal / FREE_SHIPPING_THRESHOLD) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+                progressBar.style.backgroundColor = 'var(--amber)';
+            }
         }
 
         function changeQty(index, delta) {
@@ -647,39 +873,117 @@
             saveCart();
         }
 
-        function saveCart() {
-            localStorage.setItem('heyHonCart', JSON.stringify(cart));
-            updateCartUI();
+        // TOAST NOTIFICATION LOGIC
+        let toastTimeout;
+        function showToast(title) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-text').innerText = `1x ${title} added to your Harvest Bag.`;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => { hideToast(); }, 5000);
+        }
+        function hideToast() {
+            document.getElementById('toast').classList.remove('show');
         }
 
-        function checkoutToWhatsApp() {
+        // PRE-CHECKOUT DELIVERY MODAL LOGIC
+        function openCheckoutModal() {
             if (cart.length === 0) {
-                alert("Your bag is empty! Please add some honey to checkout.");
+                alert("Your bag is empty! Please add some honey before proceeding.");
                 return;
             }
+            document.getElementById('cart-drawer').classList.remove('active');
+            document.getElementById('cart-overlay').classList.remove('active');
             
-            const phone = "16582182734"; 
-            let message = "Hello Hey Hon! I would like to place an order:\n\n";
-            let total = 0;
+            document.getElementById('modal-subtotal').innerText = formatCurrency(currentSubtotal);
+            document.getElementById('modal-shipping').innerText = "TBD";
+            document.getElementById('modal-total').innerText = formatCurrency(currentSubtotal);
             
+            document.getElementById('checkout-modal').classList.add('active');
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.remove('active');
+            document.getElementById('modal-overlay').classList.remove('active');
+        }
+
+        function calculateShipping() {
+            const locationEl = document.getElementById('cust-location');
+            const selectedVal = locationEl.value;
+            const stationField = document.getElementById('knutsford-field');
+            const shippingEl = document.getElementById('modal-shipping');
+            const totalEl = document.getElementById('modal-total');
+
+            if (selectedVal.includes("Knutsford Express")) {
+                stationField.style.display = "block";
+                currentShippingFee = 700;
+                shippingEl.innerText = `${formatCurrency(700)} (Knutsford Flat Rate)`;
+                totalEl.innerText = formatCurrency(currentSubtotal + currentShippingFee);
+            } else if (selectedVal === "Kingston" || selectedVal === "Portmore" || selectedVal === "St. Andrew") {
+                stationField.style.display = "none";
+                if (currentSubtotal >= FREE_SHIPPING_THRESHOLD && (selectedVal === "Kingston" || selectedVal === "St. Andrew")) {
+                    currentShippingFee = 0;
+                    shippingEl.innerText = "FREE (Unlocked!)";
+                    totalEl.innerText = formatCurrency(currentSubtotal);
+                } else {
+                    currentShippingFee = 0; 
+                    shippingEl.innerText = "Courier Fee TBD";
+                    totalEl.innerText = `${formatCurrency(currentSubtotal)} + Courier Fee`;
+                }
+            } else {
+                stationField.style.display = "none";
+                currentShippingFee = 0;
+                shippingEl.innerText = "Courier Fee TBD";
+                totalEl.innerText = `${formatCurrency(currentSubtotal)} + Delivery`;
+            }
+        }
+
+        function submitToWhatsApp() {
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const location = document.getElementById('cust-location').value;
+            const station = document.getElementById('cust-station').value;
+            const note = document.getElementById('cust-note').value;
+
+            const bizPhone = "16582182734"; 
+            let msg = `*New Order from Hey Hon Website!*\n\n`;
+            msg += `*Customer:* ${name}\n`;
+            msg += `*Phone:* ${phone}\n`;
+            msg += `*Delivery Zone:* ${location}\n`;
+            if (station && location.includes("Knutsford")) {
+                msg += `*Target Station:* ${station}\n`;
+            }
+            if (note) {
+                msg += `*Gift Note / Instructions:* "${note}"\n`;
+            }
+
+            msg += `\n*Order Summary:*\n`;
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                message += `- ${item.quantity}x ${item.title} - ${formatCurrency(itemTotal)}\n`;
+                msg += `• ${item.quantity}x ${item.title} - ${formatCurrency(itemTotal)}\n`;
             });
             
-            message += `\nSubtotal: ${formatCurrency(total)}`;
+            msg += `\n*Subtotal:* ${formatCurrency(currentSubtotal)}\n`;
+            if (currentShippingFee > 0) {
+                msg += `*Delivery (Knutsford):* ${formatCurrency(currentShippingFee)}\n`;
+                msg += `*Total Estimated:* ${formatCurrency(currentSubtotal + currentShippingFee)}`;
+            } else {
+                msg += `*Delivery Fee:* To be confirmed by courier\n`;
+                msg += `*Total Due:* ${formatCurrency(currentSubtotal)} + Courier Fee`;
+            }
             
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+            const encodedMessage = encodeURIComponent(msg);
+            const whatsappUrl = `https://wa.me/${bizPhone}?text=${encodedMessage}`;
             
+            closeCheckoutModal();
             window.open(whatsappUrl, '_blank');
         }
 
         // Initialize Cart on Load
         updateCartUI();
 
-        // 4. Background "House Bee" Animation
+        // 4. Background "House Bee" Animation (Reduced count)
         const canvas = document.getElementById('bee-canvas');
         const ctx = canvas.getContext('2d');
         let bees = [];
@@ -806,7 +1110,7 @@
 
         function initBees() {
             bees = [];
-            const beeCount = window.innerWidth < 768 ? 4 : 8; 
+            const beeCount = window.innerWidth < 768 ? 3 : 7; 
             for (let i = 0; i < beeCount; i++) {
                 bees.push(new RealisticBee());
             }
