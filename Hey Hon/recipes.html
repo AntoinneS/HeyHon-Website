@@ -1,46 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- Advanced SEO & LLM Optimization -->
-    <title>Recipes | Hey Hon Rare Single Origin Jamaican Honey</title>
-    <meta name="description" content="Elevate your everyday rituals with Hey Hon raw honey. Discover recipes for iced strawberry matcha, cinnamon whipped honey shaken espresso, and savory ricotta toast.">
-    <meta name="keywords" content="Hey Hon recipes, honey matcha latte, honey shaken espresso, hot honey ricotta toast, raw honey recipes, Jamaican honey recipes">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://yourdomain.com/recipes.html">
-    
-    <!-- Open Graph & Social Sharing Meta Tags -->
-    <meta property="og:title" content="The Tasting Room | Hey Hon Recipes">
-    <meta property="og:description" content="Curated morning rituals and savory cravings. Elevate your everyday with Hey Hon rare Jamaican honey.">
-    <meta property="og:image" content="https://yourdomain.com/matcha-latte.png">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/recipes.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Hey Hon Recipes">
-    <meta name="twitter:description" content="Curated morning rituals and savory cravings. Elevate your everyday with Hey Hon.">
-    <meta name="twitter:image" content="https://yourdomain.com/matcha-latte.png">
 
-    <!-- Schema.org Structured Data -->
+    <!-- Advanced SEO & LLM Optimization -->
+    <title>Hey Hon | Rare Single Origin Jamaican Honey</title>
+    <meta name="description" content="Sustainably harvested, raw, cold extracted single origin Jamaican honey from the pristine hills of St. Mary. Experience pure tableside elegance with living wildflower nectar.">
+    <meta name="keywords" content="Jamaican honey, raw honey Jamaica, artisan honey St Mary, cold extracted honey, whipped honey Jamaica, Hey Hon honey, natural sugar replacement, organic wildflower honey">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.com/index.html">
+
+    <!-- Open Graph & Social Sharing Meta Tags -->
+    <meta property="og:title" content="Hey Hon | Rare Single Origin Jamaican Honey">
+    <meta property="og:description" content="100% Pure, raw, cold extracted honey harvested in St. Mary, Jamaica. Experience pure tableside elegance.">
+    <meta property="og:image" content="https://yourdomain.com/hey-hon-hero.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hey Hon | Rare Single Origin Jamaican Honey">
+    <meta name="twitter:description" content="100% Pure, raw, cold extracted honey harvested in St. Mary, Jamaica.">
+    <meta name="twitter:image" content="https://yourdomain.com/hey-hon-hero.png">
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Hey Hon Honey Recipes",
-      "description": "A collection of aesthetic and savory recipes using Hey Hon raw cold extracted Jamaican honey.",
-      "publisher": {
-        "@type": "Brand",
-        "name": "Hey Hon"
-      }
-    }
+        {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": "Raw St. Mary Wildflower Honey",
+            "image": [
+                "https://yourdomain.com/raw-honey.png"
+            ],
+            "description": "100% pure, cold extracted raw honey single sourced from wild tropical blossoms in St. Mary, Jamaica.",
+            "brand": {
+                "@type": "Brand",
+                "name": "Hey Hon"
+            },
+            "offers": {
+                "@type": "AggregateOffer",
+                "priceCurrency": "JMD",
+                "lowPrice": "2200",
+                "highPrice": "4000",
+                "offerCount": "3",
+                "availability": "https://schema.org/InStock"
+            }
+        }
     </script>
-    
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Hey Hon Artisanal Honey",
+            "image": "https://yourdomain.com/hey-hon-hero.png",
+            "telephone": "+16582182734",
+            "priceRange": "$$$",
+            "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "St. Mary",
+                "addressCountry": "JM"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "18.2520",
+                "longitude": "-76.8872"
+            },
+            "areaServed": ["Kingston", "Portmore", "St. Andrew", "Jamaica"],
+            "description": "Producer of rare, cold extracted single origin Jamaican honey harvested from pesticide free hives in St. Mary."
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "Where is Hey Hon honey produced in Jamaica?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Hey Hon honey is sustainably harvested from single origin apiaries located in the pristine, rural hills of St. Mary, Jamaica."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Is Hey Hon honey pure and unpasteurized?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, Hey Hon provides 100% pure, raw, cold extracted honey that retains all living enzymes, beneficial antioxidants, and natural propolis without high heat processing."
+                }
+            }]
+        }
+    </script>
+
     <!-- Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -48,7 +103,8 @@
         /* ==========================================================================
            1. CSS VARIABLES & RESET
            ========================================================================== */
-        :root {
+        
+         :root {
             --cream: #FFFDF9;
             --white: #FFFFFF;
             --amber: #D98A2B;
@@ -56,18 +112,23 @@
             --espresso: #221F1D;
             --slate: #5A544F;
             --gold-border: rgba(217, 138, 43, 0.15);
-            
             --font-sans: 'Inter', system-ui, sans-serif;
             --font-serif: 'Playfair Display', serif;
-            
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --shadow-sm: 0 4px 12px rgba(34, 31, 29, 0.05);
             --shadow-md: 0 8px 24px rgba(217, 138, 43, 0.08);
             --shadow-drawer: -10px 0 30px rgba(0, 0, 0, 0.1);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
         
         body {
             font-family: var(--font-sans);
@@ -77,221 +138,813 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
-
-        h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--espresso); line-height: 1.2; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        button { cursor: pointer; border: none; background: none; font-family: inherit; }
-        input, select, textarea { font-size: 16px !important; }
-
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
-
+        
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-serif);
+            color: var(--espresso);
+            line-height: 1.2;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+        
+        input,
+        select,
+        textarea {
+            font-size: 16px !important;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
         /* ==========================================================================
            2. BACKGROUND ANIMATIONS
            ========================================================================== */
+        
         .background-layer {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -2; pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
         }
+        
         .honeycomb-pattern {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='69.28203230275509' viewBox='0 0 40 69.28203230275509' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 11.547L40 23.094L30 28.867L20 23.094L20 11.547L30 5.773L40 11.547ZM20 46.188L20 57.735L10 63.508L0 57.735L0 46.188L10 40.414L20 46.188ZM40 46.188L40 57.735L30 63.508L20 57.735L20 46.188L30 40.414L40 46.188ZM20 11.547L20 23.094L10 28.867L0 23.094L0 11.547L10 5.773L20 11.547Z' fill='%23D98A2B' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
             z-index: -1;
         }
-        canvas { display: block; }
-
+        
+        canvas {
+            display: block;
+        }
         /* ==========================================================================
            3. HEADER & NAVIGATION
            ========================================================================== */
+        
         header {
-            position: fixed; top: 0; left: 0; width: 100%; padding: 1.25rem 0;
-            z-index: 100; transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.25rem 0;
+            z-index: 100;
+            transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
         }
-        header.scrolled, header.menu-open {
-            background: rgba(255, 253, 249, 0.95); backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px); box-shadow: var(--shadow-sm);
+        
+        header.scrolled,
+        header.menu-open {
+            background: rgba(255, 253, 249, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-sm);
         }
-        header.scrolled { padding: 1rem 0; }
-
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        
+        header.scrolled {
+            padding: 1rem 0;
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
         .brand-logo {
-            font-family: var(--font-serif); font-size: 1.75rem; font-weight: 700;
-            color: var(--espresso); display: flex; align-items: center; gap: 0.5rem; z-index: 101;
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--espresso);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 101;
         }
-        .brand-logo i { color: var(--amber); }
-
-        .nav-links { display: flex; gap: 1.8rem; align-items: center; }
-        .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--espresso); transition: color 0.2s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--amber); }
-
-        .nav-utils { display: flex; align-items: center; gap: 1.5rem; z-index: 101; }
-        .nav-utils .currency { font-size: 0.85rem; font-weight: 500; }
+        
+        .brand-logo i {
+            color: var(--amber);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--espresso);
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--amber);
+        }
+        
+        .nav-utils {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            z-index: 101;
+        }
+        
+        .nav-utils .currency {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
         .cart-btn {
-            display: flex; align-items: center; gap: 0.5rem; font-size: 1rem;
-            font-weight: 500; color: var(--espresso); transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--espresso);
+            transition: color 0.2s;
         }
-        .cart-btn:hover { color: var(--amber); }
+        
+        .cart-btn:hover {
+            color: var(--amber);
+        }
+        
         .cart-badge {
-            background: var(--amber); color: var(--white); font-size: 0.75rem;
-            padding: 2px 6px; border-radius: 10px; font-weight: 600;
+            background: var(--amber);
+            color: var(--white);
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
         }
-        .mobile-menu-btn { display: none; font-size: 1.8rem; color: var(--espresso); }
-
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--espresso);
+        }
+        
         .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 1rem 2rem; font-weight: 500; font-size: 0.95rem; border-radius: 4px;
-            transition: var(--transition); text-align: center;
-        }
-        .btn-primary { background: var(--amber); color: var(--white); }
-        .btn-primary:hover { background: var(--amber-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-
-        /* ==========================================================================
-           3.B. VISUAL TOAST NOTIFICATION
-           ========================================================================== */
-        .toast-notification {
-            position: fixed; top: 20px; right: 20px; background: var(--espresso);
-            color: var(--cream); padding: 1rem 1.25rem; border-radius: 8px;
-            box-shadow: var(--shadow-md); display: flex; align-items: center;
-            justify-content: space-between; gap: 1.5rem; z-index: 2000;
-            transform: translateY(-150%); opacity: 0;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border-left: 4px solid var(--amber); max-width: 420px; width: 90%;
-        }
-        .toast-notification.show { transform: translateY(0); opacity: 1; }
-        .toast-msg { font-size: 0.9rem; line-height: 1.4; display: flex; align-items: center; gap: 0.5rem; }
-        .toast-msg i { color: var(--amber); font-size: 1.3rem; flex-shrink: 0; }
-        .toast-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
-        .toast-btn { background: transparent; color: var(--amber); font-size: 0.85rem; font-weight: 600; text-decoration: underline; padding: 0 0.25rem; }
-        .toast-btn-primary { background: var(--amber); color: var(--white); text-decoration: none; padding: 0.35rem 0.75rem; border-radius: 4px; }
-        .toast-btn-primary:hover { background: var(--amber-dark); color: var(--white); }
-
-        /* ==========================================================================
-           4. RECIPES PAGE LAYOUT
-           ========================================================================== */
-        .page-header {
-            padding-top: 160px;
-            padding-bottom: 3rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: var(--transition);
             text-align: center;
         }
         
-        .page-header .eyebrow {
-            display: inline-block; font-size: 0.8rem; font-weight: 600;
-            letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber);
-            margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--amber);
+        .btn-primary {
+            background: var(--amber);
+            color: var(--white);
         }
-
-        .page-header h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        
+        .btn-primary:hover {
+            background: var(--amber-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--espresso);
+            color: var(--espresso);
+        }
+        
+        .btn-outline:hover {
+            background: var(--espresso);
+            color: var(--white);
+        }
+        /* ==========================================================================
+           3.B. VISUAL TOAST NOTIFICATION
+           ========================================================================== */
+        
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--espresso);
+            color: var(--cream);
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            z-index: 2000;
+            transform: translateY(-150%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 4px solid var(--amber);
+            max-width: 420px;
+            width: 90%;
+        }
+        
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .toast-msg {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toast-msg i {
+            color: var(--amber);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        .toast-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+        
+        .toast-btn {
+            background: transparent;
+            color: var(--amber);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: underline;
+            padding: 0 0.25rem;
+        }
+        
+        .toast-btn-primary {
+            background: var(--amber);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+        }
+        
+        .toast-btn-primary:hover {
+            background: var(--amber-dark);
+            color: var(--white);
+        }
+        /* ==========================================================================
+           4. HERO SECTION (Centered & No Image)
+           ========================================================================== */
+        
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 4rem;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             max-width: 800px;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto;
+        }
+        
+        .hero-content .eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--amber);
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
         }
-
-        .recipes-container { padding-bottom: 8rem; }
-
-        .recipe-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
         }
-
-        .recipe-card {
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        /* ==========================================================================
+           5. TRUST BANNER
+           ========================================================================== */
+        
+        .trust-banner {
+            border-top: 1px solid var(--gold-border);
+            border-bottom: 1px solid var(--gold-border);
+            padding: 2rem 0;
+            background: rgba(255, 255, 255, 0.4);
+        }
+        
+        .trust-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--espresso);
+        }
+        
+        .trust-item i {
+            font-size: 1.25rem;
+            color: var(--amber);
+        }
+        /* ==========================================================================
+           6. SHOPPING GRID & FILTERS
+           ========================================================================== */
+        
+        .shop-section {
+            padding: 6rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.25rem;
+            border: 1px solid var(--gold-border);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--slate);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--amber);
+            color: var(--white);
+            border-color: var(--amber);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
             background: var(--white);
             border: 1px solid var(--gold-border);
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .product-image {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--cream);
+            color: var(--espresso);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.35rem 0.75rem;
+            border-radius: 2px;
+            text-transform: uppercase;
             box-shadow: var(--shadow-sm);
         }
-
-        .recipe-image {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-            background: #fcfcfc;
+        
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .size-selector {
+            width: 100%;
+            padding: 0.6rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--gold-border);
+            border-radius: 4px;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--espresso);
+            background: var(--cream);
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .size-selector:focus {
+            border-color: var(--amber);
+        }
+        
+        .product-meta {
+            font-size: 0.85rem;
+            color: var(--slate);
+            margin-bottom: 1.25rem;
+        }
+        
+        .product-bottom {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: var(--espresso);
+            font-size: 1.15rem;
+        }
+        
+        .add-to-cart {
+            background: var(--cream);
+            border: 1px solid var(--gold-border);
+            color: var(--espresso);
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .add-to-cart:hover {
+            background: var(--amber);
+            color: var(--white);
+            border-color: var(--amber);
+        }
+        /* ==========================================================================
+           7. STORY SECTION
+           ========================================================================== */
+        
+        .story-section {
+            padding: 6rem 0;
+            background: var(--white);
+            border-top: 1px solid var(--gold-border);
             border-bottom: 1px solid var(--gold-border);
         }
         
-        .recipe-image img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            transition: transform 0.8s ease; 
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
         
-        .recipe-card:hover .recipe-image img { transform: scale(1.04); }
-
-        .recipe-badge {
-            position: absolute; top: 1rem; left: 1rem; background: var(--cream);
-            color: var(--amber); font-size: 0.75rem; font-weight: 700;
-            padding: 0.4rem 0.8rem; border-radius: 2px; text-transform: uppercase; 
-            box-shadow: var(--shadow-sm); letter-spacing: 0.05em;
+        .story-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            aspect-ratio: 4/3;
+            object-fit: cover;
         }
-
-        .recipe-info { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
-        .recipe-title { font-size: 1.6rem; margin-bottom: 0.75rem; }
-        .recipe-description { font-size: 1rem; color: var(--slate); margin-bottom: 1.5rem; line-height: 1.7; }
-
-        .toggle-recipe-btn {
-            color: var(--espresso); font-weight: 600; font-size: 0.95rem;
-            text-align: left; padding-bottom: 0.5rem; border-bottom: 1px solid var(--espresso);
-            width: fit-content; display: flex; align-items: center; gap: 0.5rem; transition: var(--transition);
+        
+        .story-content h2 {
+            margin-bottom: 1.5rem;
+            font-size: clamp(2rem, 4vw, 2.75rem);
         }
-        .toggle-recipe-btn:hover { color: var(--amber); border-bottom-color: var(--amber); }
-        .toggle-recipe-btn i { transition: transform 0.3s ease; }
-
-        .recipe-details {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        .story-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
         }
-
-        .recipe-details-inner {
-            padding-top: 2rem; margin-top: 1.5rem; border-top: 1px solid var(--gold-border);
+        
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            border-top: 1px solid var(--gold-border);
+            padding-top: 2rem;
+            margin-top: 1rem;
         }
-
-        .recipe-subtitle {
-            font-family: var(--font-serif); font-size: 1.2rem;
-            color: var(--espresso); margin-bottom: 0.75rem;
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            color: var(--espresso);
+            font-size: 0.95rem;
         }
-
-        .recipe-list { list-style: none; margin-bottom: 1.5rem; }
-        .recipe-list li {
-            position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; font-size: 0.95rem; color: var(--slate);
+        
+        .spec-item i {
+            color: var(--amber);
+            font-size: 1.2rem;
         }
-        .recipe-list li::before { content: '•'; position: absolute; left: 0; color: var(--amber); font-weight: bold; }
-
-        .recipe-steps { list-style: decimal inside; padding-left: 1rem; color: var(--slate); font-size: 0.95rem; }
-        .recipe-steps li { margin-bottom: 0.75rem; line-height: 1.6; }
-
         /* ==========================================================================
-           5. SLEEK DARK FOOTER
+           8. DELIVERY INFO & FAQ & WHOLESALE
            ========================================================================== */
-        .site-footer {
-            background: var(--espresso); color: var(--cream);
-            padding: 6rem 0 3rem; text-align: center;
-        }
-        .footer-logo {
-            font-family: var(--font-serif); font-size: 3.2rem; font-weight: 700;
-            color: var(--amber); margin-bottom: 2rem; letter-spacing: 0.05em; display: inline-block;
-        }
-        .footer-nav {
-            display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 3.5rem;
-        }
-        .footer-nav a { font-size: 1.05rem; font-weight: 500; color: var(--cream); transition: color 0.2s ease; }
-        .footer-nav a:hover { color: var(--amber); }
         
-        .footer-contact { display: flex; justify-content: center; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap; }
-        .footer-contact a { display: flex; align-items: center; gap: 0.6rem; font-size: 1.15rem; font-weight: 500; color: var(--cream); transition: color 0.2s; }
-        .footer-contact a:hover { color: var(--amber); }
-        .footer-contact i { font-size: 1.6rem; color: var(--amber); }
+        .delivery-section {
+            background: var(--white);
+            border-bottom: 1px solid var(--gold-border);
+            padding: 4rem 0;
+            margin-bottom: 4rem;
+        }
+        
+        .delivery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .delivery-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .delivery-info p {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .dual-section {
+            padding: 2rem 0 10rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--gold-border);
+            padding: 1.5rem 0;
+        }
+        
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--espresso);
+            font-size: 1.1rem;
+        }
+        
+        .faq-header i {
+            transition: transform 0.3s ease;
+            color: var(--amber);
+            font-size: 1.2rem;
+        }
+        
+        .faq-item.active .faq-header i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .faq-content p {
+            padding-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--slate);
+        }
+        
+        .wholesale-box {
+            background: var(--white);
+            padding: 3rem;
+            border: 1px solid var(--gold-border);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--espresso);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem;
+            border: 1px solid var(--gold-border);
+            border-radius: 4px;
+            font-family: var(--font-sans);
+            background: var(--cream);
+            color: var(--espresso);
+            appearance: none;
+        }
+        
+        .wholesale-box .btn {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        /* ==========================================================================
+           9. NEWSLETTER & JYBE-INSPIRED FOOTER
+           ========================================================================== */
+        
+        .newsletter {
+            text-align: center;
+            padding: 5rem 1.5rem;
+            background: var(--cream);
+            border-top: 1px solid var(--gold-border);
+            border-bottom: 1px solid var(--gold-border);
+        }
+        
+        .newsletter h3 {
+            color: var(--espresso);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+        }
+        
+        .newsletter p {
+            margin-bottom: 2rem;
+            color: var(--slate);
+            font-size: 1.05rem;
+        }
+        /* Updated Subscribe Form to stack inputs cleanly */
+        
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
+            gap: 0.75rem;
+        }
+        
+        .subscribe-form input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--gold-border);
+            border-radius: 4px;
+            background: var(--white);
+            font-family: inherit;
+        }
+        
+        .subscribe-form button {
+            width: 100%;
+            padding: 0.85rem 2rem;
+        }
+        
+        .site-footer {
+            background: var(--espresso);
+            color: var(--cream);
+            padding: 6rem 0 3rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--amber);
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3.5rem;
+        }
+        
+        .footer-nav a {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--cream);
+            transition: color 0.2s ease;
+        }
+        
+        .footer-nav a:hover {
+            color: var(--amber);
+        }
+        
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-contact a {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--cream);
+            transition: color 0.2s;
+        }
+        
+        .footer-contact a:hover {
+            color: var(--amber);
+        }
+        
+        .footer-contact i {
+            font-size: 1.6rem;
+            color: var(--amber);
+        }
         
         .footer-bottom {
-            border-top: 1px solid rgba(255, 253, 249, 0.1); padding-top: 2rem;
-            display: flex; flex-direction: column; align-items: center; gap: 1rem;
-            font-size: 0.85rem; opacity: 0.8;
+            border-top: 1px solid rgba(255, 253, 249, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.85rem;
+            opacity: 0.8;
         }
-
-        /* DISCREET AGENCY CREDIT FOOTER */
+        
         .agency-credit {
             display: flex;
             align-items: center;
@@ -303,117 +956,417 @@
             margin-top: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            white-space: nowrap; /* Prevents the text from wrapping onto a new line */
+            white-space: nowrap;
             flex-wrap: nowrap;
         }
-
-            .agency-credit:hover {
-                color: var(--cream);
-            }
-
+        
+        .agency-credit:hover {
+            color: var(--cream);
+        }
+        
         .agency-logo {
-            height: 52px; /* Doubled the size from 16px */
+            height: 32px;
             width: auto;
             vertical-align: middle;
             filter: brightness(0) invert(1);
             opacity: 0.6;
             transition: opacity 0.2s ease;
         }
-
+        
         .agency-credit:hover .agency-logo {
             opacity: 1;
         }
-
         /* ==========================================================================
-           6. CART DRAWER & CHECKOUT MODAL
+           10. CART DRAWER & CHECKOUT MODAL
            ========================================================================== */
-        .cart-overlay, .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(34, 31, 29, 0.4); backdrop-filter: blur(4px);
-            z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        
+        .cart-overlay,
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(34, 31, 29, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
         }
-        .cart-overlay.active, .modal-overlay.active { opacity: 1; pointer-events: all; }
-        .modal-overlay { z-index: 1050; }
-
+        
+        .cart-overlay.active,
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal-overlay {
+            z-index: 1050;
+        }
+        
         .cart-drawer {
-            position: fixed; top: 0; right: 0; width: 100%; max-width: 450px; height: 100vh;
-            background: var(--cream); z-index: 1000; box-shadow: var(--shadow-drawer);
-            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; flex-direction: column;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background: var(--cream);
+            z-index: 1000;
+            box-shadow: var(--shadow-drawer);
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
         }
-        .cart-drawer.active { transform: translateX(0); }
-        .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--gold-border); display: flex; justify-content: space-between; align-items: center; }
-        .close-cart { font-size: 1.5rem; color: var(--espresso); padding: 0.5rem; }
-        .free-shipping-bar { padding: 1.25rem 1.5rem; background: var(--white); border-bottom: 1px solid var(--gold-border); text-align: center; font-size: 0.85rem; font-weight: 500; }
-        .progress-container { height: 6px; background: #f0f0f0; border-radius: 3px; margin-top: 0.75rem; overflow: hidden; }
-        .progress-bar { height: 100%; background: var(--amber); width: 0%; transition: width 0.4s ease; }
-        .cart-items { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
-        .empty-cart-msg { text-align: center; color: var(--slate); margin-top: 2rem; font-style: italic; }
         
-        .cart-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--gold-border); }
-        .cart-item-img { width: 85px; height: 85px; border-radius: 4px; object-fit: cover; }
-        .cart-item-details { flex-grow: 1; display: flex; flex-direction: column; }
-        .cart-item-title { font-weight: 600; font-family: var(--font-serif); font-size: 1.05rem; color: var(--espresso); }
-        .cart-item-price { color: var(--slate); font-size: 0.95rem; margin-top: 0.2rem; }
-        .cart-qty-controls { display: flex; align-items: center; gap: 1rem; margin-top: auto; background: var(--white); border: 1px solid var(--gold-border); width: fit-content; padding: 0.25rem 0.75rem; border-radius: 4px; }
-        .qty-btn { font-size: 1.1rem; color: var(--espresso); font-weight: 500; padding: 0 0.25rem; }
-        .item-remove { margin-left: auto; color: var(--slate); font-size: 0.85rem; text-decoration: underline; cursor: pointer; }
+        .cart-drawer.active {
+            transform: translateX(0);
+        }
         
-        .cart-footer { padding: 1.5rem; background: var(--white); border-top: 1px solid var(--gold-border); }
-        .cart-subtotal { display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 600; color: var(--espresso); margin-bottom: 1rem; }
-        .cart-footer .btn { width: 100%; padding: 1.15rem; font-size: 1.05rem; }
-
-        /* PRE-CHECKOUT DELIVERY MODAL */
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gold-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-cart {
+            font-size: 1.5rem;
+            color: var(--espresso);
+            padding: 0.5rem;
+        }
+        
+        .free-shipping-bar {
+            padding: 1.25rem 1.5rem;
+            background: var(--white);
+            border-bottom: 1px solid var(--gold-border);
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .progress-container {
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            margin-top: 0.75rem;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--amber);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+        
+        .empty-cart-msg {
+            text-align: center;
+            color: var(--slate);
+            margin-top: 2rem;
+            font-style: italic;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--gold-border);
+        }
+        
+        .cart-item-img {
+            width: 85px;
+            height: 85px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            color: var(--espresso);
+        }
+        
+        .cart-item-price {
+            color: var(--slate);
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+        }
+        
+        .cart-qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: auto;
+            background: var(--white);
+            border: 1px solid var(--gold-border);
+            width: fit-content;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+        }
+        
+        .qty-btn {
+            font-size: 1.1rem;
+            color: var(--espresso);
+            font-weight: 500;
+            padding: 0 0.25rem;
+        }
+        
+        .item-remove {
+            margin-left: auto;
+            color: var(--slate);
+            font-size: 0.85rem;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        .cart-footer {
+            padding: 1.5rem;
+            background: var(--white);
+            border-top: 1px solid var(--gold-border);
+        }
+        
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--espresso);
+            margin-bottom: 1rem;
+        }
+        
+        .cart-footer .btn {
+            width: 100%;
+            padding: 1.15rem;
+            font-size: 1.05rem;
+        }
+        
         .checkout-modal {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -45%);
-            background: var(--white); border: 1px solid var(--gold-border);
-            border-radius: 12px; box-shadow: var(--shadow-drawer);
-            width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto;
-            z-index: 1100; opacity: 0; pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 2rem;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -45%);
+            background: var(--white);
+            border: 1px solid var(--gold-border);
+            border-radius: 12px;
+            box-shadow: var(--shadow-drawer);
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            z-index: 1100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
         }
-        .checkout-modal.active { transform: translate(-50%, -50%); opacity: 1; pointer-events: all; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--gold-border); padding-bottom: 1rem; }
-        .delivery-summary { background: var(--cream); border: 1px solid var(--gold-border); padding: 1rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 1.5rem; }
-        .delivery-summary-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
-        .delivery-summary-row.total { font-weight: 700; font-size: 1.05rem; color: var(--espresso); border-top: 1px dashed var(--gold-border); padding-top: 0.5rem; margin-bottom: 0; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500; color: var(--espresso); }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.85rem; border: 1px solid var(--gold-border); border-radius: 4px; font-family: var(--font-sans); background: var(--cream); color: var(--espresso); appearance: none; }
-
+        
+        .checkout-modal.active {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--gold-border);
+            padding-bottom: 1rem;
+        }
+        
+        .delivery-summary {
+            background: var(--cream);
+            border: 1px solid var(--gold-border);
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .delivery-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .delivery-summary-row.total {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--espresso);
+            border-top: 1px dashed var(--gold-border);
+            padding-top: 0.5rem;
+            margin-bottom: 0;
+        }
         /* ==========================================================================
-           7. RESPONSIVE DESIGN
+           11. MOBILE / RESPONSIVE DESIGN
            ========================================================================== */
-        @media (max-width: 768px) {
-            .nav-utils .currency { display: none; }
-            .mobile-menu-btn { display: block; }
-            
-            /* FIXED BULLETPROOF MOBILE NAV */
-            .nav-links {
-                position: absolute; top: 100%; left: 0; width: 100%;
-                background: rgba(255, 253, 249, 0.98); backdrop-filter: blur(10px);
-                flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
-                border-top: 1px solid var(--gold-border); box-shadow: var(--shadow-md);
-                max-height: 0; overflow: hidden; opacity: 0; padding: 0;
-                transition: all 0.3s ease-in-out;
+        
+        @media (max-width: 1024px) {
+            .story-content-section,
+            .dual-section,
+            .delivery-grid {
+                gap: 3rem;
             }
-            .nav-links.active { max-height: 400px; opacity: 1; padding: 2rem 0; }
-            .nav-links a { font-size: 1.2rem; width: 100%; border-bottom: 1px solid var(--gold-border); padding-bottom: 0.5rem; text-align: center; }
-
-            .page-header { padding-top: 120px; padding-bottom: 1rem; }
-            .recipe-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .recipe-info { padding: 1.5rem; }
-
-            .site-footer { padding: 4rem 1.5rem 2rem; }
-            .footer-logo { font-size: 2.5rem; }
-            .footer-nav { gap: 1.5rem; flex-direction: column; align-items: center; margin-bottom: 2.5rem;}
-            .footer-contact { gap: 1.5rem; flex-direction: column; align-items: center; margin-bottom: 3rem;}
-            
-            .toast-notification { top: 10px; right: 5%; width: 90%; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-            .toast-actions { width: 100%; justify-content: flex-end; }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.25rem;
+            }
+            .nav-utils .currency {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 253, 249, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-top: 1px solid var(--gold-border);
+                box-shadow: var(--shadow-md);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            .nav-links a {
+                font-size: 1.2rem;
+                width: 100%;
+                border-bottom: 1px solid var(--gold-border);
+                padding-bottom: 0.5rem;
+            }
+            .hero {
+                padding-top: 120px;
+                text-align: center;
+            }
+            .hero-content p {
+                margin: 0 auto 2rem;
+                font-size: 1.05rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-outline,
+            .btn-primary {
+                width: 100%;
+            }
+            .trust-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .trust-item {
+                font-size: 0.8rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 0.25rem;
+            }
+            .trust-item i {
+                font-size: 1.5rem;
+            }
+            .shop-section {
+                padding: 4rem 0;
+            }
+            .filters {
+                gap: 0.5rem;
+            }
+            .filter-btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 1rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .story-section {
+                padding: 4rem 0;
+            }
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .story-image {
+                order: -1;
+            }
+            .delivery-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .dual-section {
+                grid-template-columns: 1fr;
+                padding: 4rem 0 7rem 0;
+                gap: 4rem;
+            }
+            .wholesale-box {
+                padding: 2rem 1.5rem;
+            }
+            .site-footer {
+                padding: 4rem 1.5rem 2rem;
+            }
+            .footer-logo {
+                font-size: 2.5rem;
+            }
+            .footer-nav {
+                gap: 1.5rem;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 2.5rem;
+            }
+            .footer-contact {
+                gap: 1.5rem;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 3rem;
+            }
+            .toast-notification {
+                top: 10px;
+                right: 5%;
+                width: 90%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            .toast-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Background Canvas & CSS Pattern -->
@@ -440,13 +1393,13 @@
             <a href="index.html" class="brand-logo">
                 Hey Hon <i class="ph-fill ph-drop"></i>
             </a>
-            
+
             <nav class="nav-links" id="nav-links">
                 <a href="shop.html" onclick="closeMenu()">Shop</a>
                 <a href="story.html" onclick="closeMenu()">Our Story</a>
                 <a href="why-hey-hon.html" onclick="closeMenu()">Why Hey Hon?</a>
-                <a href="recipes.html" class="active" onclick="closeMenu()">Recipes</a>
-                <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
+                <a href="recipes.html" onclick="closeMenu()">Recipes</a>
+                <a href="#faq" onclick="closeMenu()">FAQ</a>
             </nav>
 
             <div class="nav-utils">
@@ -461,160 +1414,211 @@
     </header>
 
     <main>
-        <!-- Page Header -->
-        <section class="page-header container">
-            <span class="eyebrow">The Tasting Room</span>
-            <h1>Curated rituals to elevate your everyday.</h1>
-        </section>
-
-        <!-- Recipes Grid Container -->
-        <section class="recipes-container container">
-            <div class="recipe-grid">
-                
-                <!-- Recipe 1: Iced Strawberry Matcha -->
-                <div class="recipe-card">
-                    <div class="recipe-image">
-                        <span class="recipe-badge">Aesthetic Sips</span>
-                        <img src="matcha-latte.png" alt="Iced Strawberry Matcha Latte">
-                    </div>
-                    <div class="recipe-info">
-                        <h3 class="recipe-title">Iced Strawberry Matcha with Honey Cloud Foam</h3>
-                        <p class="recipe-description">
-                            A visually stunning, vibrant morning ritual. We replace processed syrups with our signature raw honey to create a perfectly balanced, earthy and sweet masterpiece that looks just as incredible as it tastes.
-                        </p>
-                        
-                        <button class="toggle-recipe-btn" onclick="toggleRecipe(this)">
-                            View Recipe <i class="ph ph-caret-down"></i>
-                        </button>
-
-                        <div class="recipe-details">
-                            <div class="recipe-details-inner">
-                                <h4 class="recipe-subtitle">What you need</h4>
-                                <ul class="recipe-list">
-                                    <li>2 tablespoons Hey Hon Raw St. Mary Wildflower Honey</li>
-                                    <li>1 teaspoon ceremonial grade matcha powder</li>
-                                    <li>2 ounces hot water</li>
-                                    <li>1/4 cup fresh strawberries pureed</li>
-                                    <li>3/4 cup oat milk or milk of choice</li>
-                                    <li>2 tablespoons heavy cream or coconut cream</li>
-                                    <li>Ice cubes</li>
-                                </ul>
-
-                                <h4 class="recipe-subtitle">How to craft it</h4>
-                                <ol class="recipe-steps">
-                                    <li>Whisk your matcha powder with hot water until beautifully frothy and completely smooth.</li>
-                                    <li>In a separate small bowl vigorously whisk your cream with one tablespoon of Hey Hon raw honey until it forms a soft fluffy cloud.</li>
-                                    <li>Spoon the fresh strawberry puree into the bottom of a tall glass and add a generous handful of ice.</li>
-                                    <li>Pour in your oat milk followed by the remaining tablespoon of raw honey.</li>
-                                    <li>Gently pour the vibrant green matcha over the milk to create a gorgeous layered effect.</li>
-                                    <li>Spoon the sweet honey cloud foam over the top and enjoy immediately.</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Hero Section -->
+        <section class="hero container">
+            <div class="hero-content">
+                <span class="eyebrow">100% Pure & Unfiltered • St. Mary, Jamaica</span>
+                <h1>Hey Hon, Jamaican Honey.</h1>
+                <p>Pure, unfiltered honey from Jamaica. Crafted with care, tasted in every spoonful. Straight from Our Hives to Your Table.</p>
+                <div class="hero-buttons">
+                    <a href="shop.html" class="btn btn-primary">Shop The Harvest</a>
+                    <a href="story.html" class="btn btn-outline">Explore Our Story</a>
                 </div>
-
-                <!-- Recipe 2: Shaken Espresso -->
-                <div class="recipe-card">
-                    <div class="recipe-image">
-                        <span class="recipe-badge">Morning Rituals</span>
-                        <img src="shaken-espresso.png" alt="Iced Shaken Espresso">
-                    </div>
-                    <div class="recipe-info">
-                        <h3 class="recipe-title">Cinnamon Whipped Honey Shaken Espresso</h3>
-                        <p class="recipe-description">
-                            Transform your daily caffeine fix into a cafe quality indulgence. The intense heat of fresh espresso melts our spiced whipped honey instantly before being shaken over ice for a rich frothy finish.
-                        </p>
-                        
-                        <button class="toggle-recipe-btn" onclick="toggleRecipe(this)">
-                            View Recipe <i class="ph ph-caret-down"></i>
-                        </button>
-
-                        <div class="recipe-details">
-                            <div class="recipe-details-inner">
-                                <h4 class="recipe-subtitle">What you need</h4>
-                                <ul class="recipe-list">
-                                    <li>1 generous tablespoon Hey Hon Cinnamon Whipped Honey</li>
-                                    <li>2 shots freshly pulled espresso</li>
-                                    <li>A splash of creamy oat milk</li>
-                                    <li>A pinch of flaky sea salt</li>
-                                    <li>Ice cubes</li>
-                                </ul>
-
-                                <h4 class="recipe-subtitle">How to craft it</h4>
-                                <ol class="recipe-steps">
-                                    <li>Add the Cinnamon Whipped Honey to the bottom of a cocktail shaker or mason jar.</li>
-                                    <li>Pour the freshly pulled hot espresso directly over the honey and swirl gently until it melts together.</li>
-                                    <li>Fill the shaker to the brim with ice cubes and add the pinch of flaky sea salt.</li>
-                                    <li>Secure the lid and shake vigorously for fifteen seconds until deeply chilled and frothy.</li>
-                                    <li>Pour the entire mixture including the ice into a beautiful glass.</li>
-                                    <li>Top with a splash of oat milk and watch the elegant marbling effect before taking your first sip.</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recipe 3: Hot Honey Ricotta Toast -->
-                <div class="recipe-card">
-                    <div class="recipe-image">
-                        <span class="recipe-badge">Savory Cravings</span>
-                        <img src="ricotta-toast.png" alt="Ricotta and Honey Toast">
-                    </div>
-                    <div class="recipe-info">
-                        <h3 class="recipe-title">Whipped Ricotta & Chili Honey Artisan Toast</h3>
-                        <p class="recipe-description">
-                            The perfect balance of creamy savory and sweet heat. We take pure whipped ricotta spread it thick over toasted sourdough and finish it with a generous drizzle of spicy infused honey.
-                        </p>
-                        
-                        <button class="toggle-recipe-btn" onclick="toggleRecipe(this)">
-                            View Recipe <i class="ph ph-caret-down"></i>
-                        </button>
-
-                        <div class="recipe-details">
-                            <div class="recipe-details-inner">
-                                <h4 class="recipe-subtitle">What you need</h4>
-                                <ul class="recipe-list">
-                                    <li>2 tablespoons Hey Hon Raw St. Mary Wildflower Honey</li>
-                                    <li>1 pinch crushed red pepper flakes</li>
-                                    <li>1 thick slice fresh artisan sourdough bread</li>
-                                    <li>1/3 cup whole milk ricotta cheese</li>
-                                    <li>Fresh figs or seasonal fruits</li>
-                                    <li>Flaky sea salt and fresh thyme</li>
-                                </ul>
-
-                                <h4 class="recipe-subtitle">How to craft it</h4>
-                                <ol class="recipe-steps">
-                                    <li>In a small dish stir the crushed red pepper flakes into the raw honey and let it sit to infuse its heat.</li>
-                                    <li>Toast your sourdough slice in a pan with a touch of olive oil until perfectly golden and crisp.</li>
-                                    <li>Whip the ricotta cheese with a fork until fluffy then spread it generously edge to edge over the warm toast.</li>
-                                    <li>Layer the fresh figs beautifully across the ricotta base.</li>
-                                    <li>Drizzle the spicy infused honey liberally over the entire toast.</li>
-                                    <li>Finish with a sprinkle of flaky sea salt and fresh thyme leaves for a gorgeous culinary experience.</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
+        <!-- Trust Banner -->
+        <section class="trust-banner">
+            <div class="container trust-grid">
+                <div class="trust-item"><i class="ph ph-sparkle"></i> 100% Raw & Cold Extracted</div>
+                <div class="trust-item"><i class="ph ph-map-pin"></i> Harvested in St. Mary, JA</div>
+                <div class="trust-item"><i class="ph ph-moped"></i> Islandwide Delivery</div>
+                <div class="trust-item"><i class="ph ph-plant"></i> Sustainably Farmed Apiaries</div>
+            </div>
+        </section>
+
+        <!-- Shop / Product Grid -->
+        <section id="shop" class="shop-section container">
+            <div class="section-header">
+                <h2>The Current Harvest</h2>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All Products</button>
+                <button class="filter-btn" data-filter="raw">Raw Honey</button>
+                <button class="filter-btn" data-filter="whipped">Whipped Honey</button>
+            </div>
+
+            <div class="product-grid" id="product-grid">
+                <!-- 1. Regular Raw Honey -->
+                <div class="product-card" data-category="raw">
+                    <div class="product-image">
+                        <span class="product-badge">Signature</span>
+                        <img src="raw-honey.png" alt="Hey Hon Raw Cold Extracted Jamaican Honey Jar St Mary Wildflower">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Raw Honey</h3>
+                        <select class="size-selector" id="raw-honey-size" onchange="updateDynamicPrice('raw-honey')">
+                            <option value="266ml" data-price="2200">266ml Glass Jar</option>
+                            <option value="500ml" data-price="3200">500ml Glass Jar</option>
+                            <option value="750ml" data-price="4000">750ml Glass Jar</option>
+                        </select>
+                        <div class="product-bottom">
+                            <span class="product-price" id="raw-honey-price">JMD $2,200</span>
+                            <button class="add-to-cart" data-id="1" data-title="Raw St. Mary Wildflower" data-img="raw-honey.png" data-select-id="raw-honey-size">Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Cinnamon Infused Whipped Honey -->
+                <div class="product-card" data-category="whipped">
+                    <div class="product-image">
+                        <span class="product-badge">Infusion</span>
+                        <img src="cinnamon-whipped-honey.png" alt="Hey Hon Cinnamon Infused Whipped Jamaican Honey Jar">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Cinnamon Whipped Honey</h3>
+                        <p class="product-meta">266ml Glass Jar • Warm Spiced Spread</p>
+                        <div class="product-bottom">
+                            <span class="product-price">JMD $3,000</span>
+                            <button class="add-to-cart" data-id="3" data-title="Cinnamon Whipped Honey (266ml)" data-price="3000" data-img="cinnamon-whipped-honey.png">Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="story-section">
+            <div class="container story-grid">
+                <div class="story-image">
+                    <img src="st-mary-hills.jpg" alt="Pristine sustainable apiary in the rural hills of St Mary Jamaica">
+                </div>
+                <div class="story-content">
+                    <h2>From the Hills of St. Mary to Your Table</h2>
+                    <p>Our honey is pure, natural, and made with care. Our bees live in the peaceful hills of St. Mary, where they visit clean, chemical-free tropical flowers.</p>
+                    <p>We never heat our honey. We carefully scrape it cold so it keeps all its healthy goodness, natural pollen, and rich floral taste. What you get is smooth, golden honey, straight from the hive.</p>
+
+                    <div class="spec-grid">
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Unfiltered & Raw</div>
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Zero Added Sugar</div>
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Ethical Beekeeping</div>
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> 100% Local</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Delivery Info Section -->
+        <section class="delivery-section">
+            <div class="container delivery-grid">
+                <div class="delivery-info">
+                    <h3>Islandwide Delivery</h3>
+                    <p>We believe every home deserves access to pure honey. That is why we offer direct courier delivery across Kingston and Portmore.</p>
+                    <p>For our customers across the rest of Jamaica, we partner securely with <strong>Knutsford Express</strong> and trusted local couriers to ensure your harvest arrives safely right at your doorstep.</p>
+                </div>
+                <div>
+                    <img src="islandwide.png" alt="Hey Hon secure islandwide delivery package in Jamaica" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-sm);">
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ & Wholesale -->
+        <section class="container dual-section">
+            <div id="faq" class="faq-container">
+                <h2 style="margin-bottom: 2rem; font-size: 2.2rem;">Frequently Asked</h2>
+
+                <div class="faq-item">
+                    <div class="faq-header">Where are your apiaries located? <i class="ph ph-caret-down"></i></div>
+                    <div class="faq-content">
+                        <p>All our hives are located deep in the rural, pristine hills of St. Mary, Jamaica, far away from commercial agriculture and pollution.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">What makes cold extracted raw honey superior? <i class="ph ph-caret-down"></i></div>
+                    <div class="faq-content">
+                        <p>Commercial honey is often heavily processed and pasteurized, stripping away natural floral aromas, beneficial enzymes, and antioxidants. Our cold extracted raw honey preserves every nuance of St. Mary's wildflower terroir, delivering
+                            unmatched depth, aroma, and vitality.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">What is Whipped Honey? <i class="ph ph-caret-down"></i></div>
+                    <div class="faq-content">
+                        <p>Whipped (or creamed) honey is pure raw honey that has been gently mixed in a controlled process to form very small crystals. It contains nothing but 100% honey, yielding a smooth, buttery, spreadable texture that never sets hard.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-header">How should I store my Hey Hon? <i class="ph ph-caret-down"></i></div>
+                    <div class="faq-content">
+                        <p>Store at room temperature in a dry cupboard. If your regular raw honey crystallizes over time, simply place the glass jar in warm water.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="wholesale" class="wholesale-box">
+                <h2 style="margin-bottom: 1rem; font-size: 1.8rem;">Wholesale & Gifting</h2>
+                <p style="margin-bottom: 2rem; font-size: 0.95rem; color: var(--slate);">Partner with us for corporate gifting, boutique retail, or culinary sourcing.</p>
+
+                <!-- Updated Wholesale Form to connect to Backend Script -->
+                <form id="wholesale-form">
+                    <div class="form-group">
+                        <label>Name / Company *</label>
+                        <input type="text" id="ws-name" required placeholder="Your company name / name">
+                    </div>
+                    <div class="form-group">
+                        <label>Inquiry Type *</label>
+                        <select id="ws-type">
+                            <option>Retail / Boutique</option>
+                            <option>Corporate Gifting</option>
+                            <option>Restaurant / Culinary</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="ws-email" required placeholder="hello@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number (Optional)</label>
+                        <input type="tel" id="ws-phone" placeholder="e.g. 876-555-0123">
+                    </div>
+                    <button type="submit" id="ws-btn" class="btn btn-primary" style="width: 100%;">Request Catalog</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <h3>Join the Hive</h3>
+                <p>Get priority access to limited seasonal extractions & reserve batch releases.</p>
+
+                <!-- Updated Newsletter Form to connect to Backend Script -->
+                <form class="subscribe-form" id="newsletter-form">
+                    <input type="email" id="nl-email" placeholder="Enter your email address *" required>
+                    <input type="tel" id="nl-phone" placeholder="WhatsApp / Phone (Optional)">
+                    <button type="submit" id="nl-btn" class="btn btn-primary">Join</button>
+                </form>
+            </div>
+        </section>
     </main>
 
     <!-- Sleek Jybe-Inspired Footer -->
     <footer class="site-footer">
         <div class="container">
             <a href="index.html" class="footer-logo">HEY HON</a>
-            
+
             <nav class="footer-nav">
                 <a href="shop.html">Shop</a>
                 <a href="recipes.html">Recipes</a>
                 <a href="story.html">Our Story</a>
-                <a href="index.html#wholesale">Wholesale</a>
-                <a href="index.html#faq">FAQs</a>
+                <a href="#wholesale">Wholesale</a>
+                <a href="#faq">FAQs</a>
             </nav>
-            
+
             <div class="footer-contact">
                 <a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer">
                     <i class="ph-fill ph-whatsapp-logo"></i> 1 (658) 218-2734
@@ -623,15 +1627,15 @@
                     <i class="ph-fill ph-instagram-logo"></i> @heyhonja
                 </a>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>Kingston, Jamaica. Rooted in St. Mary 🇯🇲</p>
                 <p>&copy; 2026 Hey Hon Artisanal Honey.</p>
-                
+
                 <!-- Discreet Agency Credit -->
                 <a href="https://avancejm.com" target="_blank" rel="noopener noreferrer" class="agency-credit">
                     <span>Designed & Automated by</span>
-                    <img src="avance-logo.png" alt="Avance Web Design Jamaica" class="agency-logo" />
+                    <img src="avance-logo.png" alt="Avance Web Design Jamaica" class="agency-logo">
                 </a>
             </div>
         </div>
@@ -644,7 +1648,7 @@
             <h3>Your Harvest Bag (<span id="drawer-count">0</span>)</h3>
             <button class="close-cart" onclick="toggleCart()"><i class="ph ph-x"></i></button>
         </div>
-        
+
         <div class="free-shipping-bar">
             <div id="shipping-msg">Add $6,000 JMD more for free Kingston delivery</div>
             <div class="progress-container">
@@ -671,7 +1675,7 @@
             <h3>Delivery Details</h3>
             <button class="close-cart" onclick="closeCheckoutModal()"><i class="ph ph-x"></i></button>
         </div>
-        
+
         <div class="delivery-summary">
             <div class="delivery-summary-row">
                 <span>Items Subtotal:</span>
@@ -733,23 +1737,20 @@
          JAVASCRIPT LOGIC
          ========================================================================== -->
     <script>
-        // 1. Recipe Accordion Toggle
-        function toggleRecipe(btn) {
-            const details = btn.nextElementSibling;
-            const icon = btn.querySelector('i');
-            
-            details.classList.toggle('open');
-            
-            if (details.classList.contains('open')) {
-                details.style.maxHeight = details.scrollHeight + "px";
-                icon.style.transform = "rotate(180deg)";
-            } else {
-                details.style.maxHeight = "0px";
-                icon.style.transform = "rotate(0deg)";
-            }
+        const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('en-JM', {
+                style: 'currency',
+                currency: 'JMD',
+                minimumFractionDigits: 0
+            }).format(amount);
+        };
+
+        function updateDynamicPrice(productId) {
+            const select = document.getElementById(`${productId}-size`);
+            const price = select.options[select.selectedIndex].getAttribute('data-price');
+            document.getElementById(`${productId}-price`).innerText = formatCurrency(price);
         }
 
-        // 2. Header Scroll & Mobile Menu Toggle
         const header = document.getElementById('header');
         const navLinks = document.getElementById('nav-links');
 
@@ -761,7 +1762,6 @@
         function toggleMenu() {
             navLinks.classList.toggle('active');
             header.classList.toggle('menu-open');
-            
             const icon = document.querySelector('.mobile-menu-btn i');
             if (icon) {
                 if (navLinks.classList.contains('active')) {
@@ -786,11 +1786,43 @@
             }
         }
 
-        // 3. Persistent Cart System via LocalStorage
-        const formatCurrency = (amount) => {
-            return new Intl.NumberFormat('en-JM', { style: 'currency', currency: 'JMD', minimumFractionDigits: 0 }).format(amount);
-        };
+        // Accordion & FAQ logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const faqHeader = item.querySelector('.faq-header');
+            faqHeader.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-content').style.maxHeight = null;
+                });
+                if (!isActive) {
+                    item.classList.add('active');
+                    const content = item.querySelector('.faq-content');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
 
+        // Filter logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const products = document.querySelectorAll('.product-card');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filterValue = btn.getAttribute('data-filter');
+                products.forEach(product => {
+                    if (filterValue === 'all' || product.getAttribute('data-category') === filterValue) {
+                        product.style.display = 'flex';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- Persistent Cart System via LocalStorage ---
         let cart = JSON.parse(localStorage.getItem('heyHonCart')) || [];
         const FREE_SHIPPING_THRESHOLD = 6000;
         let currentSubtotal = 0;
@@ -811,7 +1843,7 @@
             const totalEl = document.getElementById('cart-total');
             const countBadge = document.getElementById('cart-count');
             const drawerCount = document.getElementById('drawer-count');
-            
+
             container.innerHTML = '';
             currentSubtotal = 0;
             let itemCount = 0;
@@ -824,20 +1856,20 @@
                     itemCount += item.quantity;
 
                     const itemHTML = `
-                        <div class="cart-item">
-                            <img src="${item.img}" alt="${item.title}" class="cart-item-img">
-                            <div class="cart-item-details">
-                                <div class="cart-item-title">${item.title}</div>
-                                <div class="cart-item-price">${formatCurrency(item.price)}</div>
-                                <div class="cart-qty-controls">
-                                    <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                                    <span>${item.quantity}</span>
-                                    <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                            <div class="cart-item">
+                                <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+                                <div class="cart-item-details">
+                                    <div class="cart-item-title">${item.title}</div>
+                                    <div class="cart-item-price">${formatCurrency(item.price)}</div>
+                                    <div class="cart-qty-controls">
+                                        <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                                        <span>${item.quantity}</span>
+                                        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                                    </div>
                                 </div>
+                                <span class="item-remove" onclick="removeItem(${index})">Remove</span>
                             </div>
-                            <span class="item-remove" onclick="removeItem(${index})">Remove</span>
-                        </div>
-                    `;
+                        `;
                     container.insertAdjacentHTML('beforeend', itemHTML);
                 });
             }
@@ -848,7 +1880,7 @@
 
             const shippingMsg = document.getElementById('shipping-msg');
             const progressBar = document.getElementById('shipping-progress');
-            
+
             if (currentSubtotal >= FREE_SHIPPING_THRESHOLD) {
                 shippingMsg.innerHTML = "You've unlocked <strong>Free Kingston Delivery!</strong>";
                 progressBar.style.width = '100%';
@@ -875,13 +1907,17 @@
 
         // TOAST NOTIFICATION LOGIC
         let toastTimeout;
+
         function showToast(title) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-text').innerText = `1x ${title} added to your Harvest Bag.`;
             toast.classList.add('show');
             clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => { hideToast(); }, 5000);
+            toastTimeout = setTimeout(() => {
+                hideToast();
+            }, 5000);
         }
+
         function hideToast() {
             document.getElementById('toast').classList.remove('show');
         }
@@ -894,11 +1930,11 @@
             }
             document.getElementById('cart-drawer').classList.remove('active');
             document.getElementById('cart-overlay').classList.remove('active');
-            
+
             document.getElementById('modal-subtotal').innerText = formatCurrency(currentSubtotal);
             document.getElementById('modal-shipping').innerText = "TBD";
             document.getElementById('modal-total').innerText = formatCurrency(currentSubtotal);
-            
+
             document.getElementById('checkout-modal').classList.add('active');
             document.getElementById('modal-overlay').classList.add('active');
         }
@@ -927,7 +1963,7 @@
                     shippingEl.innerText = "FREE (Unlocked!)";
                     totalEl.innerText = formatCurrency(currentSubtotal);
                 } else {
-                    currentShippingFee = 0; 
+                    currentShippingFee = 0;
                     shippingEl.innerText = "Courier Fee TBD";
                     totalEl.innerText = `${formatCurrency(currentSubtotal)} + Courier Fee`;
                 }
@@ -946,7 +1982,7 @@
             const station = document.getElementById('cust-station').value;
             const note = document.getElementById('cust-note').value;
 
-            const bizPhone = "16582182734"; 
+            const bizPhone = "16582182734";
             let msg = `*New Order from Hey Hon Website!*\n\n`;
             msg += `*Customer:* ${name}\n`;
             msg += `*Phone:* ${phone}\n`;
@@ -963,7 +1999,7 @@
                 const itemTotal = item.price * item.quantity;
                 msg += `• ${item.quantity}x ${item.title} - ${formatCurrency(itemTotal)}\n`;
             });
-            
+
             msg += `\n*Subtotal:* ${formatCurrency(currentSubtotal)}\n`;
             if (currentShippingFee > 0) {
                 msg += `*Delivery (Knutsford):* ${formatCurrency(currentShippingFee)}\n`;
@@ -972,18 +2008,140 @@
                 msg += `*Delivery Fee:* To be confirmed by courier\n`;
                 msg += `*Total Due:* ${formatCurrency(currentSubtotal)} + Courier Fee`;
             }
-            
+
             const encodedMessage = encodeURIComponent(msg);
             const whatsappUrl = `https://wa.me/${bizPhone}?text=${encodedMessage}`;
-            
+
             closeCheckoutModal();
             window.open(whatsappUrl, '_blank');
         }
 
-        // Initialize Cart on Load
+        // --- NEW BACKEND LOGIC: WHOLESALE AND NEWSLETTER FORM SUBMISSION ---
+        // INSTRUCTION: Replace "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE" with the actual URL from Part 2.
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLpLWueyW8S8MwlLOgbCP0JqNdF46-O_JT6nAW9y2Oi6a3M6l3H9AESn68Mb918DkCMg/exec";
+
+        const wholesaleForm = document.getElementById('wholesale-form');
+        if (wholesaleForm) {
+            wholesaleForm.addEventListener('submit', async(e) => {
+                e.preventDefault();
+                const btn = document.getElementById('ws-btn');
+                btn.innerText = "Sending...";
+
+                const payload = {
+                    formType: "Wholesale",
+                    name: document.getElementById('ws-name').value,
+                    inquiryType: document.getElementById('ws-type').value,
+                    email: document.getElementById('ws-email').value,
+                    phone: document.getElementById('ws-phone').value || "N/A"
+                };
+
+                try {
+                    await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                    btn.innerText = "Request Sent ✓";
+                    btn.style.backgroundColor = "#2ecc71";
+                    wholesaleForm.reset();
+                    setTimeout(() => {
+                        btn.innerText = "Request Catalog";
+                        btn.style.backgroundColor = "";
+                    }, 4000);
+                } catch (err) {
+                    btn.innerText = "Error. Try Again.";
+                    setTimeout(() => {
+                        btn.innerText = "Request Catalog";
+                    }, 3000);
+                }
+            });
+        }
+
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', async(e) => {
+                e.preventDefault();
+                const btn = document.getElementById('nl-btn');
+                btn.innerText = "Joining...";
+
+                const payload = {
+                    formType: "Newsletter",
+                    name: "N/A", // Newsletters rarely collect names upfront to reduce friction
+                    inquiryType: "Newsletter Signup",
+                    email: document.getElementById('nl-email').value,
+                    phone: document.getElementById('nl-phone').value || "N/A"
+                };
+
+                try {
+                    await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                    btn.innerText = "Welcome to the Hive ✓";
+                    btn.style.backgroundColor = "#2ecc71";
+                    newsletterForm.reset();
+                    setTimeout(() => {
+                        btn.innerText = "Join";
+                        btn.style.backgroundColor = "";
+                    }, 4000);
+                } catch (err) {
+                    btn.innerText = "Error. Try Again.";
+                    setTimeout(() => {
+                        btn.innerText = "Join";
+                    }, 3000);
+                }
+            });
+        }
+
+
+        // Add To Bag Buttons
+        const addButtons = document.querySelectorAll('.add-to-cart');
+        addButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                let id = button.getAttribute('data-id');
+                let title = button.getAttribute('data-title');
+                let price = parseInt(button.getAttribute('data-price'));
+                let img = button.getAttribute('data-img');
+
+                const selectId = button.getAttribute('data-select-id');
+                if (selectId) {
+                    const selectEl = document.getElementById(selectId);
+                    const selectedOption = selectEl.options[selectEl.selectedIndex];
+                    const size = selectedOption.value;
+                    price = parseInt(selectedOption.getAttribute('data-price'));
+                    title = `${title} (${size})`;
+                    id = `${id}-${size}`;
+                }
+
+                showToast(title);
+
+                const existingItem = cart.find(item => item.id === id);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        title,
+                        price,
+                        img,
+                        quantity: 1
+                    });
+                }
+
+                saveCart();
+            });
+        });
+
         updateCartUI();
 
-        // 4. Background "House Bee" Animation (Reduced count)
+        // Background Animation
         const canvas = document.getElementById('bee-canvas');
         const ctx = canvas.getContext('2d');
         let bees = [];
@@ -1001,14 +2159,14 @@
                 this.y = Math.random() * canvas.height;
                 this.angle = Math.random() * Math.PI * 2;
                 this.state = 'hover';
-                this.timer = Math.random() * 100 + 50; 
+                this.timer = Math.random() * 100 + 50;
                 this.targetX = this.x;
                 this.targetY = this.y;
                 this.targetAngle = this.angle;
-                this.baseSpeed = Math.random() * 2 + 2.5; 
+                this.baseSpeed = Math.random() * 2 + 2.5;
                 this.hoverJitter = Math.random() * Math.PI * 2;
-                this.size = Math.random() * 1.2 + 1.5; 
-                this.opacity = Math.random() * 0.6 + 0.4; 
+                this.size = Math.random() * 1.2 + 1.5;
+                this.opacity = Math.random() * 0.6 + 0.4;
                 this.flapOffset = Math.random() * 100;
                 this.flapSpeed = 0.5;
             }
@@ -1023,9 +2181,9 @@
 
                     if (this.timer <= 0) {
                         this.state = 'dart';
-                        this.timer = Math.random() * 50 + 30; 
+                        this.timer = Math.random() * 50 + 30;
                         const dist = Math.random() * 150 + 100;
-                        const dir = this.angle + (Math.random() - 0.5) * Math.PI; 
+                        const dir = this.angle + (Math.random() - 0.5) * Math.PI;
                         this.targetX = this.x + Math.cos(dir) * dist;
                         this.targetY = this.y + Math.sin(dir) * dist;
                         this.targetAngle = Math.atan2(this.targetY - this.y, this.targetX - this.x);
@@ -1034,7 +2192,7 @@
                     let angleDiff = this.targetAngle - this.angle;
                     while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
                     while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
-                    this.angle += angleDiff * 0.2; 
+                    this.angle += angleDiff * 0.2;
                     this.x += Math.cos(this.angle) * this.baseSpeed;
                     this.y += Math.sin(this.angle) * this.baseSpeed;
                     this.flapSpeed = 0.8;
@@ -1042,7 +2200,7 @@
                     const distToTarget = Math.hypot(this.targetX - this.x, this.targetY - this.y);
                     if (this.timer <= 0 || distToTarget < 10) {
                         this.state = 'hover';
-                        this.timer = Math.random() * 150 + 80; 
+                        this.timer = Math.random() * 150 + 80;
                     }
                 }
 
@@ -1087,10 +2245,10 @@
                 const wingSweep = flap * 0.5;
 
                 ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
-                
+
                 ctx.save();
-                ctx.translate(bodyLength * 0.2, -bodyWidth * 0.4); 
-                ctx.rotate(-1 + wingSweep); 
+                ctx.translate(bodyLength * 0.2, -bodyWidth * 0.4);
+                ctx.rotate(-1 + wingSweep);
                 ctx.beginPath();
                 ctx.ellipse(0, -this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
                 ctx.fill();
@@ -1098,7 +2256,7 @@
 
                 ctx.save();
                 ctx.translate(bodyLength * 0.2, bodyWidth * 0.4);
-                ctx.rotate(1 - wingSweep); 
+                ctx.rotate(1 - wingSweep);
                 ctx.beginPath();
                 ctx.ellipse(0, this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
                 ctx.fill();
@@ -1110,7 +2268,7 @@
 
         function initBees() {
             bees = [];
-            const beeCount = window.innerWidth < 768 ? 3 : 7; 
+            const beeCount = window.innerWidth < 768 ? 4 : 8;
             for (let i = 0; i < beeCount; i++) {
                 bees.push(new RealisticBee());
             }
@@ -1127,7 +2285,8 @@
 
         initBees();
         animateBees();
-
     </script>
 </body>
+
 </html>
+--- END OF FILE ---
