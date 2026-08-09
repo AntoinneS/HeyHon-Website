@@ -443,11 +443,6 @@
             <h1>Why settle for ordinary when you can experience the extraordinary?</h1>
         </section>
 
-        <!-- Main Hero Banner (Video) -->
-        <div class="container">
-            <video src="honeycomb-drip.mp4" autoplay loop muted playsinline class="hero-banner"></video>
-        </div>
-
         <!-- Section 1: Taste & Terroir -->
         <section class="container feature-section">
             <div class="feature-text">
@@ -512,8 +507,8 @@
                 <a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer">
                     <i class="ph-fill ph-whatsapp-logo"></i> 1 (658) 218-2734
                 </a>
-                <a href="https://instagram.com/heyhonja" target="_blank" rel="noopener noreferrer">
-                    <i class="ph-fill ph-instagram-logo"></i> @heyhonja
+                <a href="https://instagram.com/heyhonjamaica" target="_blank" rel="noopener noreferrer">
+                    <i class="ph-fill ph-instagram-logo"></i> @heyhonjamaica
                 </a>
             </div>
             
@@ -592,22 +587,36 @@
             <div class="form-group">
                 <label>Delivery Parish / Zone *</label>
                 <select id="cust-location" required onchange="calculateShipping()">
-                    <option value="">Select Delivery Zone...</option>
-                    <option value="Kingston">Kingston (Direct Courier)</option>
-                    <option value="St. Andrew">St. Andrew (Direct Courier)</option>
-                    <option value="Portmore">Portmore (Direct Courier)</option>
-                    <option value="St. Catherine">St. Catherine / Spanish Town (Courier)</option>
-                    <option value="Knutsford Express - Clarendon">Clarendon (Knutsford Express)</option>
-                    <option value="Knutsford Express - Hanover">Hanover (Knutsford Express)</option>
-                    <option value="Knutsford Express - Manchester">Manchester (Knutsford Express)</option>
-                    <option value="Knutsford Express - Portland">Portland (Knutsford Express)</option>
-                    <option value="Knutsford Express - St. Ann">St. Ann (Knutsford Express)</option>
-                    <option value="Knutsford Express - St. Elizabeth">St. Elizabeth (Knutsford Express)</option>
-                    <option value="Knutsford Express - St. James">St. James (Knutsford Express)</option>
-                    <option value="Knutsford Express - St. Mary">St. Mary (Knutsford Express)</option>
-                    <option value="Knutsford Express - St. Thomas">St. Thomas (Knutsford Express)</option>
-                    <option value="Knutsford Express - Trelawny">Trelawny (Knutsford Express)</option>
-                    <option value="Knutsford Express - Westmoreland">Westmoreland (Knutsford Express)</option>
+                    <option value="">Select Delivery or Pick Up...</option>
+
+                    <!-- Free Pick Up Locations -->
+                    <optgroup label="Free Pick Up">
+                        <option value="Pick Up - Sovereign Village, Portmore">Sovereign Village - Portmore</option>
+                        <option value="Pick Up - Student Loan Bureau, Kingston">Student Loan Bureau - Kingston</option>
+                        <option value="Pick Up - Digicel Head Office">Digicel Head Office</option>
+                    </optgroup>
+
+                    <!-- Direct Courier -->
+                    <optgroup label="Direct Courier">
+                        <option value="Portmore">Portmore - $500</option>
+                        <option value="Kingston">Kingston - $800</option>
+                        <option value="Spanish Town">Spanish Town - $800</option>
+                    </optgroup>
+
+                    <!-- Knutsford Express -->
+                    <optgroup label="Knutsford Express ($700 Flat Rate)">
+                        <option value="Knutsford Express - Clarendon">Clarendon</option>
+                        <option value="Knutsford Express - Hanover">Hanover</option>
+                        <option value="Knutsford Express - Manchester">Manchester</option>
+                        <option value="Knutsford Express - Portland">Portland</option>
+                        <option value="Knutsford Express - St. Ann">St. Ann</option>
+                        <option value="Knutsford Express - St. Elizabeth">St. Elizabeth</option>
+                        <option value="Knutsford Express - St. James">St. James</option>
+                        <option value="Knutsford Express - St. Mary">St. Mary</option>
+                        <option value="Knutsford Express - St. Thomas">St. Thomas</option>
+                        <option value="Knutsford Express - Trelawny">Trelawny</option>
+                        <option value="Knutsford Express - Westmoreland">Westmoreland</option>
+                    </optgroup>
                 </select>
             </div>
             <div class="form-group" id="knutsford-field" style="display:none;">
@@ -790,26 +799,35 @@
             const shippingEl = document.getElementById('modal-shipping');
             const totalEl = document.getElementById('modal-total');
 
-            if (selectedVal.includes("Knutsford Express")) {
+            // Default to hiding the Knutsford station input
+            stationField.style.display = "none";
+
+            if (selectedVal.includes("Pick Up")) {
+                currentShippingFee = 0;
+                shippingEl.innerText = "FREE";
+                totalEl.innerText = formatCurrency(currentSubtotal);
+            } else if (selectedVal === "Portmore") {
+                currentShippingFee = 500;
+                shippingEl.innerText = formatCurrency(currentShippingFee);
+                totalEl.innerText = formatCurrency(currentSubtotal + currentShippingFee);
+            } else if (selectedVal === "Kingston" || selectedVal === "Spanish Town") {
+                // Keep the free shipping threshold logic intact for Kingston
+                if (currentSubtotal >= FREE_SHIPPING_THRESHOLD && selectedVal === "Kingston") {
+                    currentShippingFee = 0;
+                    shippingEl.innerText = "FREE (Unlocked!)";
+                } else {
+                    currentShippingFee = 800;
+                    shippingEl.innerText = formatCurrency(currentShippingFee);
+                }
+                totalEl.innerText = formatCurrency(currentSubtotal + currentShippingFee);
+            } else if (selectedVal.includes("Knutsford Express")) {
                 stationField.style.display = "block";
                 currentShippingFee = 700;
                 shippingEl.innerText = `${formatCurrency(700)} (Knutsford Flat Rate)`;
                 totalEl.innerText = formatCurrency(currentSubtotal + currentShippingFee);
-            } else if (selectedVal === "Kingston" || selectedVal === "Portmore" || selectedVal === "St. Andrew") {
-                stationField.style.display = "none";
-                if (currentSubtotal >= FREE_SHIPPING_THRESHOLD && (selectedVal === "Kingston" || selectedVal === "St. Andrew")) {
-                    currentShippingFee = 0;
-                    shippingEl.innerText = "FREE (Unlocked!)";
-                    totalEl.innerText = formatCurrency(currentSubtotal);
-                } else {
-                    currentShippingFee = 0; // TBD by courier
-                    shippingEl.innerText = "Courier Fee TBD";
-                    totalEl.innerText = `${formatCurrency(currentSubtotal)} + Courier Fee`;
-                }
             } else {
-                stationField.style.display = "none";
                 currentShippingFee = 0;
-                shippingEl.innerText = "Courier Fee TBD";
+                shippingEl.innerText = "Fee TBD";
                 totalEl.innerText = `${formatCurrency(currentSubtotal)} + Delivery`;
             }
         }
@@ -821,11 +839,11 @@
             const station = document.getElementById('cust-station').value;
             const note = document.getElementById('cust-note').value;
 
-            const bizPhone = "16582182734"; 
+            const bizPhone = "16582182734";
             let msg = `*New Order from Hey Hon Website!*\n\n`;
             msg += `*Customer:* ${name}\n`;
             msg += `*Phone:* ${phone}\n`;
-            msg += `*Delivery Zone:* ${location}\n`;
+            msg += `*Delivery/Pick Up:* ${location}\n`;
             if (station && location.includes("Knutsford")) {
                 msg += `*Target Station:* ${station}\n`;
             }
@@ -838,19 +856,24 @@
                 const itemTotal = item.price * item.quantity;
                 msg += `• ${item.quantity}x ${item.title} - ${formatCurrency(itemTotal)}\n`;
             });
-            
+
             msg += `\n*Subtotal:* ${formatCurrency(currentSubtotal)}\n`;
+
+            // Updated WhatsApp receipt formatting
             if (currentShippingFee > 0) {
-                msg += `*Delivery (Knutsford):* ${formatCurrency(currentShippingFee)}\n`;
+                msg += `*Delivery Fee:* ${formatCurrency(currentShippingFee)}\n`;
                 msg += `*Total Estimated:* ${formatCurrency(currentSubtotal + currentShippingFee)}`;
+            } else if (location.includes("Pick Up") || (currentSubtotal >= FREE_SHIPPING_THRESHOLD && location === "Kingston")) {
+                msg += `*Delivery/Pick Up Fee:* FREE\n`;
+                msg += `*Total Due:* ${formatCurrency(currentSubtotal)}`;
             } else {
-                msg += `*Delivery Fee:* To be confirmed by courier\n`;
+                msg += `*Delivery Fee:* To be confirmed\n`;
                 msg += `*Total Due:* ${formatCurrency(currentSubtotal)} + Courier Fee`;
             }
-            
+
             const encodedMessage = encodeURIComponent(msg);
             const whatsappUrl = `https://wa.me/${bizPhone}?text=${encodedMessage}`;
-            
+
             closeCheckoutModal();
             window.open(whatsappUrl, '_blank');
         }
