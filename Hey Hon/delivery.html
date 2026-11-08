@@ -32,6 +32,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
     <style>
         :root { --cream:#FFFDF9; --white:#fff; --amber:#D98A2B; --espresso:#221F1D; --slate:#5A544F; --gold-border:rgba(217,138,43,0.15); }
@@ -55,7 +56,26 @@
         .faq-item h3 { font-size:1.1rem; margin-bottom:0.4rem; }
         footer { background:var(--espresso); color:#fff; padding:2rem 0; margin-top:2rem; }
         footer a { color:#fff; margin-right:1rem; }
-        .whatsapp-float { position:fixed; bottom:20px; right:20px; z-index:1200; background:#25D366; color:#fff; padding:14px 18px; border-radius:999px; font-weight:600; font-size:1rem; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.25); }
+        .whatsapp-float { position:fixed; bottom:20px; right:20px; z-index:1200; background:#D98A2B; color:#fff; padding:14px 18px; border-radius:999px; font-weight:600; font-size:1rem; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.25); }
+    
+        /* Design cleanup (Nov 2026): brand-orange sticky button, consistent headings, mobile price cards */
+        h2 { font-size: 1.5rem; margin-top: 2rem; }
+        h2:first-of-type { margin-top: 0; }
+        .whatsapp-float { background: #D98A2B; bottom: 24px; right: 24px; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .whatsapp-float:hover { background: #B86E18; }
+        .price-table-wrap { overflow-x: auto; }
+        .price-cards { display: none; }
+        @media (max-width: 640px) {
+            .price-table-wrap { display: none; }
+            .price-cards { display: grid; gap: 1rem; margin: 1rem 0 1.5rem 0; }
+            .price-card { background: var(--white); border: 1px solid var(--gold-border); border-radius: 8px; padding: 1.25rem; }
+            .price-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+            .price-card ul { list-style: none; }
+            .price-card li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.4rem 0; border-bottom: 1px solid #eee; }
+            .price-card li:last-child { border-bottom: none; }
+            .whatsapp-float { bottom: 16px; right: 16px; padding: 12px; font-size: 1.5rem; }
+            .whatsapp-float .wa-label { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -84,13 +104,19 @@
 
         <h2 style="margin-top:2rem;">Prices and delivery totals</h2>
         <p>Raw St. Mary Wildflower Honey only: 266ml JMD $2,200, 500ml JMD $3,200.</p>
+        <div class="price-table-wrap">
         <table>
-            <thead><tr><th>Jar</th><th>Portmore delivery ($500)</th><th>Kingston / Spanish Town delivery ($800)</th><th>Knutsford Express ($700 flat rate)</th></tr></thead>
+            <thead><tr><th>Jar</th><th>Portmore &mdash; $500</th><th>Kingston / Spanish Town &mdash; $800</th><th>Knutsford Express &mdash; $700</th></tr></thead>
             <tbody>
                 <tr><td>266ml — JMD $2,200</td><td>JMD $2,700 total</td><td>JMD $3,000 total</td><td>JMD $2,900 total</td></tr>
                 <tr><td>500ml — JMD $3,200</td><td>JMD $3,700 total</td><td>JMD $4,000 total</td><td>JMD $3,900 total</td></tr>
             </tbody>
         </table>
+        </div>
+<div class="price-cards">
+                <div class="price-card"><h3>266ml — JMD $2,200</h3><ul><li><span>Portmore</span><strong>JMD $2,700 total</strong></li><li><span>Kingston / Spanish Town</span><strong>JMD $3,000 total</strong></li><li><span>Knutsford Express</span><strong>JMD $2,900 total</strong></li></ul></div>
+                <div class="price-card"><h3>500ml — JMD $3,200</h3><ul><li><span>Portmore</span><strong>JMD $3,700 total</strong></li><li><span>Kingston / Spanish Town</span><strong>JMD $4,000 total</strong></li><li><span>Knutsford Express</span><strong>JMD $3,900 total</strong></li></ul></div>
+            </div>
 
         <h2>Direct courier delivery</h2>
         <ul>
@@ -130,6 +156,6 @@
             <p>&copy; 2026 Hey Hon Artisanal Honey.</p>
         </div>
     </footer>
-    <a class="whatsapp-float" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
+    <a class="whatsapp-float" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer"><i class="ph-fill ph-whatsapp-logo"></i><span class="wa-label">Order on WhatsApp</span></a>
 </body>
 </html>
