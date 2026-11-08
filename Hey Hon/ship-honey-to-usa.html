@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Can You Ship Jamaican Honey to the USA? | Hey Hon</title>
-    <meta name="description" content="Can Hey Hon ship Jamaican honey to the USA? USA shipping is by WhatsApp quote only — no set carrier or flat price yet. Honey is generally allowed into the US in commercial packaging and must be declared. Message Hey Hon on WhatsApp with your US state, quantity, and size for a quote.">
+    <meta name="description" content="Can Hey Hon ship Jamaican honey to the USA? USA shipping is by WhatsApp quote only. No set carrier or flat price yet. Honey is generally allowed into the US in commercial packaging and must be declared. Message Hey Hon on WhatsApp with your US state, quantity, and size for a quote.">
     <meta name="keywords" content="ship Jamaican honey to USA, buy Jamaican honey USA, Jamaican honey USA delivery, Hey Hon USA, raw honey USA shipping">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://heyhonjamaica.com/ship-honey-to-usa.html">
@@ -45,6 +45,14 @@
         .brand { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--espresso); text-decoration:none; font-weight:700; }
         nav a { margin-right:1rem; color:var(--espresso); text-decoration:none; font-weight:500; }
         nav a:hover { color:var(--amber); }
+        .mobile-menu-btn { display:none; background:none; border:none; font-size:1.8rem; color:var(--espresso); cursor:pointer; }
+        @media (max-width: 768px) {
+            header .container { flex-wrap:nowrap; justify-content:space-between; }
+            .mobile-menu-btn { display:block; }
+            nav { display:none; position:absolute; top:100%; left:0; width:100%; background:var(--white); flex-direction:column; align-items:flex-start; padding:1.5rem 1.25rem; gap:1rem; border-top:1px solid var(--gold-border); box-shadow:0 8px 24px rgba(0,0,0,0.1); }
+            nav.open { display:flex; }
+            nav a { margin-right:0; font-size:1.1rem; }
+        }
         main { padding:2.5rem 0 3rem 0; }
         .answer { background:var(--white); border:1px solid var(--gold-border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; font-size:1.1rem; }
         .btn { display:inline-block; background:var(--amber); color:#fff; padding:0.9rem 1.5rem; border-radius:4px; text-decoration:none; font-weight:600; margin:0.5rem 0.5rem 0.5rem 0; }
@@ -76,10 +84,11 @@
     </style>
 </head>
 <body>
-    <header>
+    <header style="position:relative;">
         <div class="container">
             <a href="index.html" class="brand">Hey Hon</a>
-            <nav>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list"></i></button>
+            <nav id="nav-links">
                 <a href="shop.html">Shop</a>
                 <a href="story.html">Our Story</a>
                 <a href="why-hey-hon.html">Why Hey Hon?</a>
@@ -126,12 +135,20 @@
     </main>
     <footer>
         <div class="container">
-            <p><strong>HEY HON</strong> — Kingston, Jamaica. Rooted in St. Mary.</p>
+            <p><strong>HEY HON</strong>, Kingston, Jamaica. Rooted in St. Mary.</p>
             <p><a href="shop.html">Shop</a> <a href="delivery.html">Delivery</a> <a href="ship-honey-to-usa.html">USA Orders</a> <a href="story.html">Our Story</a> <a href="recipes.html">Recipes</a> <a href="index.html#faq">FAQs</a></p>
             <p><a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer">WhatsApp: 1 (658) 218-2734</a> <a href="https://instagram.com/heyhonjamaica" target="_blank" rel="noopener noreferrer">Instagram: @heyhonjamaica</a></p>
             <p>&copy; 2026 Hey Hon Artisanal Honey.</p>
         </div>
     </footer>
     <a class="whatsapp-float" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20a%20quote%20to%20ship%20Raw%20Honey%20to%20the%20USA." target="_blank" rel="noopener noreferrer"><i class="ph-fill ph-whatsapp-logo"></i><span class="wa-label">Order on WhatsApp</span></a>
+    <script>
+        function toggleMenu() {
+            var nav = document.getElementById('nav-links');
+            nav.classList.toggle('open');
+            var btn = document.querySelector('.mobile-menu-btn');
+            if (btn) btn.setAttribute('aria-expanded', nav.classList.contains('open'));
+        }
+    </script>
 </body>
 </html>
