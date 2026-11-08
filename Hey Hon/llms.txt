@@ -1,4 +1,4 @@
-# Hey Hon — Raw Jamaican Honey
+# Hey Hon: Raw Jamaican Honey
 
 > Hey Hon is a Jamaican honey producer. Raw, cold extracted, single origin honey from apiaries in the hills of St. Mary, Jamaica. 100% pure, no added sugar.
 
@@ -21,6 +21,7 @@
 - Knutsford Express: JMD $700 flat rate to Clarendon, Hanover, Manchester, Portland, St. Ann, St. Elizabeth, St. James, St. Mary, St. Thomas, Trelawny, and Westmoreland
 - Free Kingston delivery on orders over JMD $6,000 subtotal
 - Free pickup: Sovereign Village, Portmore; Shop 15, Northside Plaza, Kingston 6 (Liguanea, St. Andrew); Digicel Head Office
+- Full prices and delivery totals: https://heyhonjamaica.com/delivery.html
 
 ## USA / international
 
@@ -30,10 +31,10 @@
 
 ## Pages
 
-- https://heyhonjamaica.com/ — Home
-- https://heyhonjamaica.com/shop.html — Shop Raw Honey
-- https://heyhonjamaica.com/delivery.html — Delivery in Jamaica
-- https://heyhonjamaica.com/ship-honey-to-usa.html — Shipping Jamaican honey to the USA (quote only)
-- https://heyhonjamaica.com/story.html — Our Story
-- https://heyhonjamaica.com/why-hey-hon.html — Why Hey Hon?
-- https://heyhonjamaica.com/recipes.html — Recipes with Raw Honey
+- https://heyhonjamaica.com/ : Home
+- https://heyhonjamaica.com/shop.html : Shop Raw Honey
+- https://heyhonjamaica.com/delivery.html : Prices and Delivery in Jamaica (full prices and delivery totals)
+- https://heyhonjamaica.com/ship-honey-to-usa.html : Shipping Jamaican honey to the USA (quote only)
+- https://heyhonjamaica.com/story.html : Our Story
+- https://heyhonjamaica.com/why-hey-hon.html : Why Hey Hon?
+- https://heyhonjamaica.com/recipes.html : Recipes with Raw Honey

@@ -388,7 +388,7 @@
         }
     
         /* ==========================================================================
-           DESIGN CLEANUP (Nov 2026) — one consistent rhythm, single column
+           DESIGN CLEANUP (Nov 2026): one consistent rhythm, single column
            ========================================================================== */
         .background-layer, .honeycomb-pattern { display: none !important; }
         main section { padding-top: 3rem; padding-bottom: 3rem; }
@@ -503,7 +503,7 @@
                     <i class="ph ph-tote" style="font-size: 1.3rem;"></i> <span style="display:none;">Bag</span>
                     <span class="cart-badge" id="cart-count">0</span>
                 </button>
-                <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="ph ph-list"></i></button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list"></i></button>
             </div>
         </div>
     </header>
@@ -737,6 +737,8 @@
         function toggleMenu() {
             navLinks.classList.toggle('active');
             header.classList.toggle('menu-open');
+            var menuBtn = document.querySelector('.mobile-menu-btn');
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
             
             const icon = document.querySelector('.mobile-menu-btn i');
             if (icon) {
@@ -754,6 +756,8 @@
             if (window.innerWidth <= 768) {
                 navLinks.classList.remove('active');
                 header.classList.remove('menu-open');
+                var menuBtn = document.querySelector('.mobile-menu-btn');
+                if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
                 const icon = document.querySelector('.mobile-menu-btn i');
                 if (icon) {
                     icon.classList.remove('ph-x');
