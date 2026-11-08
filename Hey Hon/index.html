@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Advanced SEO & LLM Optimization -->
-    <title>Hey Hon | Raw Jamaican Honey — St. Mary Single Origin | Kingston Delivery</title>
+    <title>Hey Hon | Raw Jamaican Honey, St. Mary Single Origin | Kingston Delivery</title>
     <meta name="description" content="Raw St. Mary wildflower honey from Hey Hon, Jamaica. 266ml JMD $2,200, 500ml JMD $3,200. Cold extracted, 100% pure, no added sugar. Delivery in Kingston, Portmore and Spanish Town, islandwide via Knutsford Express. Order on WhatsApp.">
     <meta name="keywords" content="Jamaican honey, raw honey Jamaica, artisan honey St Mary, cold extracted honey, Hey Hon honey, natural sugar replacement, organic wildflower honey">
     <meta name="robots" content="index, follow">
@@ -58,7 +58,7 @@
                     "name": "How much is delivery, and do you deliver islandwide?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Portmore delivery is JMD $500, Kingston and Spanish Town delivery is JMD $800, and Knutsford Express delivery is JMD $700 flat rate islandwide. Free Kingston delivery on orders over JMD $6,000. See the Prices & Delivery table above for totals."
+                        "text": "Portmore delivery is JMD $500, Kingston and Spanish Town delivery is JMD $800, and Knutsford Express delivery is JMD $700 flat rate islandwide. Free Kingston delivery on orders over JMD $6,000. See the Prices & Delivery page for totals."
                     }
                 },
                 {
@@ -1403,7 +1403,7 @@
         }
     
         /* ==========================================================================
-           DESIGN CLEANUP (Nov 2026) — one consistent rhythm, single column
+           DESIGN CLEANUP (Nov 2026): one consistent rhythm, single column
            ========================================================================== */
         .background-layer, .honeycomb-pattern { display: none !important; }
         main section { padding-top: 3rem; padding-bottom: 3rem; }
@@ -1417,18 +1417,16 @@
         .section-header h2 { font-size: clamp(2rem, 4vw, 2.5rem); }
         .product-grid, .shop-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 420px)) !important; justify-content: center; }
         .product-image { aspect-ratio: 4 / 3; }
+        .product-image img { object-fit: contain; background: var(--cream); }
+        .product-info .product-bottom { margin-top: auto; }
         .story-image img { aspect-ratio: 4 / 3; object-fit: cover; }
         .delivery-grid img { aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
         .delivery-section { padding: 4rem 0; margin-bottom: 0; }
-        /* Prices & delivery: one section, one table, consistent spacing */
+        /* Prices & delivery: one clean card linking to delivery.html (no table here) */
         .prices-section { padding: 3rem 0; }
-        .prices-section h2 { margin-bottom: 1rem; }
-        .prices-intro { margin-bottom: 1.25rem; }
-        .price-table-wrap { overflow-x: auto; }
-        table.price-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; background: var(--white); }
-        .price-table th, .price-table td { text-align: left; padding: 0.75rem; border-bottom: 1px solid #eee; vertical-align: top; }
-        .price-table th { font-size: 0.95rem; }
-        .price-cards { display: none; }
+        .prices-card { background: var(--white); border: 1px solid var(--gold-border); border-radius: 8px; padding: 2rem; max-width: 820px; margin: 0 auto; text-align: center; }
+        .prices-card h2 { margin-bottom: 0.75rem; }
+        .prices-card p { margin-bottom: 1.25rem; }
         /* Real 3-step box */
         .steps-box { border: 1px solid var(--gold-border); background: var(--white); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0 1rem; }
         .steps-box h3 { font-size: 1.4rem; margin-bottom: 1rem; }
@@ -1441,7 +1439,7 @@
         .dual-section { display: block; padding: 3rem 0; }
         .faq-container { max-width: 820px; margin: 0 auto 3rem; }
         .faq-container h2 { margin-bottom: 1.5rem; }
-        .wholesale-box { max-width: 820px; margin: 0 auto; }
+        .wholesale-box { max-width: 820px; margin: 0 auto; padding: 2rem; }
         .wholesale-box h2 { margin-bottom: 1rem; }
         .faq-item { padding: 1.25rem 0; }
         details.faq-item summary.faq-header { list-style: none; cursor: pointer; }
@@ -1466,13 +1464,6 @@
         @media (max-width: 640px) {
             .hero { padding-top: 96px; }
             .steps-list { grid-template-columns: 1fr; }
-            .price-table-wrap { display: none; }
-            .price-cards { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
-            .price-card { background: var(--white); border: 1px solid var(--gold-border); border-radius: 8px; padding: 1.25rem; }
-            .price-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-            .price-card ul { list-style: none; }
-            .price-card li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.4rem 0; border-bottom: 1px solid #eee; }
-            .price-card li:last-child { border-bottom: none; }
             .whatsapp-sticky { bottom: 16px; right: 16px; padding: 12px; font-size: 1.5rem; }
             .whatsapp-sticky .wa-label { display: none; }
             .dual-section { padding: 2rem 0; }
@@ -1518,7 +1509,7 @@
                     <i class="ph ph-tote" style="font-size: 1.3rem;"></i> <span style="display:none;">Bag</span>
                     <span class="cart-badge" id="cart-count">0</span>
                 </button>
-                <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="ph ph-list"></i></button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list"></i></button>
             </div>
         </div>
     </header>
@@ -1530,7 +1521,6 @@
                 <span class="eyebrow">100% Pure & Unfiltered • St. Mary, Jamaica</span>
                 <h1>Hey Hon, <br class="mobile-break">Jamaican Honey.</h1>
                 <p>Pure, unfiltered honey from Jamaica. Crafted with care, tasted in every spoonful. Straight from Our Hives to Your Table.</p>
-                <p><strong>266ml JMD $2,200 &bull; 500ml JMD $3,200.</strong> <a href="#prices-delivery">See prices &amp; delivery</a>.</p>
                 <div class="hero-buttons">
                     <a href="shop.html" class="btn btn-primary">Shop The Harvest</a>
                     <a href="story.html" class="btn btn-outline">Explore Our Story</a>
@@ -1584,25 +1574,13 @@
         </section>
 
 
-        <!-- Price & Delivery (verified) -->
+        <!-- Prices & Delivery: full prices and delivery totals live on delivery.html -->
         <section class="container prices-section" id="prices-delivery">
-            <h2>Prices &amp; Delivery</h2>
-            <p class="prices-intro">Raw St. Mary Wildflower Honey only.<br>266ml JMD $2,200. 500ml JMD $3,200. Delivery day and payment confirmed on WhatsApp.</p>
-            <div class="price-table-wrap">
-            <table class="price-table">
-                <thead><tr><th>Jar</th><th>Portmore &mdash; $500</th><th>Kingston / Spanish Town &mdash; $800</th><th>Knutsford Express &mdash; $700</th></tr></thead>
-                <tbody>
-                    <tr><td>266ml &mdash; JMD $2,200</td><td>JMD $2,700 total</td><td>JMD $3,000 total</td><td>JMD $2,900 total</td></tr>
-                    <tr><td>500ml &mdash; JMD $3,200</td><td>JMD $3,700 total</td><td>JMD $4,000 total</td><td>JMD $3,900 total</td></tr>
-                </tbody>
-            </table>
+            <div class="prices-card">
+                <h2>Prices &amp; Delivery</h2>
+                <p>Raw Honey 266ml $2,200, 500ml $3,200. Portmore $500, Kingston $800, Knutsford $700.</p>
+                <a href="delivery.html" class="btn btn-primary">See prices and delivery</a>
             </div>
-            <div class="price-cards">
-                <div class="price-card"><h3>266ml — JMD $2,200</h3><ul><li><span>Portmore</span><strong>JMD $2,700 total</strong></li><li><span>Kingston / Spanish Town</span><strong>JMD $3,000 total</strong></li><li><span>Knutsford Express</span><strong>JMD $2,900 total</strong></li></ul></div>
-                <div class="price-card"><h3>500ml — JMD $3,200</h3><ul><li><span>Portmore</span><strong>JMD $3,700 total</strong></li><li><span>Kingston / Spanish Town</span><strong>JMD $4,000 total</strong></li><li><span>Knutsford Express</span><strong>JMD $3,900 total</strong></li></ul></div>
-            </div>
-            <p style="margin-bottom:0.5rem;">Free Kingston delivery on orders over JMD $6,000. Free pickup at Sovereign Village, Portmore; Shop 15, Northside Plaza, Kingston 6 (Liguanea, St. Andrew); and Digicel Head Office.</p>
-            <p style="margin-bottom:1rem;">Knutsford Express $700 flat rate to Clarendon, Hanover, Manchester, Portland, St. Ann, St. Elizabeth, St. James, St. Mary, St. Thomas, Trelawny, and Westmoreland. <a href="delivery.html">See full delivery details</a>.</p>
             <div class="steps-box">
                 <h3>Order in 3 steps</h3>
                 <ol class="steps-list">
@@ -1612,7 +1590,8 @@
                 </ol>
                 <p class="steps-note">Delivery day and payment confirmed on WhatsApp.</p>
             </div>
-            <p class="steps-links"><a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer" style="font-weight:600;">Order on WhatsApp</a> &nbsp;|&nbsp; <a href="ship-honey-to-usa.html">USA orders: WhatsApp for a shipping quote</a></p>
+            <p class="steps-links"><a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a></p>
+            <p class="steps-links"><a href="ship-honey-to-usa.html">USA orders: WhatsApp for a shipping quote</a></p>
         </section>
 
         <!-- Story Section -->
@@ -1632,19 +1611,6 @@
                         <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Ethical Beekeeping</div>
                         <div class="spec-item"><i class="ph-fill ph-check-circle"></i> 100% Local</div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Delivery Info Section -->
-        <section class="delivery-section">
-            <div class="container delivery-grid">
-                <div class="delivery-info">
-                    <h2>Delivered across Jamaica</h2>
-                    <p>Direct courier delivery in Kingston and Portmore, and Knutsford Express islandwide. <a href="delivery.html">See prices &amp; delivery</a>.</p>
-                </div>
-                <div>
-                    <img src="islandwide.png" alt="Hey Hon secure islandwide delivery package in Jamaica" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-sm);">
                 </div>
             </div>
         </section>
@@ -1678,7 +1644,7 @@
                 <details class="faq-item">
                     <summary class="faq-header">How much is delivery, and do you deliver islandwide? <i class="ph ph-caret-down"></i></summary>
                     <div class="faq-content">
-                        <p>Portmore delivery is JMD $500, Kingston and Spanish Town delivery is JMD $800, and Knutsford Express delivery is JMD $700 flat rate islandwide. Free Kingston delivery on orders over JMD $6,000. See the Prices &amp; Delivery table above for totals.</p>
+                        <p>Portmore delivery is JMD $500, Kingston and Spanish Town delivery is JMD $800, and Knutsford Express delivery is JMD $700 flat rate islandwide. Free Kingston delivery on orders over JMD $6,000. See the <a href="delivery.html">Prices &amp; Delivery page</a> for totals.</p>
                     </div>
                 </details>
 
@@ -1924,6 +1890,8 @@
         function toggleMenu() {
             navLinks.classList.toggle('active');
             header.classList.toggle('menu-open');
+            var menuBtn = document.querySelector('.mobile-menu-btn');
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
             const icon = document.querySelector('.mobile-menu-btn i');
             if (icon) {
                 if (navLinks.classList.contains('active')) {
@@ -1940,6 +1908,8 @@
             if (window.innerWidth <= 768) {
                 navLinks.classList.remove('active');
                 header.classList.remove('menu-open');
+                var menuBtn = document.querySelector('.mobile-menu-btn');
+                if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
                 const icon = document.querySelector('.mobile-menu-btn i');
                 if (icon) {
                     icon.classList.remove('ph-x');
@@ -1948,7 +1918,7 @@
             }
         }
 
-        // FAQ uses <details>/<summary> — no JS needed.
+        // FAQ uses <details>/<summary>: no JS needed.
 
         // Filter logic
         const filterBtns = document.querySelectorAll('.filter-btn');
