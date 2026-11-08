@@ -6,21 +6,21 @@
     
     <!-- Advanced SEO & LLM Optimization -->
     <title>Shop The Harvest | Hey Hon Rare Single Origin Jamaican Honey</title>
-    <meta name="description" content="Shop the exclusive harvest of Hey Hon. Discover our raw St. Mary wildflower honey, pure whipped honey, and cinnamon infused whipped honey. Cold extracted and pure.">
-    <meta name="keywords" content="Buy Jamaican honey, shop raw honey, order honey Kingston, whipped honey Jamaica, cinnamon honey, raw St Mary honey">
+    <meta name="description" content="Shop Hey Hon raw St. Mary wildflower honey in Jamaica. 266ml JMD $2,200, 500ml JMD $3,200. Cold extracted and pure. Delivery in Kingston, Portmore and Spanish Town, islandwide via Knutsford Express.">
+    <meta name="keywords" content="Buy Jamaican honey, shop raw honey, order honey Kingston, raw honey Jamaica, raw St Mary honey">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://yourdomain.com/shop.html">
+    <link rel="canonical" href="https://heyhonjamaica.com/shop.html">
     
     <!-- Open Graph & Social Sharing Meta Tags -->
     <meta property="og:title" content="Shop The Harvest | Hey Hon Rare Jamaican Honey">
     <meta property="og:description" content="Shop our limited batch, cold extracted Jamaican honey. Pure, raw, and sourced directly from the pristine hills of St. Mary.">
-    <meta property="og:image" content="https://yourdomain.com/raw-honey.png">
+    <meta property="og:image" content="https://heyhonjamaica.com/raw-honey.png">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/shop.html">
+    <meta property="og:url" content="https://heyhonjamaica.com/shop.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Shop The Harvest | Hey Hon">
     <meta name="twitter:description" content="Shop our limited batch, cold extracted Jamaican honey.">
-    <meta name="twitter:image" content="https://yourdomain.com/raw-honey.png">
+    <meta name="twitter:image" content="https://heyhonjamaica.com/raw-honey.png">
 
     <!-- Schema.org Structured Data for Store/Products -->
     <script type="application/ld+json">
@@ -34,22 +34,10 @@
           "item": {
             "@type": "Product",
             "name": "Raw St. Mary Wildflower Honey",
-            "image": "https://yourdomain.com/raw-honey.png",
+            "image": "https://heyhonjamaica.com/raw-honey.png",
             "description": "Our signature cold extracted liquid gold foraged from wild tropical blossoms high in the hills of St. Mary.",
             "brand": { "@type": "Brand", "name": "Hey Hon" },
-            "offers": { "@type": "Offer", "price": "2200", "priceCurrency": "JMD", "availability": "https://schema.org/InStock" }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Product",
-            "name": "Cinnamon Whipped Honey",
-            "image": "https://yourdomain.com/cinnamon-whipped-honey.png",
-            "description": "Our creamy whipped honey blended with warm aromatic cinnamon.",
-            "brand": { "@type": "Brand", "name": "Hey Hon" },
-            "offers": { "@type": "Offer", "price": "3000", "priceCurrency": "JMD", "availability": "https://schema.org/InStock" }
+            "offers": { "@type": "AggregateOffer", "priceCurrency": "JMD", "lowPrice": "2200", "highPrice": "3200", "offerCount": "2", "availability": "https://schema.org/InStock" }
           }
         }
       ]
@@ -475,6 +463,8 @@
                 <a href="story.html" onclick="closeMenu()">Our Story</a>
                 <a href="why-hey-hon.html" onclick="closeMenu()">Why Hey Hon?</a>
                 <a href="recipes.html" onclick="closeMenu()">Recipes</a>
+                <a href="delivery.html" onclick="closeMenu()">Delivery</a>
+                <a href="ship-honey-to-usa.html" onclick="closeMenu()">USA Orders</a>
                 <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
             </nav>
 
@@ -503,7 +493,6 @@
             <div class="filters">
                 <button class="filter-btn active" data-filter="all">All Products</button>
                 <button class="filter-btn" data-filter="raw">Raw Honey</button>
-                <button class="filter-btn" data-filter="whipped">Whipped Honey</button>
             </div>
 
             <div class="shop-grid" id="product-grid">
@@ -526,7 +515,6 @@
                         <select class="size-selector" id="raw-honey-size" onchange="updateDynamicPrice('raw-honey')">
                             <option value="266ml" data-price="2200">266ml Glass Jar</option>
                             <option value="500ml" data-price="3200">500ml Glass Jar</option>
-                            <option value="750ml" data-price="4000">750ml Glass Jar</option>
                         </select>
                         
                         <div class="product-bottom">
@@ -536,33 +524,29 @@
                     </div>
                 </div>
 
-                <!-- 2. Cinnamon Infused Whipped Honey -->
-                <div class="product-card" data-category="whipped">
-                    <div class="product-image">
-                        <span class="product-badge">Infusion</span>
-                        <!-- SEO Optimized Alt Tag -->
-                        <img src="cinnamon-whipped-honey.png" alt="Hey Hon Cinnamon Infused Whipped Jamaican Honey Jar">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Cinnamon Whipped Honey</h3>
-                        <p class="product-meta">Warm Spiced Spread</p>
-                        
-                        <p class="product-description">
-                            Our pure whipped honey meticulously infused with warm, aromatic cinnamon. A cozy, perfectly balanced spiced spread that tastes like a warm embrace. Elevate your morning bagels, enrich your oatmeal, or use it as a secret ingredient in your finest baking.
-                        </p>
-
-                        <div class="size-selector" style="cursor: default; pointer-events: none; border-color: var(--gold-border);">
-                            266ml Glass Jar
-                        </div>
-
-                        <div class="product-bottom">
-                            <span class="product-price">JMD $3,000</span>
-                            <button class="add-to-cart" data-id="3" data-title="Cinnamon Whipped Honey (266ml)" data-price="3000" data-img="cinnamon-whipped-honey.png">Add to Bag</button>
-                        </div>
-                    </div>
-                </div>
 
             </div>
+        </section>
+
+
+        <!-- Price & Delivery (verified) -->
+        <section class="container" id="prices-delivery" style="padding:2rem 0 3rem 0;">
+            <h2 style="font-size:1.8rem;margin-bottom:1rem;">Prices &amp; Delivery</h2>
+            <p style="margin-bottom:1rem;">Raw St. Mary Wildflower Honey only. 266ml JMD $2,200. 500ml JMD $3,200. Delivery day and payment confirmed on WhatsApp.</p>
+            <table style="width:100%;border-collapse:collapse;margin-bottom:1rem;">
+                <thead><tr><th style="text-align:left;padding:0.6rem;border-bottom:1px solid #ddd;">Jar</th><th style="text-align:left;padding:0.6rem;border-bottom:1px solid #ddd;">Portmore delivery ($500)</th><th style="text-align:left;padding:0.6rem;border-bottom:1px solid #ddd;">Kingston / Spanish Town delivery ($800)</th><th style="text-align:left;padding:0.6rem;border-bottom:1px solid #ddd;">Knutsford Express ($700 flat rate)</th></tr></thead>
+                <tbody>
+                    <tr><td style="padding:0.6rem;border-bottom:1px solid #eee;">266ml — JMD $2,200</td><td style="padding:0.6rem;border-bottom:1px solid #eee;">JMD $2,700 total</td><td style="padding:0.6rem;border-bottom:1px solid #eee;">JMD $3,000 total</td><td style="padding:0.6rem;border-bottom:1px solid #eee;">JMD $2,900 total</td></tr>
+                    <tr><td style="padding:0.6rem;border-bottom:1px solid #eee;">500ml — JMD $3,200</td><td style="padding:0.6rem;border-bottom:1px solid #eee;">JMD $3,700 total</td><td style="padding:0.6rem;border-bottom:1px solid #eee;">JMD $4,000 total</td><td style="padding:0.6rem;border-bottom:1px solid #eee;">JMD $3,900 total</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-bottom:0.5rem;">Free Kingston delivery on orders over JMD $6,000. Free pickup at Sovereign Village, Portmore; Shop 15, Northside Plaza, Kingston 6 (Liguanea, St. Andrew); and Digicel Head Office.</p>
+            <p style="margin-bottom:1rem;">Knutsford Express $700 flat rate to Clarendon, Hanover, Manchester, Portland, St. Ann, St. Elizabeth, St. James, St. Mary, St. Thomas, Trelawny, and Westmoreland. <a href="delivery.html">See full delivery details</a>.</p>
+            <div style="border:1px solid rgba(217,138,43,0.3);border-radius:8px;padding:1.2rem;margin-bottom:1rem;">
+                <h3 style="margin-bottom:0.5rem;">Order in 3 steps</h3>
+                <p style="margin:0;">1. Pick your jar. 2. Add to bag. 3. Checkout on WhatsApp. Delivery day and payment confirmed on WhatsApp.</p>
+            </div>
+            <p><a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer" style="font-weight:600;">Order on WhatsApp</a> &nbsp;|&nbsp; <a href="ship-honey-to-usa.html">USA orders: WhatsApp for a shipping quote</a></p>
         </section>
 
     </main>
@@ -578,6 +562,8 @@
                 <a href="story.html">Our Story</a>
                 <a href="index.html#wholesale">Wholesale</a>
                 <a href="index.html#faq">FAQs</a>
+                <a href="delivery.html">Delivery</a>
+                <a href="ship-honey-to-usa.html">USA Orders</a>
             </nav>
             
             <div class="footer-contact">
@@ -671,7 +657,7 @@
                     <!-- Free Pick Up Locations -->
                     <optgroup label="Free Pick Up">
                         <option value="Pick Up - Sovereign Village, Portmore">Sovereign Village - Portmore</option>
-                        <option value="Pick Up - Student Loan Bureau, Kingston">Student Loan Bureau - Kingston</option>
+                        <option value="Pick Up - Shop 15, Northside Plaza, Kingston 6">Shop 15, Northside Plaza - Kingston 6 (Liguanea)</option>
                         <option value="Pick Up - Digicel Head Office">Digicel Head Office</option>
                     </optgroup>
 
@@ -1165,5 +1151,9 @@
         animateBees();
 
     </script>
+
+    <!-- Sticky WhatsApp order button -->
+    <a href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey%20(from%20the%20shop%20page)" target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp" style="position:fixed;bottom:20px;right:20px;z-index:1200;background:#25D366;color:#fff;padding:14px 18px;border-radius:999px;font-weight:600;font-size:1rem;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,0.25);">Order on WhatsApp</a>
+
 </body>
 </html>
