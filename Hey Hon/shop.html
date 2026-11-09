@@ -433,7 +433,10 @@
         /* ==========================================================================
            DESIGN CLEANUP (Nov 2026): one consistent rhythm, single column
            ========================================================================== */
-        .background-layer, .honeycomb-pattern { display: none !important; }
+        /* Bees, restored Nov 2026: they live only in the hero, behind the hero text. */
+        .hero, .page-header, .story-header { position: relative; overflow: hidden; }
+        .hero > *, .page-header > *, .story-header > * { position: relative; z-index: 1; }
+        .hero-bees { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
         main section { padding-top: 3rem; padding-bottom: 3rem; }
         main h2 { font-size: clamp(2rem, 4vw, 2.5rem); }
         main h3 { font-size: 1.4rem; }
@@ -459,10 +462,16 @@
         .steps-box { border: 1px solid var(--gold-border); background: var(--white); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0 1rem; }
         .steps-box h3 { font-size: 1.4rem; margin-bottom: 1rem; }
         .steps-list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .steps-list li { display: flex; gap: 0.75rem; align-items: flex-start; }
+        .steps-list li { display: flex; gap: 0.75rem; align-items: flex-start; min-width: 0; }
+        .steps-box { box-sizing: border-box; max-width: 100%; }
+        .steps-cta { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--gold-border); text-align: center; }
+        .steps-cta .btn { margin: 0; }
+        .steps-cta .steps-usa { display: block; margin-top: 0.75rem; font-size: 0.95rem; }
+        @media (max-width: 768px) {
+            .steps-list { grid-template-columns: 1fr; }
+        }
         .step-num { flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 50%; background: var(--amber); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; }
         .steps-note { margin: 1rem 0 0; font-size: 0.95rem; }
-        .steps-links { margin: 0.75rem 0 0; }
         /* FAQ + Wholesale stacked, single column */
         .dual-section { display: block; padding: 3rem 0; }
         .faq-container { max-width: 820px; margin: 0 auto 3rem; }
@@ -500,6 +509,12 @@
     </style>
 </head>
 <body>
+
+    <!-- Honeycomb background, restored Nov 2026 -->
+    <div class="background-layer">
+        <div class="honeycomb-pattern"></div>
+    </div>
+
 
     <!-- Visual Toast Feedback -->
     <div class="toast-notification" id="toast">
@@ -544,6 +559,7 @@
     <main>
         <!-- Page Header -->
         <section class="page-header container">
+            <canvas id="bee-canvas" class="hero-bees" aria-hidden="true"></canvas>
             <span class="eyebrow">The Collection</span>
             <h1>The Complete Harvest</h1>
         </section>
@@ -591,7 +607,7 @@
         </section>
 
 
-        <!-- Prices & Delivery: full prices and delivery totals live on delivery.html -->
+        <!-- Prices & Delivery: full prices and delivery live on delivery.html -->
         <section class="container prices-section" id="prices-delivery">
             <div class="prices-card">
                 <h2>Prices &amp; Delivery</h2>
@@ -606,9 +622,11 @@
                     <li><span class="step-num">3</span><div><strong>Checkout on WhatsApp</strong><br>Send your order on WhatsApp.</div></li>
                 </ol>
                 <p class="steps-note">Delivery day and payment confirmed on WhatsApp.</p>
+                <div class="steps-cta">
+                    <a href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order on WhatsApp</a>
+                    <span class="steps-usa">USA orders: <a href="ship-honey-to-usa.html">WhatsApp for a shipping quote</a></span>
+                </div>
             </div>
-            <p class="steps-links"><a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a></p>
-            <p class="steps-links"><a href="ship-honey-to-usa.html">USA orders: WhatsApp for a shipping quote</a></p>
         </section>
 
     </main>
@@ -1076,6 +1094,160 @@
 
     <!-- Sticky WhatsApp order button -->
     <a class="whatsapp-sticky" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey%20(from%20the%20shop%20page)" target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp"><i class="ph-fill ph-whatsapp-logo"></i><span class="wa-label">Order on WhatsApp</span></a>
+
+    <script>
+        // Bees, restored Nov 2026: larger and fewer than the original, and they
+        // live only in the hero, behind the hero text, never over body copy.
+        (function () {
+            var canvas = document.getElementById('bee-canvas');
+            if (!canvas) return;
+            var hero = canvas.parentElement;
+            if (!hero) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var ctx = canvas.getContext('2d');
+            var bees = [];
+
+            function resizeCanvas() {
+                canvas.width = hero.offsetWidth;
+                canvas.height = hero.offsetHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class RealisticBee {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.state = 'hover';
+                    this.timer = Math.random() * 100 + 50;
+                    this.targetX = this.x;
+                    this.targetY = this.y;
+                    this.targetAngle = this.angle;
+                    this.baseSpeed = Math.random() * 2 + 2.5;
+                    this.hoverJitter = Math.random() * Math.PI * 2;
+                    this.size = Math.random() * 2 + 4;
+                    this.opacity = Math.random() * 0.6 + 0.4;
+                    this.flapOffset = Math.random() * 100;
+                    this.flapSpeed = 0.5;
+                }
+
+                update() {
+                    this.timer--;
+                    if (this.state === 'hover') {
+                        this.x += Math.sin(Date.now() * 0.002 + this.hoverJitter) * 0.5;
+                        this.y += Math.cos(Date.now() * 0.003 + this.hoverJitter) * 0.5;
+                        this.angle += (Math.random() - 0.5) * 0.08;
+                        this.flapSpeed = 0.4;
+
+                        if (this.timer <= 0) {
+                            this.state = 'dart';
+                            this.timer = Math.random() * 50 + 30;
+                            const dist = Math.random() * 150 + 100;
+                            const dir = this.angle + (Math.random() - 0.5) * Math.PI;
+                            this.targetX = this.x + Math.cos(dir) * dist;
+                            this.targetY = this.y + Math.sin(dir) * dist;
+                            this.targetAngle = Math.atan2(this.targetY - this.y, this.targetX - this.x);
+                        }
+                    } else if (this.state === 'dart') {
+                        let angleDiff = this.targetAngle - this.angle;
+                        while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                        while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+                        this.angle += angleDiff * 0.2;
+                        this.x += Math.cos(this.angle) * this.baseSpeed;
+                        this.y += Math.sin(this.angle) * this.baseSpeed;
+                        this.flapSpeed = 0.8;
+
+                        const distToTarget = Math.hypot(this.targetX - this.x, this.targetY - this.y);
+                        if (this.timer <= 0 || distToTarget < 10) {
+                            this.state = 'hover';
+                            this.timer = Math.random() * 150 + 80;
+                        }
+                    }
+
+                    const margin = 30;
+                    if (this.x < -margin) this.x = canvas.width + margin;
+                    if (this.x > canvas.width + margin) this.x = -margin;
+                    if (this.y < -margin) this.y = canvas.height + margin;
+                    if (this.y > canvas.height + margin) this.y = -margin;
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+
+                    const bodyLength = this.size * 2;
+                    const bodyWidth = this.size * 1.2;
+
+                    ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.moveTo(-bodyLength + 1, 0);
+                    ctx.lineTo(-bodyLength - 2, 0);
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    ctx.fillStyle = `rgba(217, 138, 43, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, bodyLength, bodyWidth, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity * 0.85})`;
+                    ctx.beginPath();
+                    ctx.ellipse(-bodyLength * 0.3, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                    ctx.ellipse(bodyLength * 0.2, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(bodyLength * 0.8, 0, this.size * 0.9, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    const flap = Math.sin(Date.now() * this.flapSpeed + this.flapOffset);
+                    const wingSweep = flap * 0.5;
+
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
+
+                    ctx.save();
+                    ctx.translate(bodyLength * 0.2, -bodyWidth * 0.4);
+                    ctx.rotate(-1 + wingSweep);
+                    ctx.beginPath();
+                    ctx.ellipse(0, -this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+
+                    ctx.save();
+                    ctx.translate(bodyLength * 0.2, bodyWidth * 0.4);
+                    ctx.rotate(1 - wingSweep);
+                    ctx.beginPath();
+                    ctx.ellipse(0, this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+
+                    ctx.restore();
+                }
+            }
+
+            function initBees() {
+                bees = [];
+                const beeCount = window.innerWidth < 768 ? 2 : 3;
+                for (let i = 0; i < beeCount; i++) {
+                    bees.push(new RealisticBee());
+                }
+            }
+
+            function animateBees() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                bees.forEach(bee => {
+                    bee.update();
+                    bee.draw();
+                });
+                requestAnimationFrame(animateBees);
+            }
+
+            initBees();
+            animateBees();
+        })();
+    </script>
 
 </body>
 </html>
