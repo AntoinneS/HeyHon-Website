@@ -34,7 +34,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
     <style>
-        :root { --cream:#FFFDF9; --white:#fff; --amber:#D98A2B; --espresso:#221F1D; --slate:#5A544F; --gold-border:rgba(217,138,43,0.15); }
+        :root { --font-serif:'Playfair Display',serif; --cream:#FFFDF9; --white:#fff; --amber:#D98A2B; --espresso:#221F1D; --slate:#5A544F; --gold-border:rgba(217,138,43,0.15); }
         * { margin:0; padding:0; box-sizing:border-box; }
         body { font-family:Inter,system-ui,sans-serif; color:var(--slate); background:var(--cream); line-height:1.6; overflow-x:hidden; }
         .background-layer {
@@ -106,6 +106,27 @@
             .whatsapp-float { bottom: 16px; right: 16px; padding: 12px; font-size: 1.5rem; }
             .whatsapp-float .wa-label { display: none; }
         }
+        /* Site footer, same as index.html */
+        .site-footer { background: var(--espresso); color: var(--cream); padding: 3.5rem 0 2rem; text-align: center; }
+        .footer-logo { font-family: var(--font-serif); font-size: 2.4rem; font-weight: 700; color: var(--amber); margin-bottom: 1.25rem; letter-spacing: 0.05em; display: inline-block; }
+        .footer-nav { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .footer-nav a { font-size: 1.05rem; font-weight: 500; color: var(--cream); transition: color 0.2s ease; }
+        .footer-nav a:hover { color: var(--amber); }
+        .footer-contact { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .footer-contact a { display: flex; align-items: center; gap: 0.6rem; font-size: 1.15rem; font-weight: 500; color: var(--cream); transition: color 0.2s; }
+        .footer-contact a:hover { color: var(--amber); }
+        .footer-contact i { font-size: 1.6rem; color: var(--amber); }
+        .footer-bottom { border-top: 1px solid rgba(255, 253, 249, 0.1); padding-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.85rem; opacity: 0.8; }
+        .agency-credit { display: flex; align-items: center; justify-content: center; gap: 0.6rem; font-size: 0.85rem; color: rgba(255, 253, 249, 0.6); transition: color 0.2s ease; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; flex-wrap: nowrap; }
+        .agency-credit:hover { color: var(--cream); }
+        .agency-logo { height: 18px; width: auto; vertical-align: middle; filter: brightness(0) invert(1); opacity: 0.6; transition: opacity 0.2s ease; }
+        .agency-credit:hover .agency-logo { opacity: 1; }
+        @media (max-width: 640px) {
+            .site-footer { padding: 3rem 1.5rem 1.5rem; }
+            .footer-logo { font-size: 2.5rem; }
+            .footer-nav { gap: 1.5rem; flex-direction: column; align-items: center; }
+            .footer-contact { gap: 1.5rem; flex-direction: column; align-items: center; }
+        }
     </style>
 </head>
 <body>
@@ -126,7 +147,7 @@
                 <a href="why-hey-hon.html" onclick="closeMenu()">Why Hey Hon?</a>
                 <a href="recipes.html" onclick="closeMenu()">Recipes</a>
                 <a href="delivery.html" onclick="closeMenu()">Delivery</a>
-                <a href="ship-honey-to-usa.html" onclick="closeMenu()">USA Orders</a>
+                <a href="ship-honey-to-usa.html" class="active" onclick="closeMenu()">USA Orders</a>
                 <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
             </nav>
 
@@ -159,6 +180,9 @@
         <p>If you are visiting Jamaica, you can buy Hey Hon honey here and take it home. Honey is generally allowed into the United States in commercial packaging for personal consumption, and it must be declared to US Customs. Pack honey in checked luggage, because liquids over 3.4 oz (100 ml) are not allowed in carry-on luggage. Check current US Customs and FDA rules before you travel, because rules can change. A business sending food to the United States must also file FDA prior notice, which is one reason USA orders are handled by WhatsApp quote, not by automatic checkout.</p>
         <p>In Jamaica, delivery is Portmore JMD $500, Kingston and Spanish Town JMD $800, Knutsford Express JMD $700 flat rate, free Kingston delivery on orders over JMD $6,000. <a href="delivery.html">See Jamaica delivery details</a>.</p>
 
+        <h2>Ordering from Overseas for Family in Jamaica</h2>
+        <p>Living in the USA, UK, or Canada and want to send real Jamaican honey to family in Jamaica? You do not need an international shipping quote. Order our 266ml (JMD $2,200) or 500ml (JMD $3,200) jars with a free custom gift note for local delivery in Kingston, Portmore, Spanish Town, or Knutsford Express islandwide.</p>
+
         <h2>Frequently asked questions</h2>
         <details class="faq-item"><summary>Can Hey Hon ship Jamaican honey to the USA?</summary><p>USA shipping is by WhatsApp quote only. We do not yet have a set USA carrier or flat shipping price. Message us on WhatsApp with your US state, quantity, and size and we will quote you.</p></details>
         <details class="faq-item"><summary>Can I bring Jamaican honey into the USA?</summary><p>Honey is generally allowed into the United States in commercial packaging for personal consumption, and it must be declared to US Customs. Pack honey in checked luggage, because liquids over 3.4 oz are not allowed in carry-on luggage. Check current US Customs and FDA rules before you travel, because rules can change.</p></details>
@@ -166,12 +190,39 @@
         <details class="faq-item"><summary>Can I order Hey Hon honey in Jamaica for delivery in Jamaica?</summary><p>Yes. In Jamaica, delivery is JMD $500 to Portmore, JMD $800 to Kingston and Spanish Town, and JMD $700 flat rate via Knutsford Express islandwide. Free Kingston delivery on orders over JMD $6,000.</p></details>
 
     </main>
-    <footer>
+    <footer class="site-footer">
         <div class="container">
-            <p><strong>HEY HON</strong>, Kingston, Jamaica. Rooted in St. Mary.</p>
-            <p><a href="shop.html">Shop</a> <a href="delivery.html">Delivery</a> <a href="ship-honey-to-usa.html">USA Orders</a> <a href="story.html">Our Story</a> <a href="recipes.html">Recipes</a> <a href="index.html#faq">FAQs</a></p>
-            <p><a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer">WhatsApp: 1 (658) 218-2734</a> <a href="https://instagram.com/heyhonjamaica" target="_blank" rel="noopener noreferrer">Instagram: @heyhonjamaica</a></p>
-            <p>&copy; 2026 Hey Hon Artisanal Honey.</p>
+            <a href="index.html" class="footer-logo">HEY HON</a>
+
+            <nav class="footer-nav">
+                <a href="shop.html">Shop</a>
+                <a href="recipes.html">Recipes</a>
+                <a href="story.html">Our Story</a>
+                <a href="index.html#wholesale">Wholesale</a>
+                <a href="index.html#faq">FAQs</a>
+                <a href="delivery.html">Delivery</a>
+                <a href="ship-honey-to-usa.html">USA Orders</a>
+            </nav>
+
+            <div class="footer-contact">
+                <a href="https://wa.me/16582182734" target="_blank" rel="noopener noreferrer">
+                    <i class="ph-fill ph-whatsapp-logo"></i> 1 (658) 218-2734
+                </a>
+                <a href="https://instagram.com/heyhonjamaica" target="_blank" rel="noopener noreferrer">
+                    <i class="ph-fill ph-instagram-logo"></i> @heyhonjamaica
+                </a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Kingston, Jamaica. Rooted in St. Mary 🇯🇲</p>
+                <p>&copy; 2026 Hey Hon Artisanal Honey.</p>
+
+                <!-- Discreet Agency Credit -->
+                <a href="https://avancejm.com" target="_blank" rel="noopener noreferrer" class="agency-credit">
+                    <span>Designed & Automated by</span>
+                    <img src="avance-logo.png" alt="Avance Web Design Jamaica" class="agency-logo">
+                </a>
+            </div>
         </div>
     </footer>
     <a class="whatsapp-float" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20a%20quote%20to%20ship%20Raw%20Honey%20to%20the%20USA." target="_blank" rel="noopener noreferrer"><i class="ph-fill ph-whatsapp-logo"></i><span class="wa-label">Order on WhatsApp</span></a>
