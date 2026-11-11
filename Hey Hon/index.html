@@ -10,7 +10,7 @@
     <meta name="description" content="Raw St. Mary wildflower honey from Hey Hon, Jamaica. 266ml JMD $2,200, 500ml JMD $3,200. Cold extracted, 100% pure, no added sugar. Delivery in Kingston, Portmore and Spanish Town, islandwide via Knutsford Express. Order on WhatsApp.">
     <meta name="keywords" content="Jamaican honey, raw honey Jamaica, artisan honey St Mary, cold extracted honey, Hey Hon honey, natural sugar replacement, organic wildflower honey">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://heyhonjamaica.com/index.html">
+    <link rel="canonical" href="https://heyhonjamaica.com/">
 
     <!-- Open Graph & Social Sharing Meta Tags -->
     <meta property="og:title" content="Hey Hon | Rare Single Origin Jamaican Honey">
@@ -1536,10 +1536,9 @@
             <div class="hero-content">
                 <span class="eyebrow">100% Pure & Unfiltered • St. Mary, Jamaica</span>
                 <h1>Hey Hon, <br class="mobile-break">Jamaican Honey.</h1>
-                <p>Pure, unfiltered honey from Jamaica. Crafted with care, tasted in every spoonful. Straight from Our Hives to Your Table.</p>
+                <p>Buy 100% pure, cold extracted raw Jamaican honey harvested from single origin apiaries near Guys Hill and Louisiana in St. Mary (RADA/ABIS registration filed July 2026). Available in 266ml (JMD $2,200) and 500ml (JMD $3,200) glass jars with free Kingston 6 and Portmore pickup or islandwide delivery via WhatsApp.</p>
                 <div class="hero-buttons">
                     <a href="shop.html" class="btn btn-primary">Shop The Harvest</a>
-                    <a href="story.html" class="btn btn-outline">Explore Our Story</a>
                     <a href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order on WhatsApp</a>
                 </div>
             </div>
@@ -1567,7 +1566,6 @@
             </div>
 
             <div class="product-grid" id="product-grid">
-                <!-- 1. Regular Raw Honey -->
                 <div class="product-card" data-category="raw">
                     <div class="product-image">
                         <span class="product-badge">Signature</span>
@@ -1595,6 +1593,7 @@
             <div class="prices-card">
                 <h2>Prices &amp; Delivery</h2>
                 <p>Raw Honey 266ml $2,200, 500ml $3,200. Portmore $500, Kingston $800, Knutsford $700.</p>
+                <p>Free pickup: Sovereign Village Portmore, Shop 15 Northside Plaza Kingston 6, Digicel Head Office.</p>
                 <a href="delivery.html" class="btn btn-primary">See prices and delivery</a>
             </div>
             <div class="steps-box">
@@ -1621,7 +1620,7 @@
                 <div class="story-content">
                     <h2>From the Hills of St. Mary to Your Table</h2>
                     <p>Our honey is pure, natural, and made with care. Our bees live in the peaceful hills of St. Mary, where they visit clean, chemical-free tropical flowers.</p>
-                    <p>We never heat our honey. We carefully scrape it cold so it keeps all its healthy goodness, natural pollen, and rich floral taste. What you get is smooth, golden honey, straight from the hive.</p>
+                    <p>We never heat our honey. We carefully scrape it cold so it keeps all its natural character, natural pollen, and rich floral taste. What you get is smooth, golden honey, straight from the hive.</p>
 
                     <div class="spec-grid">
                         <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Unfiltered & Raw</div>
@@ -1690,7 +1689,7 @@
 
             <div id="wholesale" class="wholesale-box">
                 <h2 style="margin-bottom: 1rem; font-size: 1.8rem;">Wholesale & Gifting</h2>
-                <p style="margin-bottom: 2rem; font-size: 0.95rem; color: var(--slate);">Partner with us for corporate gifting, boutique retail, or culinary sourcing.</p>
+                <p style="margin-bottom: 2rem; font-size: 0.95rem; color: var(--slate);">Sending a Jamaican honey gift? Every 266ml (JMD $2,200) and 500ml (JMD $3,200) jar order includes a free custom gift note at checkout with delivery across Jamaica. For corporate gifting, event favors, supermarkets, gourmet grocers, and boutique retail stockists, request our wholesale catalog below or message us on WhatsApp.</p>
 
                 <!-- Updated Wholesale Form to connect to Backend Script -->
                 <form id="wholesale-form">
@@ -1865,6 +1864,9 @@
                         <option value="Knutsford Express - Trelawny">Trelawny</option>
                         <option value="Knutsford Express - Westmoreland">Westmoreland</option>
                     </optgroup>
+                    <optgroup label="International (Quote Only)">
+                        <option value="USA Shipping - Quote on WhatsApp">USA Shipping - Quote on WhatsApp</option>
+                    </optgroup>
                 </select>
             </div>
             <div class="form-group" id="knutsford-field" style="display:none;">
@@ -2021,7 +2023,7 @@
                 progressBar.style.backgroundColor = '#2ecc71';
             } else {
                 const remaining = FREE_SHIPPING_THRESHOLD - currentSubtotal;
-                shippingMsg.innerHTML = `Add ${formatCurrency(remaining)} more for free delivery`;
+                shippingMsg.innerHTML = `Add ${formatCurrency(remaining)} more for free Kingston delivery`;
                 const progressPercentage = (currentSubtotal / FREE_SHIPPING_THRESHOLD) * 100;
                 progressBar.style.width = `${progressPercentage}%`;
                 progressBar.style.backgroundColor = 'var(--amber)';
