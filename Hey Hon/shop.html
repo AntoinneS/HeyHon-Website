@@ -562,6 +562,7 @@
             <canvas id="bee-canvas" class="hero-bees" aria-hidden="true"></canvas>
             <span class="eyebrow">The Collection</span>
             <h1>The Complete Harvest</h1>
+            <p style="max-width: 680px; margin: 0 auto;">Order single origin St. Mary raw wildflower honey in 266ml (JMD $2,200) and 500ml (JMD $3,200) glass jars. Cold extracted with zero added sugar. Pick up free in Portmore, Northside Plaza Kingston 6, or Digicel Head Office, or choose courier delivery across Jamaica at WhatsApp checkout.</p>
         </section>
 
         <!-- Shop Grid Container -->
@@ -575,7 +576,6 @@
 
             <div class="shop-grid" id="product-grid">
                 
-                <!-- 1. Regular Raw Honey -->
                 <div class="product-card" data-category="raw">
                     <div class="product-image">
                         <span class="product-badge">Signature</span>
@@ -612,6 +612,7 @@
             <div class="prices-card">
                 <h2>Prices &amp; Delivery</h2>
                 <p>Raw Honey 266ml $2,200, 500ml $3,200. Portmore $500, Kingston $800, Knutsford $700.</p>
+                <p>Free pickup: Sovereign Village Portmore, Shop 15 Northside Plaza Kingston 6, Digicel Head Office.</p>
                 <a href="delivery.html" class="btn btn-primary">See prices and delivery</a>
             </div>
             <div class="steps-box">
@@ -761,6 +762,9 @@
                         <option value="Knutsford Express - St. Thomas">St. Thomas</option>
                         <option value="Knutsford Express - Trelawny">Trelawny</option>
                         <option value="Knutsford Express - Westmoreland">Westmoreland</option>
+                    </optgroup>
+                    <optgroup label="International (Quote Only)">
+                        <option value="USA Shipping - Quote on WhatsApp">USA Shipping - Quote on WhatsApp</option>
                     </optgroup>
                 </select>
             </div>
@@ -914,7 +918,7 @@
                 progressBar.style.backgroundColor = '#2ecc71';
             } else {
                 const remaining = FREE_SHIPPING_THRESHOLD - currentSubtotal;
-                shippingMsg.innerHTML = `Add ${formatCurrency(remaining)} more for free delivery`;
+                shippingMsg.innerHTML = `Add ${formatCurrency(remaining)} more for free Kingston delivery`;
                 const progressPercentage = (currentSubtotal / FREE_SHIPPING_THRESHOLD) * 100;
                 progressBar.style.width = `${progressPercentage}%`;
                 progressBar.style.backgroundColor = 'var(--amber)';
