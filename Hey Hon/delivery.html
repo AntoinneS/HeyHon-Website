@@ -47,19 +47,50 @@
     <style>
         :root { --cream:#FFFDF9; --white:#fff; --amber:#D98A2B; --amber-dark:#B86E18; --espresso:#221F1D; --slate:#5A544F; --gold-border:rgba(217,138,43,0.15); }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:Inter,system-ui,sans-serif; color:var(--slate); background:var(--cream); line-height:1.6; }
+        body { font-family:Inter,system-ui,sans-serif; color:var(--slate); background:var(--cream); line-height:1.6; overflow-x:hidden; }
+        .background-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        .honeycomb-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='69.28203230275509' viewBox='0 0 40 69.28203230275509' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 11.547L40 23.094L30 28.867L20 23.094L20 11.547L30 5.773L40 11.547ZM20 46.188L20 57.735L10 63.508L0 57.735L0 46.188L10 40.414L20 46.188ZM40 46.188L40 57.735L30 63.508L20 57.735L20 46.188L30 40.414L40 46.188ZM20 11.547L20 23.094L10 28.867L0 23.094L0 11.547L10 5.773L20 11.547Z' fill='%23D98A2B' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        .hero { position:relative; overflow:hidden; padding:1.5rem 0 2rem; }
+        .hero > * { position:relative; z-index:1; }
+        .hero-bees { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
         h1,h2,h3 { font-family:'Playfair Display',serif; color:var(--espresso); line-height:1.2; }
         h2 { font-size:clamp(1.6rem, 3vw, 2rem); margin:2.5rem 0 1rem; }
         h3 { font-size:1.4rem; }
         a { color:var(--amber); }
         .container { max-width:900px; margin:0 auto; padding:0 1.25rem; }
-        header { background:var(--white); border-bottom:1px solid var(--gold-border); padding:1rem 0; position:relative; }
-        header .container { display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; }
-        .brand { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--espresso); text-decoration:none; font-weight:700; }
-        nav a { margin-right:1rem; color:var(--espresso); text-decoration:none; font-weight:500; }
-        nav a:hover { color:var(--amber); }
+        header { position:fixed; top:0; left:0; width:100%; padding:1.25rem 0; z-index:100; transition:background 0.3s, box-shadow 0.3s, padding 0.3s; }
+        header.scrolled, header.menu-open { background:rgba(255,253,249,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 4px 12px rgba(34,31,29,0.05); }
+        header.scrolled { padding:1rem 0; }
+        header .container { max-width:1280px; padding:0 1.5rem; }
+        .nav-wrapper { display:flex; justify-content:space-between; align-items:center; }
+        .brand-logo { font-family:'Playfair Display',serif; font-size:1.75rem; font-weight:700; color:var(--espresso); display:flex; align-items:center; gap:0.5rem; z-index:101; text-decoration:none; }
+        .brand-logo i { color:var(--amber); }
+        .nav-links { display:flex; gap:1.8rem; align-items:center; }
+        .nav-links a { font-size:0.95rem; font-weight:500; color:var(--espresso); text-decoration:none; transition:color 0.2s; }
+        .nav-links a:hover { color:var(--amber); }
+        .nav-utils { display:flex; align-items:center; gap:1.5rem; z-index:101; }
+        .nav-utils .currency { font-size:0.85rem; font-weight:500; }
+        .cart-btn { display:flex; align-items:center; gap:0.5rem; font-size:1rem; font-weight:500; color:var(--espresso); transition:color 0.2s; background:none; border:none; cursor:pointer; text-decoration:none; }
+        .cart-btn:hover { color:var(--amber); }
         .mobile-menu-btn { display:none; background:none; border:none; font-size:1.8rem; color:var(--espresso); cursor:pointer; }
-        main { padding:2.5rem 0 3rem 0; }
+        main { padding:7rem 0 3rem 0; }
         .eyebrow { font-size:0.9rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--amber); font-weight:600; }
         h1 { font-size:clamp(2rem, 4vw, 2.5rem); margin:0.5rem 0 0.75rem; }
         .intro { font-size:1.1rem; margin-bottom:1.5rem; }
@@ -81,7 +112,14 @@
         .steps-box { border:1px solid var(--gold-border); background:var(--white); border-radius:8px; padding:1.5rem; margin:1.5rem 0 1rem; }
         .steps-box h3 { font-size:1.4rem; margin-bottom:1rem; }
         .steps-list { list-style:none; display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; }
-        .steps-list li { display:flex; gap:0.75rem; align-items:flex-start; }
+        .steps-list li { display:flex; gap:0.75rem; align-items:flex-start; min-width:0; }
+        .steps-box { box-sizing:border-box; max-width:100%; }
+        .steps-cta { margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid var(--gold-border); text-align:center; }
+        .steps-cta .btn { margin:0; }
+        .steps-cta .steps-usa { display:block; margin-top:0.75rem; font-size:0.95rem; }
+        @media (max-width: 768px) {
+            .steps-list { grid-template-columns:1fr; }
+        }
         .step-num { flex-shrink:0; width:2rem; height:2rem; border-radius:50%; background:var(--amber); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600; }
         details.faq-item { background:var(--white); border:1px solid var(--gold-border); border-radius:8px; padding:1rem 1.25rem; margin-bottom:0.75rem; }
         details.faq-item summary { list-style:none; cursor:pointer; font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--espresso); font-weight:600; }
@@ -94,85 +132,83 @@
         @media (max-width: 640px) {
             .price-grid { grid-template-columns:1fr; }
             .steps-list { grid-template-columns:1fr; }
-            header .container { flex-wrap:nowrap; justify-content:space-between; }
-            .mobile-menu-btn { display:block; }
-            nav { display:none; position:absolute; top:100%; left:0; width:100%; background:var(--white); flex-direction:column; align-items:flex-start; padding:1.5rem 1.25rem; gap:1rem; border-top:1px solid var(--gold-border); box-shadow:0 8px 24px rgba(0,0,0,0.1); }
-            nav.open { display:flex; }
-            nav a { margin-right:0; font-size:1.1rem; }
             .whatsapp-float { bottom:16px; right:16px; padding:12px; font-size:1.5rem; }
             .whatsapp-float .wa-label { display:none; }
+        }
+        @media (max-width: 768px) {
+            .nav-utils .currency { display:none; }
+            .mobile-menu-btn { display:block; }
+            .nav-links { position:absolute; top:100%; left:0; width:100%; background:rgba(255,253,249,0.98); backdrop-filter:blur(10px); flex-direction:column; align-items:flex-start; padding:2rem; gap:1.5rem; border-top:1px solid var(--gold-border); box-shadow:0 8px 24px rgba(217,138,43,0.08); opacity:0; visibility:hidden; transform:translateY(-10px); transition:all 0.3s ease; }
+            .nav-links.active { opacity:1; visibility:visible; transform:translateY(0); }
+            .nav-links a { font-size:1.2rem; width:100%; border-bottom:1px solid var(--gold-border); padding-bottom:0.5rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="index.html" class="brand">Hey Hon</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list"></i></button>
-            <nav id="nav-links">
-                <a href="shop.html">Shop</a>
-                <a href="story.html">Our Story</a>
-                <a href="why-hey-hon.html">Why Hey Hon?</a>
-                <a href="recipes.html">Recipes</a>
-                <a href="delivery.html">Delivery</a>
-                <a href="ship-honey-to-usa.html">USA Orders</a>
-                <a href="index.html#faq">FAQ</a>
+    <!-- Honeycomb background, restored Nov 2026 -->
+    <div class="background-layer">
+        <div class="honeycomb-pattern"></div>
+    </div>
+
+    <header id="header">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="brand-logo">
+                Hey Hon <i class="ph-fill ph-drop"></i>
+            </a>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="shop.html" onclick="closeMenu()">Shop</a>
+                <a href="story.html" onclick="closeMenu()">Our Story</a>
+                <a href="why-hey-hon.html" onclick="closeMenu()">Why Hey Hon?</a>
+                <a href="recipes.html" onclick="closeMenu()">Recipes</a>
+                <a href="delivery.html" onclick="closeMenu()">Delivery</a>
+                <a href="ship-honey-to-usa.html" onclick="closeMenu()">USA Orders</a>
+                <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
             </nav>
+
+            <div class="nav-utils">
+                <span class="currency">JMD / 🇯🇲</span>
+                <a class="cart-btn" href="shop.html" aria-label="View your Harvest Bag">
+                    <i class="ph ph-tote" style="font-size: 1.3rem;"></i>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list"></i></button>
+            </div>
         </div>
     </header>
     <main class="container">
-        <p class="eyebrow">Hey Hon, Raw Jamaican Honey, St. Mary, Jamaica</p>
-        <h1>Prices &amp; Delivery</h1>
-        <p class="intro">Raw St. Mary Wildflower Honey, delivered across Jamaica or ready for free pickup. Every price below already includes delivery.</p>
+        <section class="hero">
+            <canvas id="bee-canvas" class="hero-bees" aria-hidden="true"></canvas>
+            <p class="eyebrow">Hey Hon, Raw Jamaican Honey, St. Mary, Jamaica</p>
+            <h1>Prices &amp; Delivery</h1>
+            <p class="intro">Raw St. Mary Wildflower Honey. Jar prices below, delivery is extra.</p>
+            <p><a class="btn" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey." target="_blank" rel="noopener noreferrer">Order on WhatsApp</a></p>
+        </section>
 
         <div class="price-grid">
             <div class="price-card">
                 <h3>266ml Raw Honey</h3>
                 <p class="jar-price">JMD $2,200</p>
-                <ul>
-                    <li><span>Portmore</span><strong>JMD $2,700 total</strong></li>
-                    <li><span>Kingston and Spanish Town</span><strong>JMD $3,000 total</strong></li>
-                    <li><span>Knutsford Express</span><strong>JMD $2,900 total</strong></li>
-                </ul>
-                <p class="free-note">Free Kingston delivery on orders over JMD $6,000.</p>
-                <a class="btn" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20the%20266ml%20Raw%20Honey." target="_blank" rel="noopener noreferrer">Order 266ml on WhatsApp</a>
+                <p>Glass jar, Raw St. Mary Wildflower Honey.</p>
             </div>
             <div class="price-card">
                 <h3>500ml Raw Honey</h3>
                 <p class="jar-price">JMD $3,200</p>
-                <ul>
-                    <li><span>Portmore</span><strong>JMD $3,700 total</strong></li>
-                    <li><span>Kingston and Spanish Town</span><strong>JMD $4,000 total</strong></li>
-                    <li><span>Knutsford Express</span><strong>JMD $3,900 total</strong></li>
-                </ul>
-                <p class="free-note">Free Kingston delivery on orders over JMD $6,000.</p>
-                <a class="btn" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20the%20500ml%20Raw%20Honey." target="_blank" rel="noopener noreferrer">Order 500ml on WhatsApp</a>
+                <p>Glass jar, Raw St. Mary Wildflower Honey.</p>
             </div>
         </div>
 
-        <h2>Delivery areas</h2>
+        <h2>Delivery</h2>
         <ul>
             <li><strong>Portmore:</strong> JMD $500.</li>
-            <li><strong>Kingston:</strong> JMD $800. Free on orders over JMD $6,000 subtotal.</li>
-            <li><strong>Spanish Town:</strong> JMD $800.</li>
+            <li><strong>Kingston and Spanish Town:</strong> JMD $800. Free Kingston delivery on orders over JMD $6,000 subtotal.</li>
+            <li><strong>Knutsford Express, islandwide:</strong> JMD $700 flat rate to Clarendon, Hanover, Manchester, Portland, St. Ann, St. Elizabeth, St. James, St. Mary, St. Thomas, Trelawny, and Westmoreland. Choose your station at checkout.</li>
+            <li><strong>Free pickup:</strong> Sovereign Village, Portmore; Shop 15, Northside Plaza, Kingston 6 (Liguanea, St. Andrew); Digicel Head Office.</li>
         </ul>
-
-        <h2>Knutsford Express islandwide</h2>
-        <p>Knutsford Express delivery is JMD $700 flat rate to Clarendon, Hanover, Manchester, Portland, St. Ann, St. Elizabeth, St. James, St. Mary, St. Thomas, Trelawny, and Westmoreland. Choose your parish and your preferred Knutsford Express station at checkout, then confirm the delivery day on WhatsApp.</p>
+        <p>Delivery day and payment confirmed on WhatsApp.</p>
 
         <figure class="delivery-photo">
             <img src="islandwide.png" alt="Hey Hon secure islandwide delivery package in Jamaica">
         </figure>
-
-        <h2>Free pickup</h2>
-        <ul>
-            <li>Sovereign Village, Portmore</li>
-            <li>Shop 15, Northside Plaza, Kingston 6 (Liguanea, St. Andrew)</li>
-            <li>Digicel Head Office</li>
-        </ul>
-        <p>Choose pickup at checkout. Pickup day is confirmed on WhatsApp.</p>
-
-        <p class="note">Delivery day and payment confirmed on WhatsApp.</p>
 
         <div class="steps-box">
             <h3>Order in 3 steps</h3>
@@ -181,6 +217,10 @@
                 <li><span class="step-num">2</span><div><strong>Add to bag</strong><br>Add your jar to your Harvest Bag.</div></li>
                 <li><span class="step-num">3</span><div><strong>Checkout on WhatsApp</strong><br>Send your order on WhatsApp.</div></li>
             </ol>
+            <div class="steps-cta">
+                <a href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer" class="btn">Order on WhatsApp</a>
+                <span class="steps-usa">USA orders: <a href="ship-honey-to-usa.html">WhatsApp for a shipping quote</a></span>
+            </div>
         </div>
 
         <h2>Frequently asked questions</h2>
@@ -190,8 +230,6 @@
         <details class="faq-item"><summary>Can I pick up my Hey Hon order for free?</summary><p>Yes, pickup is free at Sovereign Village, Portmore; Shop 15, Northside Plaza, Kingston 6 (Liguanea, St. Andrew); and Digicel Head Office.</p></details>
         <details class="faq-item"><summary>How much does Hey Hon Raw Honey cost?</summary><p>Raw St. Mary Wildflower Honey is JMD $2,200 for 266ml and JMD $3,200 for 500ml.</p></details>
 
-        <p style="margin-top:1.5rem;"><a class="btn" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20found%20your%20delivery%20page.%20I%20want%20to%20order%20Raw%20Honey." target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
-        <a class="btn btn-outline" href="shop.html">Shop Raw Honey</a></p>
     </main>
     <footer>
         <div class="container">
@@ -203,12 +241,198 @@
     </footer>
     <a class="whatsapp-float" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer"><i class="ph-fill ph-whatsapp-logo"></i><span class="wa-label">Order on WhatsApp</span></a>
     <script>
+        const header = document.getElementById('header');
+        const navLinks = document.getElementById('nav-links');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
         function toggleMenu() {
-            var nav = document.getElementById('nav-links');
-            nav.classList.toggle('open');
-            var btn = document.querySelector('.mobile-menu-btn');
-            if (btn) btn.setAttribute('aria-expanded', nav.classList.contains('open'));
+            navLinks.classList.toggle('active');
+            header.classList.toggle('menu-open');
+            var menuBtn = document.querySelector('.mobile-menu-btn');
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+            const icon = document.querySelector('.mobile-menu-btn i');
+            if (icon) {
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('ph-list');
+                    icon.classList.add('ph-x');
+                } else {
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                }
+            }
+        }
+
+        function closeMenu() {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                header.classList.remove('menu-open');
+                var menuBtn = document.querySelector('.mobile-menu-btn');
+                if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+                const icon = document.querySelector('.mobile-menu-btn i');
+                if (icon) {
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                }
+            }
         }
     </script>
+    <script>
+        // Bees, restored Nov 2026: larger and fewer than the original, and they
+        // live only in the hero, behind the hero text, never over body copy.
+        (function () {
+            var canvas = document.getElementById('bee-canvas');
+            if (!canvas) return;
+            var hero = canvas.parentElement;
+            if (!hero) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var ctx = canvas.getContext('2d');
+            var bees = [];
+
+            function resizeCanvas() {
+                canvas.width = hero.offsetWidth;
+                canvas.height = hero.offsetHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class RealisticBee {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.state = 'hover';
+                    this.timer = Math.random() * 100 + 50;
+                    this.targetX = this.x;
+                    this.targetY = this.y;
+                    this.targetAngle = this.angle;
+                    this.baseSpeed = Math.random() * 2 + 2.5;
+                    this.hoverJitter = Math.random() * Math.PI * 2;
+                    this.size = Math.random() * 2 + 4;
+                    this.opacity = Math.random() * 0.6 + 0.4;
+                    this.flapOffset = Math.random() * 100;
+                    this.flapSpeed = 0.5;
+                }
+
+                update() {
+                    this.timer--;
+                    if (this.state === 'hover') {
+                        this.x += Math.sin(Date.now() * 0.002 + this.hoverJitter) * 0.5;
+                        this.y += Math.cos(Date.now() * 0.003 + this.hoverJitter) * 0.5;
+                        this.angle += (Math.random() - 0.5) * 0.08;
+                        this.flapSpeed = 0.4;
+
+                        if (this.timer <= 0) {
+                            this.state = 'dart';
+                            this.timer = Math.random() * 50 + 30;
+                            const dist = Math.random() * 150 + 100;
+                            const dir = this.angle + (Math.random() - 0.5) * Math.PI;
+                            this.targetX = this.x + Math.cos(dir) * dist;
+                            this.targetY = this.y + Math.sin(dir) * dist;
+                            this.targetAngle = Math.atan2(this.targetY - this.y, this.targetX - this.x);
+                        }
+                    } else if (this.state === 'dart') {
+                        let angleDiff = this.targetAngle - this.angle;
+                        while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                        while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+                        this.angle += angleDiff * 0.2;
+                        this.x += Math.cos(this.angle) * this.baseSpeed;
+                        this.y += Math.sin(this.angle) * this.baseSpeed;
+                        this.flapSpeed = 0.8;
+
+                        const distToTarget = Math.hypot(this.targetX - this.x, this.targetY - this.y);
+                        if (this.timer <= 0 || distToTarget < 10) {
+                            this.state = 'hover';
+                            this.timer = Math.random() * 150 + 80;
+                        }
+                    }
+
+                    const margin = 30;
+                    if (this.x < -margin) this.x = canvas.width + margin;
+                    if (this.x > canvas.width + margin) this.x = -margin;
+                    if (this.y < -margin) this.y = canvas.height + margin;
+                    if (this.y > canvas.height + margin) this.y = -margin;
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+
+                    const bodyLength = this.size * 2;
+                    const bodyWidth = this.size * 1.2;
+
+                    ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.moveTo(-bodyLength + 1, 0);
+                    ctx.lineTo(-bodyLength - 2, 0);
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    ctx.fillStyle = `rgba(217, 138, 43, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, bodyLength, bodyWidth, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity * 0.85})`;
+                    ctx.beginPath();
+                    ctx.ellipse(-bodyLength * 0.3, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                    ctx.ellipse(bodyLength * 0.2, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(bodyLength * 0.8, 0, this.size * 0.9, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    const flap = Math.sin(Date.now() * this.flapSpeed + this.flapOffset);
+                    const wingSweep = flap * 0.5;
+
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
+
+                    ctx.save();
+                    ctx.translate(bodyLength * 0.2, -bodyWidth * 0.4);
+                    ctx.rotate(-1 + wingSweep);
+                    ctx.beginPath();
+                    ctx.ellipse(0, -this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+
+                    ctx.save();
+                    ctx.translate(bodyLength * 0.2, bodyWidth * 0.4);
+                    ctx.rotate(1 - wingSweep);
+                    ctx.beginPath();
+                    ctx.ellipse(0, this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+
+                    ctx.restore();
+                }
+            }
+
+            function initBees() {
+                bees = [];
+                const beeCount = window.innerWidth < 768 ? 2 : 3;
+                for (let i = 0; i < beeCount; i++) {
+                    bees.push(new RealisticBee());
+                }
+            }
+
+            function animateBees() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                bees.forEach(bee => {
+                    bee.update();
+                    bee.draw();
+                });
+                requestAnimationFrame(animateBees);
+            }
+
+            initBees();
+            animateBees();
+        })();
+    </script>
+
 </body>
 </html>

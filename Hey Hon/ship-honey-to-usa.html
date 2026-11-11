@@ -36,102 +36,135 @@
     <style>
         :root { --cream:#FFFDF9; --white:#fff; --amber:#D98A2B; --espresso:#221F1D; --slate:#5A544F; --gold-border:rgba(217,138,43,0.15); }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:Inter,system-ui,sans-serif; color:var(--slate); background:var(--cream); line-height:1.6; }
+        body { font-family:Inter,system-ui,sans-serif; color:var(--slate); background:var(--cream); line-height:1.6; overflow-x:hidden; }
+        .background-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        .honeycomb-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='69.28203230275509' viewBox='0 0 40 69.28203230275509' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 11.547L40 23.094L30 28.867L20 23.094L20 11.547L30 5.773L40 11.547ZM20 46.188L20 57.735L10 63.508L0 57.735L0 46.188L10 40.414L20 46.188ZM40 46.188L40 57.735L30 63.508L20 57.735L20 46.188L30 40.414L40 46.188ZM20 11.547L20 23.094L10 28.867L0 23.094L0 11.547L10 5.773L20 11.547Z' fill='%23D98A2B' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        .hero { position:relative; overflow:hidden; padding:1.5rem 0 2rem; }
+        .hero > * { position:relative; z-index:1; }
+        .hero-bees { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+        .eyebrow { font-size:0.9rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--amber); font-weight:600; }
+        h1 { font-size:clamp(2rem, 4vw, 2.5rem); margin:0.5rem 0 0.75rem; }
         h1,h2,h3 { font-family:'Playfair Display',serif; color:var(--espresso); line-height:1.2; }
         a { color:var(--amber); }
         .container { max-width:900px; margin:0 auto; padding:0 1.25rem; }
-        header { background:var(--white); border-bottom:1px solid var(--gold-border); padding:1rem 0; }
-        header .container { display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; }
-        .brand { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--espresso); text-decoration:none; font-weight:700; }
-        nav a { margin-right:1rem; color:var(--espresso); text-decoration:none; font-weight:500; }
-        nav a:hover { color:var(--amber); }
+        header { position:fixed; top:0; left:0; width:100%; padding:1.25rem 0; z-index:100; transition:background 0.3s, box-shadow 0.3s, padding 0.3s; }
+        header.scrolled, header.menu-open { background:rgba(255,253,249,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 4px 12px rgba(34,31,29,0.05); }
+        header.scrolled { padding:1rem 0; }
+        header .container { max-width:1280px; padding:0 1.5rem; }
+        .nav-wrapper { display:flex; justify-content:space-between; align-items:center; }
+        .brand-logo { font-family:'Playfair Display',serif; font-size:1.75rem; font-weight:700; color:var(--espresso); display:flex; align-items:center; gap:0.5rem; z-index:101; text-decoration:none; }
+        .brand-logo i { color:var(--amber); }
+        .nav-links { display:flex; gap:1.8rem; align-items:center; }
+        .nav-links a { font-size:0.95rem; font-weight:500; color:var(--espresso); text-decoration:none; transition:color 0.2s; }
+        .nav-links a:hover { color:var(--amber); }
+        .nav-utils { display:flex; align-items:center; gap:1.5rem; z-index:101; }
+        .nav-utils .currency { font-size:0.85rem; font-weight:500; }
+        .cart-btn { display:flex; align-items:center; gap:0.5rem; font-size:1rem; font-weight:500; color:var(--espresso); transition:color 0.2s; background:none; border:none; cursor:pointer; text-decoration:none; }
+        .cart-btn:hover { color:var(--amber); }
         .mobile-menu-btn { display:none; background:none; border:none; font-size:1.8rem; color:var(--espresso); cursor:pointer; }
         @media (max-width: 768px) {
-            header .container { flex-wrap:nowrap; justify-content:space-between; }
+            .nav-utils .currency { display:none; }
             .mobile-menu-btn { display:block; }
-            nav { display:none; position:absolute; top:100%; left:0; width:100%; background:var(--white); flex-direction:column; align-items:flex-start; padding:1.5rem 1.25rem; gap:1rem; border-top:1px solid var(--gold-border); box-shadow:0 8px 24px rgba(0,0,0,0.1); }
-            nav.open { display:flex; }
-            nav a { margin-right:0; font-size:1.1rem; }
+            .nav-links { position:absolute; top:100%; left:0; width:100%; background:rgba(255,253,249,0.98); backdrop-filter:blur(10px); flex-direction:column; align-items:flex-start; padding:2rem; gap:1.5rem; border-top:1px solid var(--gold-border); box-shadow:0 8px 24px rgba(217,138,43,0.08); opacity:0; visibility:hidden; transform:translateY(-10px); transition:all 0.3s ease; }
+            .nav-links.active { opacity:1; visibility:visible; transform:translateY(0); }
+            .nav-links a { font-size:1.2rem; width:100%; border-bottom:1px solid var(--gold-border); padding-bottom:0.5rem; }
         }
-        main { padding:2.5rem 0 3rem 0; }
+        main { padding:7rem 0 3rem 0; }
         .answer { background:var(--white); border:1px solid var(--gold-border); border-radius:8px; padding:1.5rem; margin:1.5rem 0; font-size:1.1rem; }
         .btn { display:inline-block; background:var(--amber); color:#fff; padding:0.9rem 1.5rem; border-radius:4px; text-decoration:none; font-weight:600; margin:0.5rem 0.5rem 0.5rem 0; }
         .btn-outline { background:transparent; color:var(--espresso); border:1px solid var(--espresso); }
-        .faq-item { background:var(--white); border:1px solid var(--gold-border); border-radius:8px; padding:1rem 1.25rem; margin-bottom:0.75rem; }
-        .faq-item h3 { font-size:1.1rem; margin-bottom:0.4rem; }
+        details.faq-item { background:var(--white); border:1px solid var(--gold-border); border-radius:8px; padding:1rem 1.25rem; margin-bottom:0.75rem; }
+        details.faq-item summary { list-style:none; cursor:pointer; font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--espresso); font-weight:600; }
+        details.faq-item summary::-webkit-details-marker { display:none; }
+        details.faq-item p { margin-top:0.5rem; }
         footer { background:var(--espresso); color:#fff; padding:2rem 0; margin-top:2rem; }
         footer a { color:#fff; margin-right:1rem; }
         .whatsapp-float { position:fixed; bottom:20px; right:20px; z-index:1200; background:#D98A2B; color:#fff; padding:14px 18px; border-radius:999px; font-weight:600; font-size:1rem; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.25); }
     
-        /* Design cleanup (Nov 2026): brand-orange sticky button, consistent headings, mobile price cards */
         h2 { font-size: 1.5rem; margin-top: 2rem; }
         h2:first-of-type { margin-top: 0; }
         .whatsapp-float { background: #D98A2B; bottom: 24px; right: 24px; display: inline-flex; align-items: center; gap: 0.5rem; }
         .whatsapp-float:hover { background: #B86E18; }
-        .price-table-wrap { overflow-x: auto; }
-        .price-cards { display: none; }
         @media (max-width: 640px) {
-            .price-table-wrap { display: none; }
-            .price-cards { display: grid; gap: 1rem; margin: 1rem 0 1.5rem 0; }
-            .price-card { background: var(--white); border: 1px solid var(--gold-border); border-radius: 8px; padding: 1.25rem; }
-            .price-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-            .price-card ul { list-style: none; }
-            .price-card li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.4rem 0; border-bottom: 1px solid #eee; }
-            .price-card li:last-child { border-bottom: none; }
             .whatsapp-float { bottom: 16px; right: 16px; padding: 12px; font-size: 1.5rem; }
             .whatsapp-float .wa-label { display: none; }
         }
     </style>
 </head>
 <body>
-    <header style="position:relative;">
-        <div class="container">
-            <a href="index.html" class="brand">Hey Hon</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list"></i></button>
-            <nav id="nav-links">
-                <a href="shop.html">Shop</a>
-                <a href="story.html">Our Story</a>
-                <a href="why-hey-hon.html">Why Hey Hon?</a>
-                <a href="recipes.html">Recipes</a>
-                <a href="delivery.html">Delivery</a>
-                <a href="ship-honey-to-usa.html">USA Orders</a>
-                <a href="index.html#faq">FAQ</a>
+    <!-- Honeycomb background, restored Nov 2026 -->
+    <div class="background-layer">
+        <div class="honeycomb-pattern"></div>
+    </div>
+
+    <header id="header">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="brand-logo">
+                Hey Hon <i class="ph-fill ph-drop"></i>
+            </a>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="shop.html" onclick="closeMenu()">Shop</a>
+                <a href="story.html" onclick="closeMenu()">Our Story</a>
+                <a href="why-hey-hon.html" onclick="closeMenu()">Why Hey Hon?</a>
+                <a href="recipes.html" onclick="closeMenu()">Recipes</a>
+                <a href="delivery.html" onclick="closeMenu()">Delivery</a>
+                <a href="ship-honey-to-usa.html" onclick="closeMenu()">USA Orders</a>
+                <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
             </nav>
+
+            <div class="nav-utils">
+                <span class="currency">JMD / 🇯🇲</span>
+                <a class="cart-btn" href="shop.html" aria-label="View your Harvest Bag">
+                    <i class="ph ph-tote" style="font-size: 1.3rem;"></i>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><i class="ph ph-list"></i></button>
+            </div>
         </div>
     </header>
     <main class="container">
-        <p>Hey Hon &bull; Raw Jamaican Honey &bull; St. Mary, Jamaica</p>
-        <h1>Can You Ship Jamaican Honey to the USA?</h1>
-        <div class="answer">
-            <p><strong>USA shipping from Hey Hon is by WhatsApp quote only.</strong> We do not yet have a set USA carrier or a flat USA shipping price, so we do not sell USA delivery at checkout. Message us on WhatsApp with your US state, the quantity, and the jar size you want, and we will quote you. Raw Honey is JMD $2,200 for 266ml and JMD $3,200 for 500ml, before USA shipping.</p>
-        </div>
-        <p><a class="btn" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20a%20quote%20to%20ship%20Raw%20Honey%20to%20the%20USA.%20My%20state%20is%20___%2C%20I%20want%20___%20jars%20of%20___ml." target="_blank" rel="noopener noreferrer">Get a USA shipping quote on WhatsApp</a>
-        <a class="btn btn-outline" href="shop.html">Shop Raw Honey in Jamaica</a></p>
+        <section class="hero">
+            <canvas id="bee-canvas" class="hero-bees" aria-hidden="true"></canvas>
+            <p class="eyebrow">Hey Hon &bull; Raw Jamaican Honey &bull; St. Mary, Jamaica</p>
+            <h1>Can You Ship Jamaican Honey to the USA?</h1>
+            <p class="answer"><strong>USA shipping from Hey Hon is by WhatsApp quote only.</strong> No set USA carrier or flat USA shipping price yet. Message us on WhatsApp with your US state, quantity, and jar size, and we will quote you. Raw Honey is JMD $2,200 for 266ml and JMD $3,200 for 500ml, before USA shipping.</p>
+            <p><a class="btn" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20a%20quote%20to%20ship%20Raw%20Honey%20to%20the%20USA.%20My%20state%20is%20___%2C%20I%20want%20___%20jars%20of%20___ml." target="_blank" rel="noopener noreferrer">Get a USA shipping quote on WhatsApp</a></p>
+        </section>
 
-        <h2 style="margin-top:2rem;">How to get a USA quote</h2>
+        <h2>How to get a USA quote</h2>
         <ol>
             <li>Message us on WhatsApp using the button above.</li>
-            <li>Tell us your US state and delivery address, how many jars you want, and whether you want 266ml or 500ml.</li>
-            <li>We will reply with a shipping quote, the total, and how to pay. Delivery day and payment are confirmed on WhatsApp.</li>
+            <li>Tell us your US state, how many jars you want, and whether you want 266ml or 500ml.</li>
+            <li>We reply with a shipping quote, the total, and how to pay. Delivery day and payment are confirmed on WhatsApp. We will not charge you for USA shipping until you have accepted a quote.</li>
         </ol>
-        <p>There is no USA checkout on this website yet, and no USA shipping price is listed, because we have not yet confirmed a carrier and price. We will not charge you for USA shipping until you have accepted a quote on WhatsApp.</p>
 
-        <h2 style="margin-top:1.5rem;">Taking honey home to the USA yourself</h2>
-        <p>If you are visiting Jamaica, you can buy Hey Hon honey here and take it home. Honey is generally allowed into the United States in commercial packaging for personal consumption, and it must be declared to US Customs. Pack honey in checked luggage, because liquids over 3.4 oz (100 ml) are not allowed in carry-on luggage. Check current US Customs and FDA rules before you travel, because rules can change.</p>
+        <h2>Taking honey home to the USA yourself</h2>
+        <p>If you are visiting Jamaica, you can buy Hey Hon honey here and take it home. Honey is generally allowed into the United States in commercial packaging for personal consumption, and it must be declared to US Customs. Pack honey in checked luggage, because liquids over 3.4 oz (100 ml) are not allowed in carry-on luggage. Check current US Customs and FDA rules before you travel, because rules can change. A business sending food to the United States must also file FDA prior notice, which is one reason USA orders are handled by WhatsApp quote, not by automatic checkout.</p>
+        <p>In Jamaica, delivery is Portmore JMD $500, Kingston and Spanish Town JMD $800, Knutsford Express JMD $700 flat rate, free Kingston delivery on orders over JMD $6,000. <a href="delivery.html">See Jamaica delivery details</a>.</p>
 
-        <h2 style="margin-top:1.5rem;">A note on business shipping to the USA</h2>
-        <p>A business sending food to the United States must file FDA prior notice before the food arrives. That is one reason USA orders are handled by WhatsApp quote, not by automatic checkout, until our USA shipping route is confirmed.</p>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item"><summary>Can Hey Hon ship Jamaican honey to the USA?</summary><p>USA shipping is by WhatsApp quote only. We do not yet have a set USA carrier or flat shipping price. Message us on WhatsApp with your US state, quantity, and size and we will quote you.</p></details>
+        <details class="faq-item"><summary>Can I bring Jamaican honey into the USA?</summary><p>Honey is generally allowed into the United States in commercial packaging for personal consumption, and it must be declared to US Customs. Pack honey in checked luggage, because liquids over 3.4 oz are not allowed in carry-on luggage. Check current US Customs and FDA rules before you travel, because rules can change.</p></details>
+        <details class="faq-item"><summary>How much does Hey Hon Raw Honey cost?</summary><p>Raw St. Mary Wildflower Honey is JMD $2,200 for 266ml and JMD $3,200 for 500ml, before USA shipping. USA shipping is quoted separately on WhatsApp.</p></details>
+        <details class="faq-item"><summary>Can I order Hey Hon honey in Jamaica for delivery in Jamaica?</summary><p>Yes. In Jamaica, delivery is JMD $500 to Portmore, JMD $800 to Kingston and Spanish Town, and JMD $700 flat rate via Knutsford Express islandwide. Free Kingston delivery on orders over JMD $6,000.</p></details>
 
-        <h2 style="margin-top:1.5rem;">Ordering in Jamaica instead</h2>
-        <p>If you are in Jamaica, or you want honey delivered to family in Jamaica, order on the website as normal: Portmore delivery JMD $500, Kingston and Spanish Town delivery JMD $800, Knutsford Express JMD $700 flat rate islandwide, free Kingston delivery on orders over JMD $6,000. <a href="delivery.html">See Jamaica delivery details</a>.</p>
-
-        <h2 style="margin-top:1.5rem;">Frequently asked questions</h2>
-        <div class="faq-item"><h3>Can Hey Hon ship Jamaican honey to the USA?</h3><p>USA shipping is by WhatsApp quote only. We do not yet have a set USA carrier or flat shipping price. Message us on WhatsApp with your US state, quantity, and size and we will quote you.</p></div>
-        <div class="faq-item"><h3>Can I bring Jamaican honey into the USA?</h3><p>Honey is generally allowed into the United States in commercial packaging for personal consumption, and it must be declared to US Customs. Pack honey in checked luggage, because liquids over 3.4 oz are not allowed in carry-on luggage. Check current US Customs and FDA rules before you travel, because rules can change.</p></div>
-        <div class="faq-item"><h3>How much does Hey Hon Raw Honey cost?</h3><p>Raw St. Mary Wildflower Honey is JMD $2,200 for 266ml and JMD $3,200 for 500ml, before USA shipping. USA shipping is quoted separately on WhatsApp.</p></div>
-        <div class="faq-item"><h3>Can I order Hey Hon honey in Jamaica for delivery in Jamaica?</h3><p>Yes. In Jamaica, delivery is JMD $500 to Portmore, JMD $800 to Kingston and Spanish Town, and JMD $700 flat rate via Knutsford Express islandwide. Free Kingston delivery on orders over JMD $6,000.</p></div>
-
-        <p style="margin-top:1.5rem;"><a class="btn" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20a%20quote%20to%20ship%20Raw%20Honey%20to%20the%20USA.%20My%20state%20is%20___%2C%20I%20want%20___%20jars%20of%20___ml." target="_blank" rel="noopener noreferrer">Get a USA shipping quote on WhatsApp</a></p>
     </main>
     <footer>
         <div class="container">
@@ -143,12 +176,198 @@
     </footer>
     <a class="whatsapp-float" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20a%20quote%20to%20ship%20Raw%20Honey%20to%20the%20USA." target="_blank" rel="noopener noreferrer"><i class="ph-fill ph-whatsapp-logo"></i><span class="wa-label">Order on WhatsApp</span></a>
     <script>
+        const header = document.getElementById('header');
+        const navLinks = document.getElementById('nav-links');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
         function toggleMenu() {
-            var nav = document.getElementById('nav-links');
-            nav.classList.toggle('open');
-            var btn = document.querySelector('.mobile-menu-btn');
-            if (btn) btn.setAttribute('aria-expanded', nav.classList.contains('open'));
+            navLinks.classList.toggle('active');
+            header.classList.toggle('menu-open');
+            var menuBtn = document.querySelector('.mobile-menu-btn');
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+            const icon = document.querySelector('.mobile-menu-btn i');
+            if (icon) {
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('ph-list');
+                    icon.classList.add('ph-x');
+                } else {
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                }
+            }
+        }
+
+        function closeMenu() {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                header.classList.remove('menu-open');
+                var menuBtn = document.querySelector('.mobile-menu-btn');
+                if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+                const icon = document.querySelector('.mobile-menu-btn i');
+                if (icon) {
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                }
+            }
         }
     </script>
+    <script>
+        // Bees, restored Nov 2026: larger and fewer than the original, and they
+        // live only in the hero, behind the hero text, never over body copy.
+        (function () {
+            var canvas = document.getElementById('bee-canvas');
+            if (!canvas) return;
+            var hero = canvas.parentElement;
+            if (!hero) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var ctx = canvas.getContext('2d');
+            var bees = [];
+
+            function resizeCanvas() {
+                canvas.width = hero.offsetWidth;
+                canvas.height = hero.offsetHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class RealisticBee {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.state = 'hover';
+                    this.timer = Math.random() * 100 + 50;
+                    this.targetX = this.x;
+                    this.targetY = this.y;
+                    this.targetAngle = this.angle;
+                    this.baseSpeed = Math.random() * 2 + 2.5;
+                    this.hoverJitter = Math.random() * Math.PI * 2;
+                    this.size = Math.random() * 2 + 4;
+                    this.opacity = Math.random() * 0.6 + 0.4;
+                    this.flapOffset = Math.random() * 100;
+                    this.flapSpeed = 0.5;
+                }
+
+                update() {
+                    this.timer--;
+                    if (this.state === 'hover') {
+                        this.x += Math.sin(Date.now() * 0.002 + this.hoverJitter) * 0.5;
+                        this.y += Math.cos(Date.now() * 0.003 + this.hoverJitter) * 0.5;
+                        this.angle += (Math.random() - 0.5) * 0.08;
+                        this.flapSpeed = 0.4;
+
+                        if (this.timer <= 0) {
+                            this.state = 'dart';
+                            this.timer = Math.random() * 50 + 30;
+                            const dist = Math.random() * 150 + 100;
+                            const dir = this.angle + (Math.random() - 0.5) * Math.PI;
+                            this.targetX = this.x + Math.cos(dir) * dist;
+                            this.targetY = this.y + Math.sin(dir) * dist;
+                            this.targetAngle = Math.atan2(this.targetY - this.y, this.targetX - this.x);
+                        }
+                    } else if (this.state === 'dart') {
+                        let angleDiff = this.targetAngle - this.angle;
+                        while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                        while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+                        this.angle += angleDiff * 0.2;
+                        this.x += Math.cos(this.angle) * this.baseSpeed;
+                        this.y += Math.sin(this.angle) * this.baseSpeed;
+                        this.flapSpeed = 0.8;
+
+                        const distToTarget = Math.hypot(this.targetX - this.x, this.targetY - this.y);
+                        if (this.timer <= 0 || distToTarget < 10) {
+                            this.state = 'hover';
+                            this.timer = Math.random() * 150 + 80;
+                        }
+                    }
+
+                    const margin = 30;
+                    if (this.x < -margin) this.x = canvas.width + margin;
+                    if (this.x > canvas.width + margin) this.x = -margin;
+                    if (this.y < -margin) this.y = canvas.height + margin;
+                    if (this.y > canvas.height + margin) this.y = -margin;
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+
+                    const bodyLength = this.size * 2;
+                    const bodyWidth = this.size * 1.2;
+
+                    ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.moveTo(-bodyLength + 1, 0);
+                    ctx.lineTo(-bodyLength - 2, 0);
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    ctx.fillStyle = `rgba(217, 138, 43, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, bodyLength, bodyWidth, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = `rgba(34, 31, 29, ${this.opacity * 0.85})`;
+                    ctx.beginPath();
+                    ctx.ellipse(-bodyLength * 0.3, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                    ctx.ellipse(bodyLength * 0.2, 0, bodyLength * 0.2, bodyWidth * 0.95, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(bodyLength * 0.8, 0, this.size * 0.9, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    const flap = Math.sin(Date.now() * this.flapSpeed + this.flapOffset);
+                    const wingSweep = flap * 0.5;
+
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
+
+                    ctx.save();
+                    ctx.translate(bodyLength * 0.2, -bodyWidth * 0.4);
+                    ctx.rotate(-1 + wingSweep);
+                    ctx.beginPath();
+                    ctx.ellipse(0, -this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+
+                    ctx.save();
+                    ctx.translate(bodyLength * 0.2, bodyWidth * 0.4);
+                    ctx.rotate(1 - wingSweep);
+                    ctx.beginPath();
+                    ctx.ellipse(0, this.size * 1.5, this.size * 0.8, this.size * 2, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+
+                    ctx.restore();
+                }
+            }
+
+            function initBees() {
+                bees = [];
+                const beeCount = window.innerWidth < 768 ? 2 : 3;
+                for (let i = 0; i < beeCount; i++) {
+                    bees.push(new RealisticBee());
+                }
+            }
+
+            function animateBees() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                bees.forEach(bee => {
+                    bee.update();
+                    bee.draw();
+                });
+                requestAnimationFrame(animateBees);
+            }
+
+            initBees();
+            animateBees();
+        })();
+    </script>
+
 </body>
 </html>
