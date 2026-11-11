@@ -30,7 +30,7 @@
       "name": "Hey Hon Artisanal Honey",
       "image": "https://heyhonjamaica.com/hey-hon-hero.png",
       "telephone": "+16582182734",
-      "priceRange": "$$$",
+      "priceRange": "JMD $2,200 - $3,200",
       "address": {
         "@type": "PostalAddress",
         "addressRegion": "St. Mary",
@@ -41,7 +41,7 @@
         "latitude": "18.2520",
         "longitude": "-76.8872"
       },
-      "areaServed": ["Kingston", "Portmore", "St. Andrew", "Jamaica"],
+      "areaServed": ["Kingston", "Portmore", "Spanish Town", "St. Andrew", "St. Mary", "Jamaica"],
       "description": "Producer of rare, cold extracted single origin Jamaican honey harvested from pesticide free hives in St. Mary."
     }
     </script>
@@ -521,6 +521,7 @@
             <canvas id="bee-canvas" class="hero-bees" aria-hidden="true"></canvas>
             <span class="eyebrow">The Hey Hon Difference</span>
             <h1>Why settle for ordinary when you can experience the extraordinary?</h1>
+            <p style="max-width: 680px; margin: 0 auto;">Hey Hon is 100% pure, raw Jamaican wildflower honey cold extracted from single origin beehives near Guys Hill and Louisiana in St. Mary (RADA/ABIS registration filed July 2026). Never heated and never diluted with cane sugar, our honey preserves the natural pollen, aroma, and floral character of Jamaica.</p>
         </section>
 
         <!-- Section 1: Taste & Terroir -->
@@ -539,8 +540,8 @@
         <section class="container feature-section reverse">
             <div class="feature-text">
                 <h2>Pure Vitality in Every Drop</h2>
-                <p>For those who deeply value their health and wellness, purity is non negotiable. We believe in preserving exactly what the bees create. Our gentle, cold extracted process ensures that every jar remains entirely raw and alive.</p>
-                <p>Because we never expose our harvest to destructive high temperatures, your honey arrives brimming with natural enzymes, beneficial antioxidants, and immune supporting propolis. This is not just a sweetener it is nature at its absolute most potent.</p>
+                <p>For those who value authentic, unrefined food, purity is non-negotiable. We believe in preserving exactly what the bees create. Our gentle, cold extracted process ensures that every jar remains entirely raw and unheated.</p>
+                <p>Because we never expose our harvest to high temperatures, your honey arrives with its natural enzymes, bee pollen, propolis, and wildflower aroma intact. This is not just a sweetener; it is Jamaican honey in its purest form.</p>
             </div>
             <div class="feature-image-wrap">
                 <img src="raw-honey.png" alt="Pure Vitality in Every Drop of Hey Hon">
@@ -559,11 +560,16 @@
             </div>
         </section>
 
+        <section class="container" style="max-width: 820px; margin: 0 auto 4rem; text-align: center;">
+            <h2 style="margin-bottom: 1rem;">Looking for Pure Honey in Jamaican Supermarkets?</h2>
+            <p>Many shoppers looking for honey in Jamaican supermarkets find commercial blends heated at high temperatures or mixed with syrups. Hey Hon is sold direct from our St. Mary apiary near Guys Hill and Louisiana so every jar stays 100% raw. Skip the supermarket aisle with free pickup in Kingston 6, Portmore, or Digicel Head Office, or islandwide delivery.</p>
+        </section>
+
         <!-- Call to Action Box -->
         <section class="container">
             <div class="invitation-box">
                 <h3>An Experience You Must Taste</h3>
-                <p>Whether you are a dedicated wellness seeker looking for pure vitality, or simply someone who appreciates the finer things in life, tasting Hey Hon is a revelation. It will transform your morning tea, elevate your culinary creations, and completely redefine your standard for real honey.</p>
+                <p>Whether you are a home cook looking for unblended local ingredients, or simply someone who appreciates the finer things in life, tasting Hey Hon is a revelation. It will transform your morning tea, elevate your culinary creations, and completely redefine your standard for real honey.</p>
                 <a href="shop.html" class="btn btn-primary">Taste The Difference</a>
             </div>
         </section>
@@ -699,6 +705,9 @@
                         <option value="Knutsford Express - Trelawny">Trelawny</option>
                         <option value="Knutsford Express - Westmoreland">Westmoreland</option>
                     </optgroup>
+                    <optgroup label="International (Quote Only)">
+                        <option value="USA Shipping - Quote on WhatsApp">USA Shipping - Quote on WhatsApp</option>
+                    </optgroup>
                 </select>
             </div>
             <div class="form-group" id="knutsford-field" style="display:none;">
@@ -825,7 +834,7 @@
                 progressBar.style.backgroundColor = '#2ecc71';
             } else {
                 const remaining = FREE_SHIPPING_THRESHOLD - currentSubtotal;
-                shippingMsg.innerHTML = `Add ${formatCurrency(remaining)} more for free delivery`;
+                shippingMsg.innerHTML = `Add ${formatCurrency(remaining)} more for free Kingston delivery`;
                 const progressPercentage = (currentSubtotal / FREE_SHIPPING_THRESHOLD) * 100;
                 progressBar.style.width = `${progressPercentage}%`;
                 progressBar.style.backgroundColor = 'var(--amber)';
@@ -1122,5 +1131,6 @@
         })();
     </script>
 
+    <a class="whatsapp-sticky" href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp"><i class="ph-fill ph-whatsapp-logo"></i><span class="wa-label">Order on WhatsApp</span></a>
 </body>
 </html>
