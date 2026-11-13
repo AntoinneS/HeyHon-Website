@@ -174,10 +174,10 @@
         .site-footer { background: var(--espresso); color: var(--cream); padding: 3.5rem 0 2rem; text-align: center; }
         .footer-logo { font-family: var(--font-serif); font-size: 2.4rem; font-weight: 700; color: var(--amber); margin-bottom: 1.25rem; letter-spacing: 0.05em; display: inline-block; }
         .footer-nav { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-        .footer-nav a { font-size: 1.05rem; font-weight: 500; color: var(--cream); transition: color 0.2s ease; }
+        .footer-nav a { font-size: 1.05rem; font-weight: 500; color: var(--cream); text-decoration: none; transition: color 0.2s ease; }
         .footer-nav a:hover { color: var(--amber); }
         .footer-contact { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .footer-contact a { display: flex; align-items: center; gap: 0.6rem; font-size: 1.15rem; font-weight: 500; color: var(--cream); transition: color 0.2s; }
+        .footer-contact a { display: flex; align-items: center; gap: 0.6rem; font-size: 1.15rem; font-weight: 500; color: var(--cream); text-decoration: none; transition: color 0.2s; }
         .footer-contact a:hover { color: var(--amber); }
         .footer-contact i { font-size: 1.6rem; color: var(--amber); }
         .footer-bottom { border-top: 1px solid rgba(255, 253, 249, 0.1); padding-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.85rem; opacity: 0.8; }
@@ -312,7 +312,7 @@
             background: var(--amber-dark);
             color: var(--white);
         }
-        /* ==========================================================================
+        /* Forms */
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -338,8 +338,7 @@
             appearance: none;
         }
         
-           10. CART DRAWER & CHECKOUT MODAL
-           ========================================================================== */
+        /* 10. CART DRAWER & CHECKOUT MODAL */
         
         .cart-overlay,
         .modal-overlay {
@@ -577,12 +576,11 @@
             padding-top: 0.5rem;
             margin-bottom: 0;
         }
-        /* ==========================================================================
+        /* Sticky WhatsApp button */
         .whatsapp-sticky { position: fixed; bottom: 24px; right: 24px; z-index: 1200; background: var(--amber); color: #fff; padding: 14px 18px; border-radius: 999px; font-weight: 600; font-size: 1rem; text-decoration: none; box-shadow: 0 8px 24px rgba(0,0,0,0.25); display: inline-flex; align-items: center; gap: 0.5rem; }
         .whatsapp-sticky:hover { background: var(--amber-dark); }
         .whatsapp-sticky:hover { background: var(--amber-dark); }
         @media (max-width: 640px) {
-            .hero { padding-top: 96px; }
             .steps-list { grid-template-columns: 1fr; }
             .whatsapp-sticky { bottom: 16px; right: 16px; padding: 12px; font-size: 1.5rem; }
             .whatsapp-sticky .wa-label { display: none; }
