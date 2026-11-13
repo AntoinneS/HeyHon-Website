@@ -25,68 +25,116 @@
 
     <!-- Schema.org Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
+{
+        "@context": "https://schema.org",
+        "@graph": [
                 {
-                    "@type": "Question",
-                    "name": "Where is Hey Hon honey produced in Jamaica?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Hey Hon honey is sustainably harvested from single origin apiaries located in the pristine, rural hills of St. Mary, Jamaica."
-                    }
+                        "@type": "LocalBusiness",
+                        "name": "Hey Hon Artisanal Honey",
+                        "url": "https://heyhonjamaica.com/",
+                        "telephone": "+16582182734",
+                        "priceRange": "JMD $2,200 - $3,200",
+                        "image": "https://heyhonjamaica.com/hey-hon-hero.png",
+                        "address": {
+                                "@type": "PostalAddress",
+                                "addressRegion": "St. Mary",
+                                "addressCountry": "JM"
+                        },
+                        "geo": {
+                                "@type": "GeoCoordinates",
+                                "latitude": "18.2520",
+                                "longitude": "-76.8872"
+                        },
+                        "areaServed": [
+                                "Kingston",
+                                "Portmore",
+                                "Spanish Town",
+                                "St. Andrew",
+                                "St. Mary"
+                        ],
+                        "description": "Producer of rare, cold extracted single origin Jamaican honey harvested from pesticide free hives in St. Mary."
                 },
                 {
-                    "@type": "Question",
-                    "name": "Is Hey Hon honey pure and raw?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes. Hey Hon honey is 100% pure, raw, cold extracted honey from single origin apiaries in St. Mary, Jamaica, with no added sugar and no high heat processing. Commercial honey is often heavily processed and pasteurized, which strips away natural floral aromas, beneficial enzymes, and antioxidants."
-                    }
+                        "@type": "Product",
+                        "name": "Hey Hon Raw St. Mary Wildflower Honey",
+                        "image": "https://heyhonjamaica.com/raw-honey.png",
+                        "description": "100% pure, raw, cold extracted honey from single origin apiaries in St. Mary, Jamaica, with no added sugar.",
+                        "brand": {
+                                "@type": "Brand",
+                                "name": "Hey Hon"
+                        },
+                        "offers": {
+                                "@type": "AggregateOffer",
+                                "priceCurrency": "JMD",
+                                "lowPrice": "2200",
+                                "highPrice": "3200",
+                                "offerCount": "2",
+                                "availability": "https://schema.org/InStock"
+                        }
                 },
                 {
-                    "@type": "Question",
-                    "name": "Why does raw honey crystallize, and how do I soften it?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Crystallization is natural for real raw honey. It does not mean the honey has gone bad. Raw honey crystallizes over time, especially in cooler conditions. Place the glass jar in warm water until the honey softens. Do not use boiling water or a microwave. Store at room temperature in a dry cupboard."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "How much is delivery, and do you deliver islandwide?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Portmore delivery is JMD $500, Kingston and Spanish Town delivery is JMD $800, and Knutsford Express delivery is JMD $700 flat rate islandwide. Free Kingston delivery on orders over JMD $6,000. See the Prices & Delivery page for prices and delivery."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Can I pick up my order?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes, pickup is free at Sovereign Village, Portmore; Shop 15, Northside Plaza, Kingston 6 (Liguanea, St. Andrew); and Digicel Head Office. Choose pickup at checkout and confirm on WhatsApp."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Do you ship honey to the USA?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "USA shipping is by WhatsApp quote only. We do not yet have a set USA carrier or flat shipping price. Message us on WhatsApp with your US state, quantity, and size and we will quote you."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Is honey safe for infants?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "No. Do not give honey to infants under 12 months."
-                    }
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                                {
+                                        "@type": "Question",
+                                        "name": "Where is Hey Hon honey produced in Jamaica?",
+                                        "acceptedAnswer": {
+                                                "@type": "Answer",
+                                                "text": "Hey Hon honey is sustainably harvested from single origin apiaries located in the pristine, rural hills of St. Mary, Jamaica."
+                                        }
+                                },
+                                {
+                                        "@type": "Question",
+                                        "name": "Is Hey Hon honey pure and raw?",
+                                        "acceptedAnswer": {
+                                                "@type": "Answer",
+                                                "text": "Yes. Hey Hon honey is 100% pure, raw, cold extracted honey from single origin apiaries in St. Mary, Jamaica, with no added sugar and no high heat processing. Commercial honey is often heavily processed and pasteurized, which strips away natural floral aromas, beneficial enzymes, and antioxidants."
+                                        }
+                                },
+                                {
+                                        "@type": "Question",
+                                        "name": "Why does raw honey crystallize, and how do I soften it?",
+                                        "acceptedAnswer": {
+                                                "@type": "Answer",
+                                                "text": "Crystallization is natural for real raw honey. It does not mean the honey has gone bad. Raw honey crystallizes over time, especially in cooler conditions. Place the glass jar in warm water until the honey softens. Do not use boiling water or a microwave. Store at room temperature in a dry cupboard."
+                                        }
+                                },
+                                {
+                                        "@type": "Question",
+                                        "name": "How much is delivery, and do you deliver islandwide?",
+                                        "acceptedAnswer": {
+                                                "@type": "Answer",
+                                                "text": "Portmore delivery is JMD $500, Kingston and Spanish Town delivery is JMD $800, and Knutsford Express delivery is JMD $700 flat rate islandwide. Free Kingston delivery on orders over JMD $6,000. See the Prices &amp; Delivery page for prices and delivery."
+                                        }
+                                },
+                                {
+                                        "@type": "Question",
+                                        "name": "Can I pick up my order?",
+                                        "acceptedAnswer": {
+                                                "@type": "Answer",
+                                                "text": "Yes, pickup is free at Sovereign Village, Portmore; Shop 15, Northside Plaza, Kingston 6 (Liguanea, St. Andrew); and Digicel Head Office. Choose pickup at checkout and confirm on WhatsApp."
+                                        }
+                                },
+                                {
+                                        "@type": "Question",
+                                        "name": "Do you ship internationally or to the USA, UK, and Canada?",
+                                        "acceptedAnswer": {
+                                                "@type": "Answer",
+                                                "text": "International shipping is by WhatsApp inquiry and quote only, with no set carrier, flat rate, or automatic checkout. Overseas buyers can also order through our standard checkout for local gift delivery to family in Jamaica."
+                                        }
+                                },
+                                {
+                                        "@type": "Question",
+                                        "name": "Is honey safe for infants?",
+                                        "acceptedAnswer": {
+                                                "@type": "Answer",
+                                                "text": "No. Do not give honey to infants under 12 months."
+                                        }
+                                }
+                        ]
                 }
-            ]
-        }
+        ]
+}
     </script>
 
     <!-- Typography -->
@@ -1478,6 +1526,33 @@
             .dual-section { padding: 2rem 0; }
             .site-footer { padding: 3rem 1.5rem 1.5rem; }
         }
+            /* Shared prices / delivery / steps component (PR #6) */
+        .hh-shared-section { padding: 4rem 0; }
+        .hh-section-head { text-align: center; max-width: 640px; margin: 0 auto 2.5rem; }
+        .hh-section-head .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--amber); display: inline-block; }
+        .hh-section-head h2 { font-size: clamp(1.85rem, 3.5vw, 2.4rem); margin: 0 0 0.75rem; }
+        .hh-section-head p { color: var(--slate); }
+        .hh-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
+        .hh-info-card { background: var(--white); border: 1px solid var(--gold-border); border-radius: 8px; padding: 1.75rem; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
+        .hh-card-title { display: flex; align-items: center; gap: 0.6rem; font-size: 1.2rem; margin-bottom: 1rem; color: var(--espresso); }
+        .hh-card-title i { color: var(--amber); font-size: 1.35rem; }
+        .hh-rate-list { list-style: none; margin: 0 0 1rem; padding: 0; flex-grow: 1; }
+        .hh-rate-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; padding: 0.55rem 0; border-bottom: 1px solid var(--gold-border); font-size: 0.92rem; color: var(--slate); }
+        .hh-rate-list li:last-child { border-bottom: none; }
+        .hh-rate-list strong { color: var(--espresso); font-weight: 600; white-space: nowrap; }
+        .hh-card-foot { font-size: 0.82rem; color: var(--slate); padding-top: 0.75rem; border-top: 1px dashed var(--gold-border); }
+        .hh-steps-bar { background: var(--white); border: 1px solid var(--gold-border); border-radius: 8px; padding: 1.75rem 2rem; box-shadow: var(--shadow-sm); }
+        .hh-steps-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--gold-border); }
+        .hh-steps-top h3 { font-size: 1.3rem; margin: 0; }
+        .hh-steps-top span { font-size: 0.88rem; color: var(--slate); }
+        .hh-steps-grid { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 0; padding: 0; }
+        .hh-steps-grid li { display: flex; align-items: flex-start; gap: 0.85rem; }
+        .hh-step-badge { flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 50%; background: var(--amber); color: var(--white); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; }
+        .hh-step-text strong { display: block; color: var(--espresso); font-size: 0.95rem; margin-bottom: 0.15rem; }
+        .hh-step-text span { font-size: 0.88rem; color: var(--slate); }
+        .hh-steps-bottom { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--gold-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.88rem; }
+        a.hh-text-link { color: var(--amber); font-weight: 600; text-decoration: underline; }
+        @media (max-width: 900px) { .hh-cards-grid, .hh-steps-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 
@@ -1514,7 +1589,7 @@
                 <a href="why-hey-hon.html" onclick="closeMenu()">Why Hey Hon?</a>
                 <a href="recipes.html" onclick="closeMenu()">Recipes</a>
                 <a href="delivery.html" onclick="closeMenu()">Delivery</a>
-                <a href="ship-honey-to-usa.html" onclick="closeMenu()">USA Orders</a>
+                <a href="ship-honey-to-usa.html" onclick="closeMenu()">International</a>
                 <a href="#faq" onclick="closeMenu()">FAQ</a>
             </nav>
 
@@ -1536,10 +1611,10 @@
             <div class="hero-content">
                 <span class="eyebrow">100% Pure & Unfiltered • St. Mary, Jamaica</span>
                 <h1>Hey Hon, <br class="mobile-break">Jamaican Honey.</h1>
-                <p>Buy 100% pure, cold extracted raw Jamaican honey harvested from single origin apiaries near Guys Hill and Louisiana in St. Mary (RADA/ABIS registration filed July 2026). Available in 266ml (JMD $2,200) and 500ml (JMD $3,200) glass jars with free Kingston 6 and Portmore pickup or islandwide delivery via WhatsApp.</p>
+                <p>Cold extracted, single origin wildflower honey from the lush hills of St. Mary. Unheated, unfiltered, and bottled in glass for your table.</p>
                 <div class="hero-buttons">
                     <a href="shop.html" class="btn btn-primary">Shop The Harvest</a>
-                    <a href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order on WhatsApp</a>
+                    <a href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Order on WhatsApp</a>
                 </div>
             </div>
         </section>
@@ -1560,10 +1635,6 @@
                 <h2>The Current Harvest</h2>
             </div>
 
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">All Products</button>
-                <button class="filter-btn" data-filter="raw">Raw Honey</button>
-            </div>
 
             <div class="product-grid" id="product-grid">
                 <div class="product-card" data-category="raw">
@@ -1588,26 +1659,54 @@
         </section>
 
 
-        <!-- Prices & Delivery: full prices and delivery live on delivery.html -->
-        <section class="container prices-section" id="prices-delivery">
-            <div class="prices-card">
-                <h2>Prices &amp; Delivery</h2>
-                <p>Raw Honey 266ml $2,200, 500ml $3,200. Portmore $500, Kingston $800, Knutsford $700.</p>
-                <p>Free pickup: Sovereign Village Portmore, Shop 15 Northside Plaza Kingston 6, Digicel Head Office.</p>
-                <a href="delivery.html" class="btn btn-primary">See prices and delivery</a>
+        <section class="container hh-shared-section" id="prices-delivery">
+            <div class="hh-section-head">
+                <span class="eyebrow">Transparent Rates</span>
+                <h2>Prices, Pickup &amp; Islandwide Delivery</h2>
+                <p>Single origin St. Mary raw honey. Free custom gift note available at checkout.</p>
             </div>
-            <div class="steps-box">
-                <h3>Order in 3 steps</h3>
-                <ol class="steps-list">
-                    <li><span class="step-num">1</span><div><strong>Pick your jar</strong><br>Choose 266ml or 500ml.</div></li>
-                    <li><span class="step-num">2</span><div><strong>Add to bag</strong><br>Add your jar to your Harvest Bag.</div></li>
-                    <li><span class="step-num">3</span><div><strong>Checkout on WhatsApp</strong><br>Send your order on WhatsApp.</div></li>
-                </ol>
-                <p class="steps-note">Delivery day and payment confirmed on WhatsApp.</p>
-                <div class="steps-cta">
-                    <a href="https://wa.me/16582182734?text=Hi%20Hey%20Hon%2C%20I%20want%20to%20order%20Raw%20Honey" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order on WhatsApp</a>
-                    <span class="steps-usa">USA orders: <a href="ship-honey-to-usa.html">WhatsApp for a shipping quote</a></span>
+            <div class="hh-cards-grid">
+                <div class="hh-info-card">
+                    <h3 class="hh-card-title"><i class="ph ph-jar"></i> Raw Honey Jars</h3>
+                    <ul class="hh-rate-list">
+                        <li><span>266ml Glass Jar</span><strong>JMD $2,200</strong></li>
+                        <li><span>500ml Glass Jar</span><strong>JMD $3,200</strong></li>
+                    </ul>
+                    <p class="hh-card-foot">100% pure, cold extracted, zero added sugar.</p>
                 </div>
+                <div class="hh-info-card">
+                    <h3 class="hh-card-title"><i class="ph ph-moped"></i> Courier &amp; Knutsford</h3>
+                    <ul class="hh-rate-list">
+                        <li><span>Portmore Courier</span><strong>JMD $500</strong></li>
+                        <li><span>Kingston &amp; Spanish Town</span><strong>JMD $800</strong></li>
+                        <li><span>Knutsford Express (Islandwide)</span><strong>JMD $700 flat</strong></li>
+                    </ul>
+                    <p class="hh-card-foot">Free Kingston delivery on orders over JMD $6,000.</p>
+                </div>
+                <div class="hh-info-card">
+                    <h3 class="hh-card-title"><i class="ph ph-map-pin"></i> Free Pickup Points</h3>
+                    <ul class="hh-rate-list">
+                        <li><span>Kingston 6 (Liguanea)</span><strong>Shop 15, Northside Plaza</strong></li>
+                        <li><span>Portmore</span><strong>Sovereign Village</strong></li>
+                        <li><span>Pickup</span><strong>Digicel Head Office</strong></li>
+                    </ul>
+                    <p class="hh-card-foot">Select your pickup point at checkout.</p>
+                </div>
+            </div>
+            <div class="hh-steps-bar">
+                <div class="hh-steps-top">
+                    <h3>Order in 3 Simple Steps</h3>
+                    <span>Delivery day and payment confirmed on WhatsApp.</span>
+                </div>
+                <ol class="hh-steps-grid">
+                    <li><span class="hh-step-badge">1</span><div class="hh-step-text"><strong>Select Your Jar</strong><span>Choose 266ml (JMD $2,200) or 500ml (JMD $3,200).</span></div></li>
+                    <li><span class="hh-step-badge">2</span><div class="hh-step-text"><strong>Choose Pickup or Delivery</strong><span>Add to your Harvest Bag and pick your parish or pickup spot.</span></div></li>
+                    <li><span class="hh-step-badge">3</span><div class="hh-step-text"><strong>Confirm on WhatsApp</strong><span>Send your pre-filled order to confirm delivery day and payment.</span></div></li>
+                </ol>
+            <div class="hh-steps-bottom">
+                <span>Overseas or sending a gift to family in Jamaica? <a class="hh-text-link" href="ship-honey-to-usa.html">See International &amp; Diaspora Orders</a></span>
+                <span><a class="hh-text-link" href="delivery.html">Full Delivery &amp; Parish Details</a></span>
+            </div>
             </div>
         </section>
 
@@ -1619,14 +1718,14 @@
                 </div>
                 <div class="story-content">
                     <h2>From the Hills of St. Mary to Your Table</h2>
-                    <p>Our honey is pure, natural, and made with care. Our bees live in the peaceful hills of St. Mary, where they visit clean, chemical-free tropical flowers.</p>
-                    <p>We never heat our honey. We carefully scrape it cold so it keeps all its natural character, natural pollen, and rich floral taste. What you get is smooth, golden honey, straight from the hive.</p>
+                    <p>Our bees forage across chemical-free tropical blossoms at our single origin apiaries near Guys Hill and Louisiana in St. Mary, Jamaica.</p>
+                    <p>We cold extract every harvest without heat or filtration, preserving the natural wildflower pollen, rich aroma, and smooth golden character straight from the hive.</p>
 
                     <div class="spec-grid">
-                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Unfiltered & Raw</div>
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> 100% Raw &amp; Cold Extracted</div>
                         <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Zero Added Sugar</div>
-                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Ethical Beekeeping</div>
-                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> 100% Local</div>
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> Guys Hill &amp; Louisiana, St. Mary</div>
+                        <div class="spec-item"><i class="ph-fill ph-check-circle"></i> RADA/ABIS Filed July 2026</div>
                     </div>
                 </div>
             </div>
@@ -1673,9 +1772,9 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary class="faq-header">Do you ship honey to the USA? <i class="ph ph-caret-down"></i></summary>
+                    <summary class="faq-header">Do you ship internationally or to the USA, UK, and Canada? <i class="ph ph-caret-down"></i></summary>
                     <div class="faq-content">
-                        <p>USA shipping is by WhatsApp quote only. We do not yet have a set USA carrier or flat shipping price. Message us on WhatsApp with your US state, quantity, and size and we will quote you.</p>
+                        <p>International shipping is by WhatsApp inquiry and quote only, with no set carrier, flat rate, or automatic checkout. Overseas buyers can also order through our standard checkout for local gift delivery to family in Jamaica.</p>
                     </div>
                 </details>
 
@@ -1689,7 +1788,7 @@
 
             <div id="wholesale" class="wholesale-box">
                 <h2 style="margin-bottom: 1rem; font-size: 1.8rem;">Wholesale & Gifting</h2>
-                <p style="margin-bottom: 2rem; font-size: 0.95rem; color: var(--slate);">Sending a Jamaican honey gift? Every 266ml (JMD $2,200) and 500ml (JMD $3,200) jar order includes a free custom gift note at checkout with delivery across Jamaica. For corporate gifting, event favors, supermarkets, gourmet grocers, and boutique retail stockists, request our wholesale catalog below or message us on WhatsApp.</p>
+                <p style="margin-bottom: 2rem; font-size: 0.95rem; color: var(--slate);">Every retail jar includes a complimentary custom gift note at checkout. For corporate gifting, wedding favors, restaurants, and retail stockists across Jamaica, request our wholesale catalog below.</p>
 
                 <!-- Updated Wholesale Form to connect to Backend Script -->
                 <form id="wholesale-form">
@@ -1747,7 +1846,7 @@
                 <a href="#wholesale">Wholesale</a>
                 <a href="#faq">FAQs</a>
                 <a href="delivery.html">Delivery</a>
-                <a href="ship-honey-to-usa.html">USA Orders</a>
+                <a href="ship-honey-to-usa.html">International</a>
             </nav>
 
             <div class="footer-contact">
@@ -1865,7 +1964,7 @@
                         <option value="Knutsford Express - Westmoreland">Westmoreland</option>
                     </optgroup>
                     <optgroup label="International (Quote Only)">
-                        <option value="USA Shipping - Quote on WhatsApp">USA Shipping - Quote on WhatsApp</option>
+                        <option value="International Shipping - Quote on WhatsApp">International Shipping - Quote on WhatsApp</option>
                     </optgroup>
                 </select>
             </div>
