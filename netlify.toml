@@ -1,0 +1,7 @@
+[build]
+  command = "npx astro build --config astro.netlify.config.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--legacy-peer-deps"

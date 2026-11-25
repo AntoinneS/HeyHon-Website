@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { BRAND } from '@/data/brand';
+---
+
+<BaseLayout
+  title="Returns, Damage Replacement & Refund Policy | Hey Hon Jamaica"
+  description="Glass jar transit guarantee, refund rules, and order modification policy for Hey Hon raw Jamaican honey."
+  canonicalPath="/refunds"
+>
+  <section class="mx-auto max-w-4xl px-3 sm:px-6 py-12">
+    <div class="light-studio-shell px-6 py-12 sm:px-12 space-y-6">
+      <span class="font-mono text-xs uppercase tracking-widest text-gold-deep">Policy · Updated November 2026</span>
+      <h1 class="font-serif text-5xl font-bold text-ink">Returns &amp; Transit Guarantee</h1>
+      <p class="text-sm leading-relaxed text-ink-muted">
+        Because raw honey is a sealed consumable food product, we cannot accept returns on opened jars. However, we stand behind every jar that leaves St. Mary.
+      </p>
+      <h2 class="font-serif text-2xl font-bold text-ink">Broken or Damaged in Transit</h2>
+      <p class="text-sm leading-relaxed text-ink-muted">
+        If a glass jar arrives cracked, leaking, or broken via local courier or Knutsford Express, send us a photo on WhatsApp ({BRAND.contact.whatsappDisplay}) within 24 hours of receipt and we will promptly replace the jar or issue a full refund for the damaged item.
+      </p>
+      <h2 class="font-serif text-2xl font-bold text-ink">Order Cancellations</h2>
+      <p class="text-sm leading-relaxed text-ink-muted">
+        Orders may be modified or cancelled for a full refund any time prior to courier dispatch or Knutsford Express drop-off by messaging us on WhatsApp with your Order ID.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

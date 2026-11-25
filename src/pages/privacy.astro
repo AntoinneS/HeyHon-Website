@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { BRAND } from '@/data/brand';
+---
+
+<BaseLayout
+  title="Privacy Policy | Hey Hon Jamaica"
+  description="How Hey Hon Artisanal Honey collects, uses, and protects your order, payment, and delivery information."
+  canonicalPath="/privacy"
+>
+  <section class="mx-auto max-w-4xl px-3 sm:px-6 py-12">
+    <div class="light-studio-shell px-6 py-12 sm:px-12 space-y-6">
+      <span class="font-mono text-xs uppercase tracking-widest text-gold-deep">Policy · Updated November 2026</span>
+      <h1 class="font-serif text-5xl font-bold text-ink">Privacy Policy</h1>
+      <p class="text-sm leading-relaxed text-ink-muted">
+        {BRAND.legalName} (“Hey Hon”, “we”, “us”) respects your privacy. We collect only the information needed to fulfill your honey orders, coordinate local courier or Knutsford Express delivery, write your custom gift notes, and respond to wholesale or international shipping inquiries.
+      </p>
+      <h2 class="font-serif text-2xl font-bold text-ink">Payment Security</h2>
+      <p class="text-sm leading-relaxed text-ink-muted">
+        Online card payments are processed securely by HandyPay Jamaica. Hey Hon never sees, stores, or logs your full credit or debit card numbers on our servers.
+      </p>
+      <h2 class="font-serif text-2xl font-bold text-ink">How We Use Your Details</h2>
+      <p class="text-sm leading-relaxed text-ink-muted">
+        Your name, phone number, email, and delivery instructions are used strictly for order confirmation, dispatch coordination, and customer support. We never sell or rent customer information to third parties. To request deletion of your contact details, message us on WhatsApp at {BRAND.contact.whatsappDisplay}.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

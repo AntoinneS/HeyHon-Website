@@ -1,0 +1,452 @@
+---
+import '@/styles/global.css';
+import { BRAND } from '@/data/brand';
+import { buildOrganizationSchema } from '@/lib/seo';
+import CartDrawer from '@/components/CartDrawer';
+import AskHeyHonModal from '@/components/AskHeyHonModal';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  schemas?: Record<string, unknown>[];
+  activeNav?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = '/',
+  ogImage = '/media/hey-hon-hero.png',
+  schemas = [],
+  activeNav = '',
+} = Astro.props;
+
+const isPreviewHost =
+  Astro.url.hostname.endsWith('.workers.dev') || Astro.url.hostname.endsWith('.netlify.app');
+const canonicalUrl = `${BRAND.domain}${canonicalPath === '/' ? '/' : canonicalPath}`;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${BRAND.domain}${ogImage}`;
+const allSchemas = [buildOrganizationSchema(), ...schemas];
+
+const navLinks = [
+  { href: '/shop', label: 'Shop', key: 'shop' },
+  { href: '/st-mary-flora', label: 'Bloom Map', key: 'flora' },
+  { href: '/wholesale', label: 'Wholesale', key: 'wholesale' },
+  { href: '/gifting', label: 'Gifting', key: 'gifting' },
+  { href: '/delivery', label: 'Delivery', key: 'delivery' },
+  { href: '/international', label: 'International', key: 'international' },
+  { href: '/learn', label: 'Learn', key: 'learn' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={isPreviewHost ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph & Social -->
+    <meta property="og:site_name" content="Hey Hon Jamaica" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <!-- Crisp Non-Squiggly Brand Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data (JSON-LD) -->
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </head>
+  <body class="relative min-h-screen flex flex-col bg-ivory text-ink selection:bg-gold/25 selection:text-ink">
+    <!-- Living Sunlit Warm-Alabaster Background + Small Flying Bees -->
+    <div class="ambient-bg" aria-hidden="true">
+      <div class="ambient-orb-1"></div>
+      <div class="ambient-orb-2"></div>
+      <div class="ambient-orb-3"></div>
+      <div class="ambient-topo"></div>
+      <canvas id="nectar-ambient-canvas" class="absolute inset-0 h-full w-full"></canvas>
+    </div>
+
+    <!-- Foreground App Shell -->
+    <div class="relative z-10 flex min-h-screen flex-col">
+      <!-- Velvet Espresso Top Ribbon -->
+      <div class="bg-obsidian border-b border-gold/20 text-ivory text-xs">
+        <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 sm:px-6 py-2">
+          <span class="text-[11px] font-medium text-gold-bright">Free Kingston delivery on orders over JMD $6,000</span>
+          <a href="/delivery" class="text-[11px] font-medium text-ivory/85 hover:text-gold-bright transition">
+            Islandwide Delivery &amp; Free Pickup →
+          </a>
+        </div>
+      </div>
+
+      <!-- Warm Toasted-Almond Sticky Navigation -->
+      <header class="sticky top-0 z-40 border-b border-obsidian/10 bg-ivory/88 backdrop-blur-xl text-ink">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3.5">
+          <a href="/" class="flex items-center gap-2.5 group">
+            <!-- Bespoke Minimalist Hexagonal Honey-Drop Emblem -->
+            <span class="flex h-9 w-9 items-center justify-center rounded-xl border border-gold/40 bg-obsidian text-gold-bright shadow-sm transition group-hover:border-gold-bright">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" class="h-5 w-5" fill="none" aria-hidden="true">
+                <path d="M14 2.5 23.5 8v12L14 25.5 4.5 20V8L14 2.5Z" stroke="currentColor" stroke-width="1.5" />
+                <path d="M14 8.2c2.2 3.2 4 5.2 4 7.3a4 4 0 1 1-8 0c0-2.1 1.8-4.1 4-7.3Z" fill="currentColor" fill-opacity="0.9" />
+              </svg>
+            </span>
+            <div class="leading-none">
+              <span class="font-serif text-2xl font-semibold tracking-tight text-ink group-hover:text-gold-deep transition">
+                Hey Hon
+              </span>
+              <span class="block text-[10px] font-medium tracking-[0.14em] uppercase text-ink-muted">
+                St. Mary, Jamaica
+              </span>
+            </div>
+          </a>
+
+          <nav class="hidden lg:flex items-center gap-7" aria-label="Primary Navigation">
+            {navLinks.map((link) => (
+              <a
+                href={link.href}
+                class={`text-sm font-medium transition ${
+                  activeNav === link.key
+                    ? 'text-gold-deep font-semibold'
+                    : 'text-ink/75 hover:text-ink'
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              id="open-ask-btn"
+              class="inline-flex items-center gap-2 rounded-full border border-obsidian/12 bg-parchment/90 px-3.5 py-2 text-xs font-medium text-ink/85 hover:border-gold/50 hover:text-ink transition shadow-xs"
+              aria-label="Search or ask Hey Hon"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-ink-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span class="hidden sm:inline">Search</span>
+            </button>
+
+            <button
+              type="button"
+              id="open-cart-btn"
+              class="inline-flex items-center gap-2 rounded-full bg-obsidian px-4 py-2 text-xs font-semibold text-ivory hover:bg-obsidian-soft transition shadow-sm"
+              aria-label="Open Harvest Bag"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span class="hidden sm:inline">Bag</span>
+              <span data-cart-badge class="inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-gold-bright px-1.5 font-mono text-[11px] font-semibold text-obsidian">
+                0
+              </span>
+            </button>
+
+            <button
+              type="button"
+              id="mobile-menu-toggle"
+              class="lg:hidden rounded-full border border-obsidian/12 bg-parchment/90 p-2 text-ink hover:border-gold/50 transition"
+              aria-label="Toggle Menu"
+              aria-expanded="false"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-obsidian/10 bg-ivory/95 backdrop-blur-xl px-5 py-5">
+          <div class="grid grid-cols-2 gap-2.5 text-sm">
+            {navLinks.map((link) => (
+              <a
+                href={link.href}
+                class={`rounded-xl border px-3.5 py-2.5 font-medium transition ${
+                  activeNav === link.key
+                    ? 'border-gold/50 bg-nectar/65 text-gold-deep'
+                    : 'border-obsidian/10 bg-parchment/90 text-ink/85'
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a href="/story" class="rounded-xl border border-obsidian/10 bg-parchment/90 px-3.5 py-2.5 font-medium text-ink/85">Our Story</a>
+            <a href="/why-hey-hon" class="rounded-xl border border-obsidian/10 bg-parchment/90 px-3.5 py-2.5 font-medium text-ink/85">Why Hey Hon?</a>
+            <a href="/recipes" class="rounded-xl border border-obsidian/10 bg-parchment/90 px-3.5 py-2.5 font-medium text-ink/85">Recipes</a>
+            <a href="/faq" class="rounded-xl border border-obsidian/10 bg-parchment/90 px-3.5 py-2.5 font-medium text-ink/85">FAQ</a>
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-1">
+        <slot />
+      </main>
+
+      <!-- Compact Warm Espresso Footer -->
+      <footer class="border-t border-ink/10 bg-obsidian text-ivory mt-12">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-10">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-2.5">
+                <span class="flex h-8 w-8 items-center justify-center rounded-xl border border-gold/35 bg-obsidian-soft text-gold-bright">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" class="h-4 w-4" fill="none" aria-hidden="true">
+                    <path d="M14 2.5 23.5 8v12L14 25.5 4.5 20V8L14 2.5Z" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M14 8.2c2.2 3.2 4 5.2 4 7.3a4 4 0 1 1-8 0c0-2.1 1.8-4.1 4-7.3Z" fill="currentColor" fill-opacity="0.9" />
+                  </svg>
+                </span>
+                <span class="font-serif text-2xl font-semibold text-ivory">Hey Hon</span>
+              </div>
+              <p class="text-xs sm:text-sm text-ivory/70">
+                100% pure raw honey from St. Mary, Jamaica.
+              </p>
+            </div>
+
+            <nav class="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm text-ivory/80" aria-label="Footer Navigation">
+              <a href="/shop" class="hover:text-gold-bright transition">Shop</a>
+              <a href="/st-mary-flora" class="hover:text-gold-bright transition">Bloom Map</a>
+              <a href="/gifting" class="hover:text-gold-bright transition">Gifting</a>
+              <a href="/wholesale" class="hover:text-gold-bright transition">Wholesale</a>
+              <a href="/delivery" class="hover:text-gold-bright transition">Delivery</a>
+              <a href="/international" class="hover:text-gold-bright transition">International</a>
+              <a href="/story" class="hover:text-gold-bright transition">Our Story</a>
+              <a href="/why-hey-hon" class="hover:text-gold-bright transition">Why Hey Hon</a>
+              <a href="/recipes" class="hover:text-gold-bright transition">Recipes</a>
+              <a href="/learn" class="hover:text-gold-bright transition">Guides</a>
+              <a href="/faq" class="hover:text-gold-bright transition">FAQ</a>
+              <a href="/contact" class="hover:text-gold-bright transition">Contact</a>
+            </nav>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ivory/55">
+            <p class="text-center sm:text-left">
+              © {new Date().getFullYear()} {BRAND.name} ·{' '}
+              <a href={BRAND.contact.whatsappUrl} target="_blank" rel="noopener noreferrer" class="hover:text-gold-bright transition">
+                WhatsApp {BRAND.contact.whatsappDisplay}
+              </a>{' '}
+              ·{' '}
+              <a href={BRAND.contact.instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-gold-bright transition">
+                {BRAND.contact.instagramHandle}
+              </a>{' '}
+              ·{' '}
+              <a href={BRAND.contact.gbpUrl} target="_blank" rel="noopener noreferrer" class="hover:text-gold-bright transition">
+                Google Reviews ↗
+              </a>
+            </p>
+            <p>
+              <a href="/privacy" class="hover:text-gold-bright transition">Privacy</a> ·{' '}
+              <a href="/terms" class="hover:text-gold-bright transition">Terms</a> ·{' '}
+              <a href="/refunds" class="hover:text-gold-bright transition">Refunds</a>
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Persistent Islands -->
+    <CartDrawer client:load />
+    <AskHeyHonModal client:load />
+
+    <script>
+      const cartBtn = document.getElementById('open-cart-btn');
+      const askBtn = document.getElementById('open-ask-btn');
+      const menuBtn = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      cartBtn?.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('heyhon:open-cart'));
+      });
+      askBtn?.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('heyhon:open-ask', { detail: { query: '' } }));
+      });
+      menuBtn?.addEventListener('click', () => {
+        const isHidden = mobileMenu?.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', String(!isHidden));
+      });
+
+      // Small gracefully flying golden honeybees across the ambient obsidian background
+      (function initFlyingBees() {
+        const canvas = document.getElementById('nectar-ambient-canvas') as HTMLCanvasElement | null;
+        if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let width = 0;
+        let height = 0;
+        const resize = () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        };
+        resize();
+        window.addEventListener('resize', resize);
+
+        interface Bee {
+          x: number;
+          y: number;
+          angle: number;
+          targetX: number;
+          targetY: number;
+          speed: number;
+          state: 'hover' | 'glide';
+          timer: number;
+          size: number;
+          opacity: number;
+          phase: number;
+        }
+
+        const count = window.innerWidth < 768 ? 4 : 8;
+        const bees: Bee[] = Array.from({ length: count }, () => {
+          const x = Math.random() * width;
+          const y = Math.random() * height;
+          return {
+            x,
+            y,
+            angle: Math.random() * Math.PI * 2,
+            targetX: x,
+            targetY: y,
+            speed: Math.random() * 0.9 + 0.9,
+            state: Math.random() > 0.4 ? 'glide' : 'hover',
+            timer: Math.random() * 110 + 60,
+            size: Math.random() * 1.1 + 2.5,
+            opacity: Math.random() * 0.28 + 0.34,
+            phase: Math.random() * Math.PI * 2,
+          };
+        });
+
+        let raf = 0;
+        const animate = (t: number) => {
+          ctx.clearRect(0, 0, width, height);
+
+          for (const bee of bees) {
+            bee.timer -= 1;
+
+            if (bee.state === 'hover') {
+              bee.x += Math.sin(t * 0.0024 + bee.phase) * 0.42;
+              bee.y += Math.cos(t * 0.0031 + bee.phase) * 0.36;
+              bee.angle += Math.sin(t * 0.0018 + bee.phase) * 0.014;
+
+              if (bee.timer <= 0) {
+                bee.state = 'glide';
+                bee.timer = Math.random() * 120 + 80;
+                const dist = Math.random() * 240 + 130;
+                const dir = bee.angle + (Math.random() - 0.5) * 1.9;
+                bee.targetX = bee.x + Math.cos(dir) * dist;
+                bee.targetY = bee.y + Math.sin(dir) * dist;
+              }
+            } else {
+              const targetAngle = Math.atan2(bee.targetY - bee.y, bee.targetX - bee.x);
+              let diff = targetAngle - bee.angle;
+              while (diff > Math.PI) diff -= Math.PI * 2;
+              while (diff < -Math.PI) diff += Math.PI * 2;
+              bee.angle += diff * 0.065;
+              bee.x += Math.cos(bee.angle) * bee.speed;
+              bee.y += Math.sin(bee.angle) * bee.speed;
+
+              const distToTarget = Math.hypot(bee.targetX - bee.x, bee.targetY - bee.y);
+              if (bee.timer <= 0 || distToTarget < 18) {
+                bee.state = 'hover';
+                bee.timer = Math.random() * 110 + 70;
+              }
+            }
+
+            const pad = 36;
+            if (bee.x < -pad) bee.x = width + pad;
+            if (bee.x > width + pad) bee.x = -pad;
+            if (bee.y < -pad) bee.y = height + pad;
+            if (bee.y > height + pad) bee.y = -pad;
+
+            // Draw sleek futuristic small golden bee
+            ctx.save();
+            ctx.translate(bee.x, bee.y);
+            ctx.rotate(bee.angle);
+
+            const s = bee.size;
+            const bodyLen = s * 2.1;
+            const bodyW = s * 1.15;
+
+            // Subtle warm sunlit halo
+            const halo = ctx.createRadialGradient(0, 0, 0, 0, 0, s * 3.8);
+            halo.addColorStop(0, `rgba(217, 138, 43, ${(bee.opacity * 0.24).toFixed(3)})`);
+            halo.addColorStop(1, 'rgba(217, 138, 43, 0)');
+            ctx.fillStyle = halo;
+            ctx.beginPath();
+            ctx.arc(0, 0, s * 3.8, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Fluttering translucent warm-linen wings (crisp on travertine & forest)
+            const wingSpeed = bee.state === 'glide' ? 0.048 : 0.036;
+            const flap = Math.sin(t * wingSpeed + bee.phase * 10) * 0.42;
+            ctx.fillStyle = `rgba(252, 246, 232, ${(bee.opacity * 0.85).toFixed(3)})`;
+            ctx.strokeStyle = `rgba(155, 87, 10, ${(bee.opacity * 0.35).toFixed(3)})`;
+            ctx.lineWidth = 0.6;
+
+            ctx.save();
+            ctx.translate(bodyLen * 0.15, -bodyW * 0.45);
+            ctx.rotate(-0.95 + flap);
+            ctx.beginPath();
+            ctx.ellipse(0, -s * 1.45, s * 0.72, s * 1.65, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.save();
+            ctx.translate(bodyLen * 0.15, bodyW * 0.45);
+            ctx.rotate(0.95 - flap);
+            ctx.beginPath();
+            ctx.ellipse(0, s * 1.45, s * 0.72, s * 1.65, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+
+            // Warm raw-honey amber abdomen + thorax
+            ctx.fillStyle = `rgba(212, 128, 22, ${(bee.opacity * 1.05).toFixed(3)})`;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, bodyLen, bodyW, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Deep botanical-ink stripes
+            ctx.fillStyle = `rgba(38, 25, 18, ${(bee.opacity * 0.92).toFixed(3)})`;
+            ctx.beginPath();
+            ctx.ellipse(-bodyLen * 0.32, 0, bodyLen * 0.19, bodyW * 0.94, 0, 0, Math.PI * 2);
+            ctx.ellipse(bodyLen * 0.16, 0, bodyLen * 0.19, bodyW * 0.94, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Tiny head & delicate stinger tip
+            ctx.beginPath();
+            ctx.arc(bodyLen * 0.82, 0, s * 0.78, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.strokeStyle = `rgba(38, 25, 18, ${(bee.opacity * 0.65).toFixed(3)})`;
+            ctx.lineWidth = 0.75;
+            ctx.beginPath();
+            ctx.moveTo(-bodyLen, 0);
+            ctx.lineTo(-bodyLen - s * 0.65, 0);
+            ctx.stroke();
+
+            ctx.restore();
+          }
+
+          raf = requestAnimationFrame(animate);
+        };
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) cancelAnimationFrame(raf);
+          else raf = requestAnimationFrame(animate);
+        });
+        raf = requestAnimationFrame(animate);
+      })();
+    </script>
+  </body>
+</html>

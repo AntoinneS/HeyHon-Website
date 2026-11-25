@@ -1,0 +1,85 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { FAQS } from '@/data/faq';
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/lib/seo';
+
+const categories = [...new Set(FAQS.map((f) => f.category))];
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'FAQ', path: '/faq' },
+  ]),
+  buildFaqSchema(FAQS),
+];
+---
+
+<BaseLayout
+  title="Frequently Asked Questions (FAQ) | Hey Hon Jamaica"
+  description="Quick answers about Hey Hon raw St. Mary honey: prices, card & WhatsApp ordering, Kingston/Portmore/Knutsford delivery, crystallization, airport luggage rules, and bulk orders."
+  canonicalPath="/faq"
+  schemas={schemas}
+>
+  <section class="pt-8 pb-6 sm:py-10 text-ink">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 sm:text-center">
+      <h1 class="font-serif text-4xl sm:text-6xl font-semibold text-ink">Frequently Asked Questions</h1>
+      <p class="mt-2.5 sm:mx-auto max-w-xl text-sm sm:text-base text-ink-muted">
+        Search any topic below for quick answers on delivery, pickup spots, storage, travel, gifting, or bulk orders.
+      </p>
+
+      <div class="mt-6 sm:mx-auto max-w-xl">
+        <input
+          type="search"
+          id="faq-filter-input"
+          placeholder="Search delivery, pickup, crystallized honey, customs, bulk orders..."
+          class="w-full rounded-full border border-obsidian/15 bg-parchment/95 px-5 py-3.5 text-base sm:text-sm text-ink placeholder:text-ink-muted/70 focus:border-gold focus:outline-none shadow-sm"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1100px] px-3 sm:px-6 pb-8">
+    <div class="light-studio-shell px-5 py-12 sm:px-10 lg:px-14 space-y-12">
+      {categories.map((cat) => (
+        <div class="faq-group space-y-3" data-category={cat}>
+          <h2 class="font-serif text-3xl font-bold text-ink border-b border-gold/25 pb-2">{cat}</h2>
+          {FAQS.filter((f) => f.category === cat).map((faq) => (
+            <details
+              class="faq-card glass-pearl rounded-2xl px-5 py-4 open:border-gold/60 transition"
+              data-search={`${faq.question} ${faq.answer} ${faq.tags.join(' ')}`.toLowerCase()}
+            >
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-xl font-semibold text-ink">
+                <span>{faq.question}</span>
+                <span class="font-mono text-gold-deep">+</span>
+              </summary>
+              <p class="mt-3 text-sm leading-relaxed text-ink-muted">{faq.answer}</p>
+              {faq.ctaHref && (
+                <a href={faq.ctaHref} class="mt-3 inline-block text-xs font-semibold text-gold-deep hover:underline">
+                  {faq.ctaLabel || 'Explore'} →
+                </a>
+              )}
+            </details>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script>
+    const input = document.getElementById('faq-filter-input') as HTMLInputElement | null;
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.faq-card'));
+    const groups = Array.from(document.querySelectorAll<HTMLElement>('.faq-group'));
+
+    input?.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      cards.forEach((c) => {
+        const match = !q || (c.dataset.search || '').includes(q);
+        c.style.display = match ? '' : 'none';
+      });
+      groups.forEach((g) => {
+        const visible = g.querySelectorAll('.faq-card:not([style*="display: none"])').length;
+        g.style.display = visible > 0 ? '' : 'none';
+      });
+    });
+  </script>
+</BaseLayout>

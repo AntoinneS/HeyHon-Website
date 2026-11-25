@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { FAQS } from '@/data/faq';
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/lib/seo';
+import IntlShippingCalculator from '@/components/IntlShippingCalculator';
+
+const intlFaqs = FAQS.filter((f) => ['intl-shipping', 'diaspora-gift', 'luggage-customs', 'prices'].includes(f.id));
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'International & Travel', path: '/international' },
+  ]),
+  buildFaqSchema(intlFaqs),
+];
+---
+
+<BaseLayout
+  title="International Shipping Calculator & Flying With Jamaican Honey | Hey Hon"
+  description="Estimate international shipping rates (Jamaica Post EMS & DHL/FedEx Express) for raw Jamaican honey to the USA, Canada, UK & worldwide, or check airport checked-luggage & customs rules."
+  canonicalPath="/international"
+  activeNav="international"
+  schemas={schemas}
+>
+  <section class="pt-8 pb-6 sm:py-10 text-ink">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="max-w-3xl">
+        <h1 class="font-serif text-4xl sm:text-6xl font-semibold text-ink">
+          Overseas Shipping &amp; Flying With Honey
+        </h1>
+        <p class="mt-2.5 text-sm sm:text-lg text-ink-muted">
+          Estimate shipping costs to the US, Canada, UK, and worldwide, or check rules for packing jars in checked luggage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pb-8">
+    <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14 space-y-12">
+      <IntlShippingCalculator client:load />
+
+      <div id="travel-guide" class="glass-pearl rounded-2xl p-6 sm:p-10">
+        <span class="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">
+          Visitors &amp; Returning Residents
+        </span>
+        <h2 class="mt-1.5 font-serif text-3xl sm:text-4xl font-semibold text-ink">
+          Flying Out of Jamaica With Hey Hon Honey
+        </h2>
+        <p class="mt-3 max-w-3xl text-sm sm:text-base leading-relaxed text-ink-muted">
+          Pure honey in sealed commercial glass jars for personal consumption is generally allowed into the <strong class="text-ink">United States, Canada, and the UK</strong> when declared to customs on arrival. Because both our 266ml and 500ml jars exceed the <strong class="text-ink">100ml (3.4 oz) carry-on liquid rule</strong>, always pack them securely in <strong class="text-gold-deep">checked luggage</strong>.
+        </p>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 text-sm">
+          <div class="rounded-2xl border border-ink/10 bg-white/85 p-5">
+            <div class="text-xs font-semibold uppercase tracking-wide text-gold-deep">Checked Bag Only</div>
+            <p class="mt-1.5 text-ink-muted">Wrap each glass jar inside a sealed zip bag padded with soft clothing in the center of your checked suitcase.</p>
+          </div>
+          <div class="rounded-2xl border border-ink/10 bg-white/85 p-5">
+            <div class="text-xs font-semibold uppercase tracking-wide text-gold-deep">Always Declare</div>
+            <p class="mt-1.5 text-ink-muted">Declare sealed commercial honey on your US CBP, Canada CBSA, or UK Border Force arrival form for smooth clearance.</p>
+          </div>
+          <div class="rounded-2xl border border-ink/10 bg-white/85 p-5">
+            <div class="text-xs font-semibold uppercase tracking-wide text-gold-deep">Pre-Flight Pickup</div>
+            <p class="mt-1.5 text-ink-muted">Order 2 to 3 days before departure for Kingston courier delivery or free pickup at Northside Plaza (Kingston 6) or Sovereign Village.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

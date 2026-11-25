@@ -1,0 +1,69 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/lib/seo';
+import { FAQS } from '@/data/faq';
+import { PRODUCTS } from '@/data/products';
+import { getLiveInventory } from '@/lib/inventory';
+import DiasporaGiftBuilder from '@/components/DiasporaGiftBuilder';
+import ProductCard from '@/components/ProductCard';
+
+const liveInventory = await getLiveInventory(Astro.locals.runtime?.env);
+const giftBox = PRODUCTS.find((p) => p.sku === 'HH-GIFT-BOX')!;
+const giftBoxStock = liveInventory.find((i) => i.sku === 'HH-GIFT-BOX');
+
+const giftFaqs = FAQS.filter((f) => ['diaspora-gift', 'gift-boxes', 'payment-methods', 'delivery-rates'].includes(f.id));
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Gifting in Jamaica', path: '/gifting' },
+  ]),
+  buildFaqSchema(giftFaqs),
+];
+---
+
+<BaseLayout
+  title="Send Honey to Family in Jamaica | Hey Hon Gifting"
+  description="Live abroad in the USA, UK, or Canada? Pay by card in seconds, add a free handwritten note, and send pure St. Mary raw honey straight to loved ones in Jamaica."
+  canonicalPath="/gifting"
+  activeNav="gifting"
+  schemas={schemas}
+>
+  <section class="pt-8 pb-6 sm:py-10 text-ink">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="max-w-3xl">
+        <h1 class="font-serif text-4xl sm:text-6xl font-semibold text-ink">
+          Send Honey to Family in Jamaica
+        </h1>
+        <p class="mt-2.5 text-sm sm:text-lg text-ink-muted">
+          Live abroad? Pay by card in seconds, add a free handwritten note, and we deliver straight to your loved ones in Jamaica.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pb-8">
+    <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14 space-y-14">
+      <DiasporaGiftBuilder client:load />
+
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 items-center border-t border-ink/10 pt-12">
+        <div class="lg:col-span-7 space-y-3">
+          <span class="text-xs font-semibold uppercase tracking-wide text-gold-deep">Launching Soon</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-ink">Hey Hon Signature Gift Boxes</h2>
+          <p class="text-sm sm:text-base leading-relaxed text-ink-muted">
+            Our keepsake presentation boxes pair St. Mary raw honey with a wooden dipper and personal card for holidays, weddings, and family gifts. Join the waitlist below for early access.
+          </p>
+        </div>
+        <div class="lg:col-span-5">
+          <ProductCard
+            client:visible
+            product={giftBox}
+            effectiveAvailable={giftBoxStock?.effectiveAvailable ?? 0}
+            status={giftBoxStock?.status ?? 'coming_soon'}
+            showApproxUsd={true}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

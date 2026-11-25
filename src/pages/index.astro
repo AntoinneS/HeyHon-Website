@@ -1,0 +1,268 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PRODUCTS } from '@/data/products';
+import { FAQS } from '@/data/faq';
+import { getLiveInventory } from '@/lib/inventory';
+import { buildFaqSchema, buildProductSchema } from '@/lib/seo';
+import ProductCard from '@/components/ProductCard';
+import StMaryBloomMap from '@/components/StMaryBloomMap';
+
+const liveInventory = await getLiveInventory(Astro.locals.runtime?.env);
+const stockBySku = new Map(liveInventory.map((i) => [i.sku, i]));
+
+const topFaqs = FAQS.slice(0, 6);
+const schemas = [
+  ...PRODUCTS.filter((p) => p.type === 'single').map((p) =>
+    buildProductSchema(p, (stockBySku.get(p.sku)?.effectiveAvailable ?? 1) > 0)
+  ),
+  buildFaqSchema(topFaqs),
+];
+---
+
+<BaseLayout
+  title="Hey Hon | 100% Pure Raw Jamaican Honey from St. Mary"
+  description="100% pure, unheated raw wildflower honey from St. Mary, Jamaica. 266ml JMD $2,200, 500ml JMD $3,200. Pay online by card or order via WhatsApp. Free Kingston delivery over JMD $6,000 & Knutsford Express islandwide."
+  canonicalPath="/"
+  activeNav="home"
+  schemas={schemas}
+>
+  <!-- 1. ACTION-FIRST VELVET ESPRESSO HERO + RAW COMB SHOWCASE -->
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pt-4 pb-4 sm:pt-6 sm:pb-6">
+    <div class="grid grid-cols-1 gap-5 lg:gap-6 lg:grid-cols-12 lg:items-stretch">
+      <div class="lg:col-span-7 velvet-studio-shell p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-8">
+        <div class="space-y-5">
+          <span class="inline-flex w-fit items-center gap-2 rounded-full border border-gold-bright/30 bg-white/6 px-3.5 py-1 text-xs font-medium text-gold-bright">
+            100% Pure &amp; Raw · St. Mary, Jamaica
+          </span>
+
+          <h1 class="font-serif text-4xl sm:text-6xl lg:text-[4.15rem] font-bold leading-[1.03] text-ivory">
+            Pure raw honey from <span class="text-gold-bright">St. Mary.</span>
+          </h1>
+
+          <p class="max-w-lg text-[15px] sm:text-lg leading-relaxed text-ivory/80">
+            Unfiltered Jamaican wildflower honey from nectar-fed bees, bottled strictly in glass.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 pt-1">
+          <a
+            href="/shop"
+            class="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-gold-bright px-7 py-3.5 text-sm font-semibold text-obsidian hover:bg-nectar transition shadow-sm"
+          >
+            Shop Honey
+          </a>
+          <a
+            href="/why-hey-hon"
+            class="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-ivory/25 bg-white/8 px-6 py-3.5 text-sm font-semibold text-ivory hover:border-gold-bright hover:text-gold-bright transition"
+          >
+            Why Hey Hon →
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="glass-pearl relative h-full flex flex-col justify-between gap-3 overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] p-3 sm:p-4">
+          <div class="relative aspect-[4/3] lg:aspect-auto lg:flex-1 min-h-[240px] overflow-hidden rounded-2xl border border-obsidian/12 bg-obsidian">
+            <video
+              src="/media/honeycomb-drip.mp4"
+              poster="/media/bee-forage.jpg"
+              autoplay
+              muted
+              loop
+              playsinline
+              class="h-full w-full object-cover"
+            />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-obsidian/20"></div>
+            <span class="pointer-events-none absolute left-3 top-3 rounded-full border border-gold-bright/35 bg-obsidian/80 px-3 py-1 text-[11px] font-semibold text-gold-bright backdrop-blur-sm">
+              Straight From The Comb · St. Mary
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div class="rounded-xl border border-obsidian/10 bg-sandstone/65 px-3.5 py-2.5">
+              <div class="font-serif text-sm font-bold text-ink">100% Nectar-Fed</div>
+              <div class="mt-0.5 text-xs text-ink-muted">Never sugar-fed bees</div>
+            </div>
+            <div class="rounded-xl border border-obsidian/10 bg-sandstone/65 px-3.5 py-2.5">
+              <div class="font-serif text-sm font-bold text-ink">Glass Jars Only</div>
+              <div class="mt-0.5 text-xs text-ink-muted">Zero BPA or microplastics</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SHOP OUR HONEY -->
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 py-2 sm:py-4">
+    <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14 lg:py-14">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
+        <div>
+          <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-ink">Shop Our Honey</h2>
+          <p class="mt-1.5 text-sm sm:text-base text-ink-muted">
+            Single jars and free-delivery bundles, ready for pickup or islandwide delivery.
+          </p>
+        </div>
+        <a href="/shop" class="text-sm font-semibold text-gold-deep hover:text-ink underline underline-offset-4">
+          View All →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {PRODUCTS.map((product) => {
+          const st = stockBySku.get(product.sku);
+          return (
+            <ProductCard
+              client:visible
+              product={product}
+              effectiveAvailable={st?.effectiveAvailable ?? product.defaultStock}
+              status={st?.status ?? (product.statusOverride === 'auto' ? 'in_stock' : product.statusOverride)}
+            />
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. BLOOM MAP PREVIEW -->
+  <section class="py-12 sm:py-16 text-ink">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="mb-7 max-w-2xl">
+        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-ink">
+          What Our Bees Are Visiting
+        </h2>
+        <p class="mt-2 text-sm sm:text-base leading-relaxed text-ink-muted">
+          Tap any month to see what is blooming in St. Mary and how it shapes the color, taste, and natural benefits of our honey.
+        </p>
+      </div>
+
+      <StMaryBloomMap client:visible compact={true} />
+    </div>
+  </section>
+
+  <!-- 4. QUICK PATHS + COMPACT HARVEST UPDATES STRIP -->
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 py-2 sm:py-4">
+    <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14 lg:py-14 space-y-10">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <a href="/delivery" class="group glass-pearl rounded-2xl p-5 hover:-translate-y-0.5 transition flex flex-col justify-between">
+          <div>
+            <span class="inline-flex rounded-full bg-sandstone/80 px-2.5 py-0.5 text-[11px] font-semibold text-obsidian">
+              14 Parishes
+            </span>
+            <h3 class="mt-2.5 font-serif text-2xl font-semibold text-ink group-hover:text-gold-deep transition">
+              Delivery &amp; Pickup
+            </h3>
+            <p class="mt-1.5 text-sm text-ink-muted leading-relaxed">
+              Portmore $500, Kingston $800 (free over $6,000), Knutsford Express $700, or free pickup.
+            </p>
+          </div>
+          <span class="mt-4 inline-block text-xs font-semibold text-gold-deep">Check rates →</span>
+        </a>
+
+        <a href="/gifting" class="group glass-pearl rounded-2xl p-5 hover:-translate-y-0.5 transition flex flex-col justify-between">
+          <div>
+            <span class="inline-flex rounded-full bg-nectar/80 px-2.5 py-0.5 text-[11px] font-semibold text-gold-deep">
+              Free Gift Note
+            </span>
+            <h3 class="mt-2.5 font-serif text-2xl font-semibold text-ink group-hover:text-gold-deep transition">
+              Send a Gift in Jamaica
+            </h3>
+            <p class="mt-1.5 text-sm text-ink-muted leading-relaxed">
+              Order from abroad by card with a free handwritten note and local delivery.
+            </p>
+          </div>
+          <span class="mt-4 inline-block text-xs font-semibold text-gold-deep">Build a gift →</span>
+        </a>
+
+        <a href="/wholesale" class="group glass-pearl rounded-2xl p-5 hover:-translate-y-0.5 transition flex flex-col justify-between">
+          <div>
+            <span class="inline-flex rounded-full bg-sandstone/80 px-2.5 py-0.5 text-[11px] font-semibold text-obsidian">
+              10+ Jars
+            </span>
+            <h3 class="mt-2.5 font-serif text-2xl font-semibold text-ink group-hover:text-gold-deep transition">
+              Events &amp; Wholesale
+            </h3>
+            <p class="mt-1.5 text-sm text-ink-muted leading-relaxed">
+              Bulk pricing starting at 10 jars for cafés, hotels, gifts, and weddings.
+            </p>
+          </div>
+          <span class="mt-4 inline-block text-xs font-semibold text-gold-deep">Estimate price →</span>
+        </a>
+
+        <a href="/international" class="group glass-pearl rounded-2xl p-5 hover:-translate-y-0.5 transition flex flex-col justify-between">
+          <div>
+            <span class="inline-flex rounded-full bg-nectar/80 px-2.5 py-0.5 text-[11px] font-semibold text-gold-deep">
+              Travel &amp; DHL
+            </span>
+            <h3 class="mt-2.5 font-serif text-2xl font-semibold text-ink group-hover:text-gold-deep transition">
+              Overseas Shipping
+            </h3>
+            <p class="mt-1.5 text-sm text-ink-muted leading-relaxed">
+              Estimate overseas shipping rates or check airport checked-bag rules.
+            </p>
+          </div>
+          <span class="mt-4 inline-block text-xs font-semibold text-gold-deep">Estimate shipping →</span>
+        </a>
+      </div>
+
+      <!-- Compact Horizontal Harvest Alert Strip -->
+      <div class="glass-dark rounded-2xl p-5 sm:p-7 text-ivory flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+        <div class="max-w-md">
+          <h3 class="font-serif text-2xl font-semibold text-ivory">Get Fresh Harvest Alerts</h3>
+          <p class="mt-1 text-xs sm:text-sm text-ivory/75">
+            First notice when seasonal St. Mary jars and gift boxes drop. No spam.
+          </p>
+        </div>
+
+        <form id="hive-newsletter-form" class="flex-1 flex flex-col sm:flex-row gap-2.5 max-w-xl">
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Your email address"
+            class="flex-1 rounded-full border border-white/15 bg-obsidian-soft px-4 py-3 text-base sm:text-sm text-ivory placeholder:text-ivory/45 focus:border-gold focus:outline-none"
+          />
+          <button
+            type="submit"
+            id="hive-nl-btn"
+            class="shrink-0 rounded-full bg-gold-bright px-6 py-3 text-sm font-semibold text-obsidian hover:bg-nectar transition"
+          >
+            Join List
+          </button>
+        </form>
+      </div>
+      <p id="hive-nl-msg" class="text-xs font-semibold text-bloom-deep text-center hidden"></p>
+    </div>
+  </section>
+
+  <script>
+    const nlForm = document.getElementById('hive-newsletter-form') as HTMLFormElement | null;
+    const nlBtn = document.getElementById('hive-nl-btn') as HTMLButtonElement | null;
+    const nlMsg = document.getElementById('hive-nl-msg');
+
+    nlForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!nlBtn || !nlMsg) return;
+      const fd = new FormData(nlForm);
+      nlBtn.disabled = true;
+      nlBtn.textContent = 'Joining...';
+      try {
+        await fetch('/api/leads/international', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            entryType: 'Newsletter',
+            email: String(fd.get('email') || ''),
+            notes: 'Home page harvest updates signup',
+          }),
+        });
+        nlMsg.textContent = 'You are on the list! We will notify you on the next harvest drop.';
+        nlMsg.classList.remove('hidden');
+        nlForm.reset();
+      } finally {
+        nlBtn.disabled = false;
+        nlBtn.textContent = 'Join List';
+      }
+    });
+  </script>
+</BaseLayout>

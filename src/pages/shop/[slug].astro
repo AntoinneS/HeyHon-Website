@@ -1,0 +1,190 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { BRAND, formatJmd, formatApproxFx } from '@/data/brand';
+import { PRODUCTS, getProductBySlug } from '@/data/products';
+import { FAQS } from '@/data/faq';
+import { getLiveInventory } from '@/lib/inventory';
+import { buildBreadcrumbSchema, buildFaqSchema, buildProductSchema } from '@/lib/seo';
+import DeliveryChecker from '@/components/DeliveryChecker';
+
+const { slug } = Astro.params;
+const product = slug ? getProductBySlug(slug) : undefined;
+
+if (!product) {
+  return Astro.redirect('/shop', 302);
+}
+
+const liveInventory = await getLiveInventory(Astro.locals.runtime?.env);
+const stock = liveInventory.find((i) => i.sku === product.sku);
+const effectiveAvailable = stock?.effectiveAvailable ?? product.defaultStock;
+const status = stock?.status ?? (product.statusOverride === 'auto' ? 'in_stock' : product.statusOverride);
+const isBuyable = status === 'in_stock' || status === 'low_stock';
+
+const productFaqs = FAQS.filter((f) => ['purity', 'crystallization', 'delivery-rates', 'luggage-customs', 'infants'].includes(f.id));
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Shop', path: '/shop' },
+    { name: product.shortName, path: `/shop/${product.slug}` },
+  ]),
+  buildProductSchema(product, effectiveAvailable > 0),
+  buildFaqSchema(productFaqs),
+];
+---
+
+<BaseLayout
+  title={`${product.name} (${formatJmd(product.priceJmd)}) | Hey Hon Jamaica`}
+  description={product.description}
+  canonicalPath={`/shop/${product.slug}`}
+  ogImage={product.image}
+  activeNav="shop"
+  schemas={schemas}
+>
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pt-6 pb-8">
+    <div class="light-studio-shell px-4 py-8 sm:px-10 lg:px-14 lg:py-12">
+      <nav class="mb-6 flex items-center gap-2 text-xs text-ink-muted" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-gold-deep">Home</a>
+        <span>/</span>
+        <a href="/shop" class="hover:text-gold-deep">Shop</a>
+        <span>/</span>
+        <span class="text-ink font-medium">{product.shortName}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 gap-8 lg:gap-12 lg:grid-cols-12">
+        <!-- Left Gallery -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="jar-pedestal-light relative aspect-square overflow-hidden rounded-3xl border border-obsidian/10 p-8 shadow-sm">
+            <span class="absolute left-4 top-4 rounded-full bg-parchment/95 border border-obsidian/12 px-3.5 py-1 text-xs font-semibold text-ink">
+              {product.badge}
+            </span>
+            <img
+              src={product.image}
+              alt={product.name}
+              class="h-full w-full object-contain drop-shadow-[0_18px_28px_rgba(38,25,18,0.18)]"
+            />
+          </div>
+
+          <div class="grid grid-cols-3 gap-3">
+            {product.gallery.map((img) => (
+              <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-obsidian/12 bg-sandstone/55">
+                <img src={img} alt={product.shortName} loading="lazy" class="h-full w-full object-cover" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right Buy Box -->
+        <div class="lg:col-span-6 space-y-5">
+          <div>
+            <div class="flex flex-wrap items-center gap-2.5 text-xs font-semibold">
+              <span class="text-gold-deep">{product.sizeLabel}</span>
+              <span class="text-ink-muted">·</span>
+              {status === 'in_stock' && <span class="text-bloom-deep">In Stock</span>}
+              {status === 'low_stock' && <span class="text-gold-deep">Only {effectiveAvailable} Left</span>}
+              {status === 'out_of_stock' && <span class="text-ink-muted">Sold Out</span>}
+            </div>
+
+            <h1 class="mt-2 font-serif text-4xl sm:text-5xl font-semibold text-ink">{product.name}</h1>
+
+            <div class="mt-3 flex items-baseline gap-3">
+              <span class="text-3xl font-bold text-ink">{formatJmd(product.priceJmd)}</span>
+              <span class="font-mono text-xs text-ink-muted">
+                {formatApproxFx(product.priceJmd, 'USD')} · {formatApproxFx(product.priceJmd, 'CAD')} · {formatApproxFx(product.priceJmd, 'GBP')}
+              </span>
+            </div>
+          </div>
+
+          <p class="text-sm sm:text-base leading-relaxed text-ink-muted">{product.description}</p>
+
+          <div class="flex flex-col sm:flex-row flex-wrap gap-3">
+            {isBuyable ? (
+              <button
+                type="button"
+                id="pdp-add-btn"
+                data-sku={product.sku}
+                data-name={product.shortName}
+                data-size={product.sizeLabel}
+                data-price={product.priceJmd}
+                data-image={product.image}
+                class="flex-1 min-w-[200px] rounded-full bg-obsidian px-8 py-4 text-sm font-semibold text-ivory hover:bg-gold-deep transition shadow-sm"
+              >
+                Add to Bag ({formatJmd(product.priceJmd)})
+              </button>
+            ) : (
+              <a
+                href="/shop"
+                class="flex-1 text-center rounded-full bg-ink/10 px-8 py-4 text-sm font-semibold text-ink-muted"
+              >
+                Sold Out · View Available Jars
+              </a>
+            )}
+            <a
+              href={`${BRAND.contact.whatsappUrl}?text=${encodeURIComponent(`Hi Hey Hon! I'd like to order ${product.name} (${formatJmd(product.priceJmd)}).`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-center rounded-full border border-obsidian/15 bg-parchment/90 px-6 py-4 text-sm font-semibold text-ink hover:border-gold hover:text-gold-deep transition"
+            >
+              Order on WhatsApp
+            </a>
+          </div>
+
+          <ul class="glass-pearl space-y-2 rounded-2xl p-5 text-sm text-ink">
+            {product.highlights.map((h) => (
+              <li class="flex items-start gap-2.5">
+                <span class="text-bloom-deep font-bold">✓</span>
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="flex flex-col gap-2 pt-1 text-xs font-semibold">
+            <a href="/st-mary-flora" class="text-gold-deep hover:text-ink transition">
+              See the St. Mary flowers behind our honey →
+            </a>
+            <a href="/faq" class="text-ink-muted hover:text-ink transition">
+              Questions about delivery, storage, or flying with honey? Visit our FAQ →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-14 border-t border-ink/10 pt-10">
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-ink mb-5">Other Jars &amp; Free Kingston Bundles</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {PRODUCTS.filter((p) => p.sku !== product.sku && p.type !== 'gift_box').map((other) => (
+            <a
+              href={`/shop/${other.slug}`}
+              class="glass-pearl rounded-2xl p-5 hover:-translate-y-0.5 transition flex items-center justify-between gap-4"
+            >
+              <div>
+                <div class="text-xs font-medium text-gold-deep">{other.sizeLabel}</div>
+                <div class="font-serif text-xl font-semibold text-ink mt-0.5">{other.shortName}</div>
+                <div class="text-sm font-semibold text-ink-muted mt-1">{formatJmd(other.priceJmd)}</div>
+              </div>
+              <span class="text-gold-deep font-semibold">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-8">
+    <DeliveryChecker client:visible />
+  </section>
+
+  <script>
+    import { addToCart } from '@/lib/cartStore';
+    const btn = document.getElementById('pdp-add-btn');
+    btn?.addEventListener('click', () => {
+      addToCart({
+        sku: btn.getAttribute('data-sku') || '',
+        name: btn.getAttribute('data-name') || '',
+        sizeLabel: btn.getAttribute('data-size') || '',
+        priceJmd: Number(btn.getAttribute('data-price') || 0),
+        image: btn.getAttribute('data-image') || '/media/raw-honey.png',
+      });
+    });
+  </script>
+</BaseLayout>

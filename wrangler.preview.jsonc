@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "heyhon-preview",
+  "main": "dist/_worker.js/index.js",
+  "compatibility_date": "2026-11-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "SITE_URL": "https://heyhonjamaica.com",
+    "GOOGLE_SHEET_ID": "1kVxhtemSDtAVdAZj9w3npNVIenHG2uCHB_8FSwTYMPQ",
+    "WHATSAPP_NUMBER": "16582182734",
+    "FREE_KINGSTON_THRESHOLD_JMD": "6000",
+    "WHOLESALE_MOQ": "10"
+  }
+}

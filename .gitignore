@@ -1,0 +1,11 @@
+dist/
+.astro/
+.wrangler/
+.wrangler-config/
+.netlify/
+node_modules/
+.env
+.env.*
+.dev.vars
+*.log
+.DS_Store

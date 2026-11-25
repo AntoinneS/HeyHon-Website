@@ -1,0 +1,84 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PRODUCTS } from '@/data/products';
+import { getLiveInventory } from '@/lib/inventory';
+import { buildBreadcrumbSchema, buildProductSchema } from '@/lib/seo';
+import ProductCard from '@/components/ProductCard';
+import DeliveryChecker from '@/components/DeliveryChecker';
+
+const liveInventory = await getLiveInventory(Astro.locals.runtime?.env);
+const stockBySku = new Map(liveInventory.map((i) => [i.sku, i]));
+
+const orderStatus = Astro.url.searchParams.get('status');
+const orderId = Astro.url.searchParams.get('order');
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Shop', path: '/shop' },
+  ]),
+  ...PRODUCTS.filter((p) => p.type !== 'gift_box').map((p) =>
+    buildProductSchema(p, (stockBySku.get(p.sku)?.effectiveAvailable ?? 1) > 0)
+  ),
+];
+---
+
+<BaseLayout
+  title="Shop Raw Jamaican Honey (266ml, 500ml & Bundles) | Hey Hon"
+  description="Shop 100% pure, unheated raw wildflower honey from St. Mary, Jamaica. 266ml JMD $2,200, 500ml JMD $3,200, plus Free Kingston Delivery bundles."
+  canonicalPath="/shop"
+  activeNav="shop"
+  schemas={schemas}
+>
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pt-4 pb-5">
+    <div class="velvet-studio-shell px-5 py-8 sm:px-10 lg:px-14 lg:py-11">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5">
+        <div class="max-w-2xl">
+          <span class="inline-flex w-fit items-center rounded-full border border-gold-bright/30 bg-white/6 px-3 py-1 text-[11px] font-medium text-gold-bright">
+            Fresh St. Mary Harvest
+          </span>
+          <h1 class="mt-3 font-serif text-4xl sm:text-6xl font-semibold text-ivory">Shop Raw Honey</h1>
+          <p class="mt-2.5 text-sm sm:text-lg text-ivory/80">
+            100% pure Jamaican honey in glass jars, bottled unheated for local pickup or islandwide delivery.
+          </p>
+        </div>
+
+        <span class="inline-flex w-fit shrink-0 items-center rounded-full border border-gold-bright/35 bg-gold-bright/15 px-4 py-2 text-xs font-semibold text-gold-bright">
+          Free Kingston Delivery over JMD $6,000
+        </span>
+      </div>
+
+      {orderStatus === 'paid' && orderId && (
+        <div class="mt-6 rounded-2xl border border-gold-bright/40 bg-gold-bright/12 p-5 text-ivory">
+          <div class="text-xs uppercase tracking-wide text-gold-bright font-semibold">Order Confirmed · {orderId}</div>
+          <p class="mt-1 text-sm text-ivory/85">
+            Thank you! Your order (#{orderId}) is confirmed. We will message you on WhatsApp shortly with your delivery or pickup time.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pb-8">
+    <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14 lg:py-14">
+      <div class="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {PRODUCTS.map((product) => {
+          const st = stockBySku.get(product.sku);
+          return (
+            <ProductCard
+              client:load
+              product={product}
+              effectiveAvailable={st?.effectiveAvailable ?? product.defaultStock}
+              status={st?.status ?? (product.statusOverride === 'auto' ? 'in_stock' : product.statusOverride)}
+              showApproxUsd={true}
+            />
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-8">
+    <DeliveryChecker client:visible />
+  </section>
+</BaseLayout>

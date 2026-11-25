@@ -1,0 +1,81 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { FAQS } from '@/data/faq';
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/lib/seo';
+import DeliveryChecker from '@/components/DeliveryChecker';
+
+const delFaqs = FAQS.filter((f) => ['delivery-rates', 'pickup', 'payment-methods', 'prices'].includes(f.id));
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Delivery & Free Pickup', path: '/delivery' },
+  ]),
+  buildFaqSchema(delFaqs),
+];
+---
+
+<BaseLayout
+  title="Delivery & Free Pickup in Jamaica | Hey Hon Raw Honey"
+  description="Fast courier delivery in Kingston & Spanish Town ($800, free over $6,000), Portmore ($500), Knutsford Express across 11 parishes ($700), or free pickup at 3 locations."
+  canonicalPath="/delivery"
+  activeNav="delivery"
+  schemas={schemas}
+>
+  <section class="pt-8 pb-6 sm:py-10 text-ink">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="max-w-3xl">
+        <h1 class="font-serif text-4xl sm:text-6xl font-semibold text-ink">
+          Delivery &amp; Free Pickup
+        </h1>
+        <p class="mt-2.5 text-sm sm:text-lg text-ink-muted">
+          Fast courier delivery in Kingston, Portmore, and Spanish Town, Knutsford Express across 11 parishes, or free pickup at 3 locations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-10">
+    <DeliveryChecker client:load />
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pb-8">
+    <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14 space-y-10">
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div class="glass-pearl rounded-2xl p-6">
+          <span class="text-xs font-semibold uppercase tracking-wide text-gold-deep">Direct Courier</span>
+          <h2 class="mt-1 font-serif text-2xl sm:text-3xl font-semibold text-ink">Doorstep Delivery</h2>
+          <ul class="mt-4 divide-y divide-ink/10 text-sm text-ink-muted">
+            <li class="flex justify-between py-2.5"><span>Portmore</span><strong class="text-ink">JMD $500</strong></li>
+            <li class="flex justify-between py-2.5"><span>Kingston &amp; St. Andrew</span><strong class="text-ink">JMD $800</strong></li>
+            <li class="flex justify-between py-2.5"><span>Kingston (JMD $6,000+)</span><strong class="text-bloom-deep">Free</strong></li>
+            <li class="flex justify-between py-2.5"><span>Spanish Town</span><strong class="text-ink">JMD $800</strong></li>
+          </ul>
+        </div>
+
+        <div class="glass-pearl rounded-2xl p-6">
+          <span class="text-xs font-semibold uppercase tracking-wide text-gold-deep">Islandwide Hubs</span>
+          <h2 class="mt-1 font-serif text-2xl sm:text-3xl font-semibold text-ink">Knutsford Express</h2>
+          <p class="mt-2 text-2xl font-bold text-gold-deep">JMD $700 Flat Rate</p>
+          <p class="mt-2 text-sm text-ink-muted leading-relaxed">
+            Clarendon, Hanover, Manchester, Portland, St. Ann, St. Elizabeth, St. James, St. Mary, St. Thomas, Trelawny &amp; Westmoreland.
+          </p>
+        </div>
+
+        <div class="glass-pearl rounded-2xl p-6">
+          <span class="text-xs font-semibold uppercase tracking-wide text-bloom-deep">No Fee</span>
+          <h2 class="mt-1 font-serif text-2xl sm:text-3xl font-semibold text-ink">Free Pickup Points</h2>
+          <ul class="mt-4 divide-y divide-ink/10 text-sm">
+            <li class="py-2.5"><strong class="text-ink">Kingston 6 (Liguanea)</strong><span class="block text-xs text-ink-muted">Shop 15, Northside Plaza</span></li>
+            <li class="py-2.5"><strong class="text-ink">Portmore</strong><span class="block text-xs text-ink-muted">Sovereign Village</span></li>
+            <li class="py-2.5"><strong class="text-ink">Downtown Kingston</strong><span class="block text-xs text-ink-muted">Digicel Head Office</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="text-xs sm:text-sm text-ink-muted text-center">
+        Every glass jar is carefully cushioned and sealed for safe road transit, and we send your dispatch confirmation directly on WhatsApp.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

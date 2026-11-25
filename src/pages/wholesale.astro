@@ -1,0 +1,69 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/lib/seo';
+import { FAQS } from '@/data/faq';
+import WholesaleCalculator from '@/components/WholesaleCalculator';
+
+const wsFaqs = FAQS.filter((f) => ['wholesale-moq', 'purity', 'gift-boxes', 'delivery-rates'].includes(f.id));
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Wholesale & Wedding Favors', path: '/wholesale' },
+  ]),
+  buildFaqSchema(wsFaqs),
+];
+---
+
+<BaseLayout
+  title="Wholesale, Cafes & Wedding Favors (10+ Jars) | Hey Hon Jamaica"
+  description="Order 10 or more jars of 100% pure St. Mary raw honey with discounted bulk pricing for cafes, hotels, corporate gifts, and weddings."
+  canonicalPath="/wholesale"
+  activeNav="wholesale"
+  schemas={schemas}
+>
+  <section class="pt-8 pb-6 sm:py-10 text-ink">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="max-w-3xl">
+        <h1 class="font-serif text-4xl sm:text-6xl font-semibold text-ink">
+          Wholesale, Cafés &amp; Wedding Favors
+        </h1>
+        <p class="mt-2.5 text-sm sm:text-lg text-ink-muted">
+          Order 10 or more jars with discounted bulk pricing for cafés, hotels, corporate gifts, and weddings.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pb-8">
+    <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14 space-y-12">
+      <WholesaleCalculator client:load />
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 border-t border-ink/10 pt-10">
+        {[
+          {
+            title: 'Cafés, Hotels & Villas',
+            body: 'Serve real St. Mary glass jars with espresso bars, breakfast service, and guest welcome baskets.',
+          },
+          {
+            title: 'Shops & Grocers',
+            body: 'Stock pure, unheated Jamaican raw honey in heavy glass with dependable islandwide restocks.',
+          },
+          {
+            title: 'Corporate Gifting',
+            body: 'Proudly Jamaican client and team gift boxes with complimentary custom cards.',
+          },
+          {
+            title: 'Wedding Favors',
+            body: '266ml glass jars finished with optional custom ribbons and thank-you tags from 10 jars.',
+          },
+        ].map((card) => (
+          <div class="glass-pearl rounded-2xl p-6">
+            <h3 class="font-serif text-2xl font-semibold text-ink">{card.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-muted">{card.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,68 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { ST_MARY_FLORA } from '@/data/flora';
+import { buildBreadcrumbSchema } from '@/lib/seo';
+import StMaryBloomMap from '@/components/StMaryBloomMap';
+
+const primaryCount = ST_MARY_FLORA.filter((f) => f.layer === 'Main Honey Flowers').length;
+const pollenCount = ST_MARY_FLORA.filter((f) => f.layer === 'Fruit & Herb Blossoms').length;
+const ecoCount = ST_MARY_FLORA.filter((f) => f.layer === 'Surrounding Trees & Crops').length;
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'St. Mary Bloom Map', path: '/st-mary-flora' },
+  ]),
+];
+---
+
+<BaseLayout
+  title={`St. Mary Bloom & Wellness Map (${ST_MARY_FLORA.length} Jamaican Plants) | Hey Hon`}
+  description={`Explore the ${ST_MARY_FLORA.length} flowers, fruit trees, and herbs around Hey Hon’s hives in St. Mary, Jamaica and see how each bloom shapes our honey’s color, taste, and natural benefits.`}
+  canonicalPath="/st-mary-flora"
+  activeNav="flora"
+  schemas={schemas}
+>
+  <section class="pt-8 pb-10 sm:py-12 text-ink">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="max-w-3xl mb-8">
+        <h1 class="font-serif text-4xl sm:text-6xl font-semibold text-ink">
+          What Shapes Our Honey in St. Mary
+        </h1>
+        <p class="mt-2.5 text-sm sm:text-lg leading-relaxed text-ink-muted">
+          Because our honey is raw and never blended, its color, flavor, and natural wellness benefits shift with what blooms each month. Tap through the year to explore all <strong class="text-ink">{ST_MARY_FLORA.length} local plants</strong> around our hives.
+        </p>
+      </div>
+
+      <StMaryBloomMap client:load />
+    </div>
+  </section>
+
+  <!-- Clear How-It-Works Summary -->
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pb-8">
+    <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-ink">
+          How St. Mary’s Flowers Shape Taste, Color &amp; Health Benefits
+        </h2>
+        <p class="mt-3 text-sm sm:text-base leading-relaxed text-ink-muted">
+          In raw, unheated honey, every spoonful carries natural plant antioxidants, trace minerals, and fine flower pollen from within a 3-mile flight of the hive. Lighter winter blooms like <strong class="text-ink">Logwood</strong> and <strong class="text-ink">Orange &amp; Lime blossom</strong> make pale soothing gold, while <strong class="text-ink">Moringa, Blue Vervain, Avocado, Spanish Needle, Pimento, Banana, and Sorrel</strong> add richer amber depth, natural minerals, and classic Jamaican throat and immune support.
+        </p>
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+          <div class="glass-pearl rounded-2xl p-5">
+            <div class="text-xs font-semibold text-gold-deep">Main Honey Flowers ({primaryCount})</div>
+            <p class="mt-1.5 text-ink-muted">Logwood, Moringa, Blue Vervain, Avocado, Guango, Spanish Needle, Citrus, Ackee, Pimento, and Sorrel drive color, taste, and natural antioxidants.</p>
+          </div>
+          <div class="glass-pearl rounded-2xl p-5">
+            <div class="text-xs font-semibold text-bloom-deep">Fruit &amp; Herb Blossoms ({pollenCount})</div>
+            <p class="mt-1.5 text-ink-muted">Coconut, Palms, Blue Mahoe, Cerasee, Soursop, Tamarind, Otaheite Apple, Nutmeg, and Pumpkin give bees amino-acid-rich pollen and herbal notes.</p>
+          </div>
+          <div class="glass-pearl rounded-2xl p-5">
+            <div class="text-xs font-semibold text-ink">Surrounding Trees &amp; Crops ({ecoCount})</div>
+            <p class="mt-1.5 text-ink-muted">Cocoa, Breadfruit, Jackfruit, Naseberry, Sugarcane, and cool hillside greenery keep our hives shaded, clean, and free of sprays.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

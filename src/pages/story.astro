@@ -1,0 +1,104 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { BRAND } from '@/data/brand';
+import { ST_MARY_FLORA } from '@/data/flora';
+import { buildBreadcrumbSchema } from '@/lib/seo';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Our Story', path: '/story' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Our Story | Jhanelle Stewart & Four Hives in St. Mary, Jamaica | Hey Hon"
+  description="From four starter bee hives placed on family land in the hills of St. Mary to Jamaica’s modern artisanal single-origin honey brand. Meet founder Jhanelle Stewart."
+  canonicalPath="/story"
+  ogImage="/media/st-mary-hills.jpg"
+  schemas={schemas}
+>
+  <section class="pt-8 pb-6 sm:py-12 text-ink">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 sm:text-center">
+      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">
+        Our Story · St. Mary, Jamaica
+      </span>
+      <h1 class="mt-2 font-serif text-4xl sm:text-6xl font-semibold text-ink">
+        From Four Starter Hives in St. Mary to Your Table.
+      </h1>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pb-8">
+    <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14 space-y-14">
+      <img
+        src="/media/st-mary-hills.jpg"
+        alt="Lush green hills of St. Mary, Jamaica"
+        class="w-full max-h-[500px] rounded-2xl border border-ink/10 object-cover shadow-lg"
+      />
+
+      <div class="grid grid-cols-1 gap-8 lg:gap-10 lg:grid-cols-12 items-center">
+        <div class="lg:col-span-6 space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">The Spark</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-ink">The Awakening</h2>
+          <p class="text-sm sm:text-base leading-relaxed text-ink-muted">
+            Every meaningful craft begins with curiosity. What started as a fascination with the link between Jamaican farming, nature, and wellness quickly grew into a deep love for beekeeping.
+          </p>
+          <p class="text-sm sm:text-base leading-relaxed text-ink-muted">
+            Determined to learn the craft properly, {BRAND.founder} trained alongside an experienced local beekeeper, learning the rhythm of the hive and patient, low-intervention harvesting.
+          </p>
+        </div>
+        <div class="lg:col-span-6">
+          <video
+            src="/media/beekeeper.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            poster="/media/beekeeper.jpg"
+            class="w-full aspect-[4/5] max-h-[500px] rounded-2xl border border-ink/10 object-cover shadow-lg"
+          ></video>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 lg:gap-10 lg:grid-cols-12 items-center">
+        <div class="lg:col-span-6 lg:order-2 space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">Family Land</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-ink">Four Hives in the Hills of St. Mary</h2>
+          <p class="text-base leading-relaxed text-ink-muted">
+            Taking a leap of faith, {BRAND.founder} purchased her very first four hives, loaded them into the back of a car, and carried them up into pristine family land nestled near <strong class="text-ink">Guy’s Hill and Louisiana, St. Mary</strong>.
+          </p>
+          <p class="text-base leading-relaxed text-ink-muted">
+            Surrounded by {ST_MARY_FLORA.length}+ species of pesticide-free tropical blossoms including Logwood, Moringa, Blue Vervain, Spanish Needle, Citrus, Ackee, Mango, Pimento, Avocado, Banana, and Sorrel, the colonies flourished. Every frame harvested captures the living essence of St. Mary.
+          </p>
+        </div>
+        <div class="lg:col-span-6 lg:order-1">
+          <img
+            src="/media/hives-in-trunk.jpg"
+            alt="Transporting the first four Hey Hon beehives to St. Mary"
+            loading="lazy"
+            class="w-full aspect-[4/3] rounded-3xl border border-ink/10 object-cover shadow-xl"
+          />
+        </div>
+      </div>
+
+      <div class="rounded-[2rem] border border-gold/30 bg-obsidian p-10 sm:p-14 text-center text-ivory shadow-2xl gold-glow">
+        <blockquote class="mx-auto max-w-3xl font-serif text-2xl sm:text-4xl italic leading-snug text-ivory">
+          “Hey Hon isn’t just about honey. It’s about respecting the ancient rhythm of the hive and presenting that pure St. Mary gold with the elegance and reverence it deserves.”
+        </blockquote>
+        <p class="mt-6 font-mono text-xs uppercase tracking-widest text-gold-bright">
+          {BRAND.founder} · {BRAND.founderTitle}
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href="/shop" class="rounded-full bg-gold px-7 py-3 text-xs font-semibold text-obsidian hover:bg-gold-bright transition">
+            Shop The Harvest
+          </a>
+          <a href="/st-mary-flora" class="rounded-full border border-gold/35 px-6 py-3 text-xs font-semibold text-ivory hover:border-gold hover:text-gold-bright transition">
+            Explore Our {ST_MARY_FLORA.length}-Plant Bloom Map
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

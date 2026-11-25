@@ -1,0 +1,35 @@
+{
+  "name": "heyhon-jamaica",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "astro build && wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply heyhon-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply heyhon-db --remote"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.0",
+    "@astrojs/netlify": "^6.6.5",
+    "@astrojs/react": "^4.2.1",
+    "@tailwindcss/vite": "^4.1.0",
+    "astro": "^5.7.0",
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@cloudflare/workers-types": "^4.20250401.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.0",
+    "wrangler": "^4.14.0"
+  }
+}

@@ -1,0 +1,73 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { BRAND } from '@/data/brand';
+import { buildBreadcrumbSchema } from '@/lib/seo';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Contact', path: '/contact' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Contact Hey Hon Jamaica | WhatsApp, Pickup Locations & Trade Desk"
+  description="Reach Hey Hon Artisanal Honey in Jamaica via WhatsApp (+1 658-218-2734), Instagram (@heyhonjamaica), or our wholesale and international quote desks."
+  canonicalPath="/contact"
+  schemas={schemas}
+>
+  <section class="pt-8 pb-6 sm:py-10 text-ink">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 sm:text-center">
+      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">We’re Here to Help</span>
+      <h1 class="mt-2 font-serif text-4xl sm:text-6xl font-semibold text-ink">Contact Hey Hon</h1>
+      <p class="mt-2.5 sm:mx-auto max-w-xl text-sm sm:text-base text-ink-muted">
+        Questions about an order, bulk pricing, gifting, or delivery? Reach out anytime.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1200px] px-3 sm:px-6 pb-8">
+    <div class="light-studio-shell px-5 py-12 sm:px-10 lg:px-14">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="glass-pearl rounded-3xl p-7">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-gold-deep">Fastest Response</span>
+          <h2 class="mt-2 font-serif text-2xl font-bold text-ink">WhatsApp Order Desk</h2>
+          <p class="mt-2 text-sm text-ink-muted">{BRAND.contact.whatsappDisplay}</p>
+          <a
+            href={BRAND.contact.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-5 inline-block rounded-full bg-obsidian px-5 py-2.5 text-xs font-semibold text-ivory hover:bg-gold hover:text-obsidian transition"
+          >
+            Message on WhatsApp →
+          </a>
+        </div>
+
+        <div class="glass-pearl rounded-3xl p-7">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-gold-deep">Community &amp; Harvests</span>
+          <h2 class="mt-2 font-serif text-2xl font-bold text-ink">Instagram &amp; Google</h2>
+          <p class="mt-2 text-sm text-ink-muted">Follow seasonal St. Mary extractions and read verified customer reviews.</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <a href={BRAND.contact.instagramUrl} target="_blank" rel="noopener noreferrer" class="rounded-full border border-obsidian/15 bg-parchment/90 px-4 py-2 text-xs font-semibold text-ink hover:border-gold hover:text-gold-deep transition">
+              {BRAND.contact.instagramHandle}
+            </a>
+            <a href={BRAND.contact.gbpUrl} target="_blank" rel="noopener noreferrer" class="rounded-full border border-obsidian/15 bg-parchment/90 px-4 py-2 text-xs font-semibold text-ink hover:border-gold hover:text-gold-deep transition">
+              Google Business Profile ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="glass-pearl rounded-3xl p-7">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-bloom-deep">Free Pickup Hubs</span>
+          <h2 class="mt-2 font-serif text-2xl font-bold text-ink">Kingston &amp; Portmore</h2>
+          <ul class="mt-2 space-y-1.5 text-sm text-ink-muted">
+            <li>• Shop 15, Northside Plaza, Kingston 6</li>
+            <li>• Sovereign Village, Portmore</li>
+            <li>• Digicel Head Office, Downtown Kingston</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
