@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "heyhon",
+  "name": "heyhon-website",
   "main": "dist/_worker.js/index.js",
   "compatibility_date": "2026-11-10",
   "compatibility_flags": ["nodejs_compat"],
