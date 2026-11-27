@@ -2,9 +2,25 @@ import { useMemo, useState, type FormEvent } from 'react';
 import { Building2, CheckCircle2, MessageCircle } from 'lucide-react';
 import { BRAND, formatJmd } from '@/data/brand';
 
+function sliderToQty(pos: number): number {
+  const clamped = Math.max(0, Math.min(300, pos));
+  if (clamped <= 100) return Math.round(10 + (clamped / 100) * 15);
+  if (clamped <= 200) return Math.round(25 + ((clamped - 100) / 100) * 25);
+  return Math.round(50 + ((clamped - 200) / 100) * 100);
+}
+
+function qtyToSlider(qty: number): number {
+  const clamped = Math.max(10, Math.min(150, qty));
+  if (clamped <= 25) return Math.round(((clamped - 10) / 15) * 100);
+  if (clamped <= 50) return Math.round(100 + ((clamped - 25) / 25) * 100);
+  return Math.round(200 + ((clamped - 50) / 100) * 100);
+}
+
 export default function WholesaleCalculator() {
   const [size, setSize] = useState<'266ml' | '500ml' | 'Mixed'>('266ml');
-  const [quantity, setQuantity] = useState<number>(20);
+  const [sliderPos, setSliderPos] = useState<number>(() => qtyToSlider(20));
+  const quantity = sliderToQty(sliderPos);
+  const sliderPct = (sliderPos / 300) * 100;
   const [category, setCategory] = useState('Café / Restaurant / Hotel');
   const [customLabel, setCustomLabel] = useState('Standard Hey Hon Glass Label');
   const [businessName, setBusinessName] = useState('');
@@ -118,18 +134,55 @@ export default function WholesaleCalculator() {
             </div>
             <input
               type="range"
-              min={10}
-              max={150}
-              step={5}
-              value={quantity}
-              onChange={(e) => setQuantity(Number(e.target.value))}
-              className="mt-3 w-full accent-gold cursor-pointer"
+              min={0}
+              max={300}
+              step={1}
+              value={sliderPos}
+              onChange={(e) => setSliderPos(Number(e.target.value))}
+              aria-label="Wholesale jar quantity"
+              aria-valuemin={10}
+              aria-valuemax={150}
+              aria-valuenow={estimate.qty}
+              style={{
+                background: `linear-gradient(to right, #d49b2a ${sliderPct}%, rgba(255, 255, 255, 0.15) ${sliderPct}%)`,
+              }}
+              className="mt-3 h-2 w-full appearance-none rounded-full accent-gold cursor-pointer [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gold-bright [&::-webkit-slider-thumb]:shadow [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-gold-bright"
             />
-            <div className="mt-1 flex justify-between font-mono text-[10px] text-ivory/50">
-              <span>10 min</span>
-              <span>25</span>
-              <span>50+</span>
-              <span>150</span>
+            <div className="relative mt-2 h-4 font-mono text-[10px] text-ivory/50">
+              <button
+                type="button"
+                onClick={() => setSliderPos(0)}
+                className="absolute left-0 hover:text-gold-bright transition"
+              >
+                10 min
+              </button>
+              <button
+                type="button"
+                onClick={() => setSliderPos(100)}
+                className={`absolute left-[33.333%] -translate-x-1/2 hover:text-gold-bright transition ${
+                  estimate.qty >= 25 ? 'text-gold-bright/90' : ''
+                }`}
+              >
+                25
+              </button>
+              <button
+                type="button"
+                onClick={() => setSliderPos(200)}
+                className={`absolute left-[66.667%] -translate-x-1/2 hover:text-gold-bright transition ${
+                  estimate.qty >= 50 ? 'text-gold-bright/90' : ''
+                }`}
+              >
+                50+
+              </button>
+              <button
+                type="button"
+                onClick={() => setSliderPos(300)}
+                className={`absolute right-0 hover:text-gold-bright transition ${
+                  estimate.qty >= 150 ? 'text-gold-bright/90' : ''
+                }`}
+              >
+                150
+              </button>
             </div>
           </div>
 

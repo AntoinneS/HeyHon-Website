@@ -8,7 +8,7 @@
  * 3. Set Script Properties (Project Settings -> Script Properties):
  *    - CLOUDFLARE_SYNC_URL = https://heyhonjamaica.com/api/sync/sheet-webhook
  *    - SHARED_SECRET       = <same secret you set in Cloudflare as SHEET_SYNC_SHARED_SECRET>
- *    - ADMIN_NOTIFY_EMAIL  = <optional email for instant order/lead alerts; defaults to your Google account>
+ *    - ADMIN_NOTIFY_EMAIL  = <optional override email for order/lead alerts; defaults to heyhonjamaica@gmail.com>
  * 4. Deploy -> New deployment -> Web app (Execute as: Me, Who has access: Anyone).
  *    Copy the Web App URL and save it in Cloudflare as GOOGLE_APPS_SCRIPT_SYNC_URL.
  * 5. Triggers -> Add Trigger -> `onInventoryEdit` -> Event source: From spreadsheet -> Event type: On edit.
@@ -19,7 +19,7 @@ function getConfig_() {
   return {
     syncUrl: props.getProperty('CLOUDFLARE_SYNC_URL') || 'https://heyhonjamaica.com/api/sync/sheet-webhook',
     secret: props.getProperty('SHARED_SECRET') || '',
-    notifyEmail: props.getProperty('ADMIN_NOTIFY_EMAIL') || Session.getEffectiveUser().getEmail() || '',
+    notifyEmail: props.getProperty('ADMIN_NOTIFY_EMAIL') || 'heyhonjamaica@gmail.com',
   };
 }
 
@@ -39,15 +39,20 @@ function manualSyncInventory() {
   );
 }
 
-function notifyAdmin_(subject, body) {
+function notifyAdmin_(subject, body, replyTo) {
   try {
     const cfg = getConfig_();
     if (!cfg.notifyEmail) return;
-    MailApp.sendEmail({
+    const fullSubject = subject.indexOf('[Hey Hon') === 0 ? subject : '[Hey Hon] ' + subject;
+    const mailOpts = {
       to: cfg.notifyEmail,
-      subject: '[Hey Hon] ' + subject,
+      subject: fullSubject,
       body: body,
-    });
+    };
+    if (replyTo && String(replyTo).trim()) {
+      mailOpts.replyTo = String(replyTo).trim();
+    }
+    MailApp.sendEmail(mailOpts);
   } catch (err) {
     // Non-fatal if MailApp quota or permission is not enabled yet
   }
@@ -124,13 +129,14 @@ function doPost(e) {
       l.preferredSize, l.estQuantity, l.volumeTier, l.customLabeling, l.targetDate, l.status, l.notes,
     ]);
     notifyAdmin_(
-      'New Wholesale Inquiry ' + l.leadId + ' (' + l.estQuantity + ' jars)',
+      '[Hey Hon | Wholesale Catalog] New Inquiry ' + l.leadId + ' (' + l.estQuantity + ' jars)',
       'Business/Event: ' + l.businessOrName + ' (' + l.category + ')\n' +
         'Contact: ' + l.email + ' | ' + (l.phone || 'No phone') + '\n' +
         'Order: ' + l.estQuantity + 'x ' + l.preferredSize + ' (' + l.volumeTier + ')\n' +
         'Labeling: ' + l.customLabeling + '\n' +
         'Target Date: ' + (l.targetDate || 'Flexible') + '\n' +
-        'Notes: ' + (l.notes || 'None')
+        'Notes: ' + (l.notes || 'None'),
+      l.email
     );
   }
 
@@ -142,14 +148,23 @@ function doPost(e) {
       q.country, q.stateProvince, q.postalCode, q.qty266ml, q.qty500ml,
       q.estWeightKg, q.estCarrierBandUsd, q.status, q.notes,
     ]);
+    const categoryPrefix =
+      q.entryType === 'Newsletter'
+        ? '[Hey Hon | Join List]'
+        : q.entryType === 'GiftBox_Waitlist'
+          ? '[Hey Hon | Gift Box Waitlist]'
+          : q.entryType === 'Intl_Quote'
+            ? '[Hey Hon | International Quote]'
+            : '[Hey Hon | ' + (q.entryType || 'Lead') + ']';
     notifyAdmin_(
-      'New ' + q.entryType + ' (' + q.refId + ')',
+      categoryPrefix + ' New Submission (' + q.refId + ')',
       'Name: ' + (q.name || 'Subscriber') + '\n' +
         'Email: ' + q.email + ' | Phone: ' + (q.phoneWhatsapp || 'N/A') + '\n' +
         'Destination: ' + (q.country || 'N/A') + ' ' + (q.stateProvince || '') + ' ' + (q.postalCode || '') + '\n' +
         'Jars: ' + q.qty266ml + 'x 266ml, ' + q.qty500ml + 'x 500ml\n' +
         'Estimate: ' + (q.estCarrierBandUsd || 'N/A') + '\n' +
-        'Notes: ' + (q.notes || 'None')
+        'Notes: ' + (q.notes || 'None'),
+      q.email
     );
   }
 
