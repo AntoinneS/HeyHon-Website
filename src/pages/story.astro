@@ -16,7 +16,7 @@ const schemas = [
   title="Our Story | Jhanelle Stewart & Four Hives in St. Mary, Jamaica | Hey Hon"
   description="From four starter bee hives placed on family land in the hills of St. Mary to Jamaica’s modern artisanal single-origin honey brand. Meet founder Jhanelle Stewart."
   canonicalPath="/story"
-  ogImage="/media/st-mary-hills.jpg"
+  ogImage="/media/st-mary-hills.webp"
   schemas={schemas}
 >
   <section class="pt-8 pb-6 sm:py-12 text-ink">
@@ -33,8 +33,10 @@ const schemas = [
   <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pb-8">
     <div class="light-studio-shell px-4 py-10 sm:px-10 lg:px-14 space-y-14">
       <img
-        src="/media/st-mary-hills.jpg"
+        src="/media/st-mary-hills.webp"
         alt="Lush green hills of St. Mary, Jamaica"
+        loading="lazy"
+        decoding="async"
         class="w-full max-h-[500px] rounded-2xl border border-ink/10 object-cover shadow-lg"
       />
 
@@ -75,9 +77,10 @@ const schemas = [
         </div>
         <div class="lg:col-span-6 lg:order-1">
           <img
-            src="/media/hives-in-trunk.jpg"
+            src="/media/hives-in-trunk.webp"
             alt="Transporting the first four Hey Hon beehives to St. Mary"
             loading="lazy"
+            decoding="async"
             class="w-full aspect-[4/3] rounded-3xl border border-ink/10 object-cover shadow-xl"
           />
         </div>

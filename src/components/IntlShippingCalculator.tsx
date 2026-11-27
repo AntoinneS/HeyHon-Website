@@ -101,7 +101,7 @@ export default function IntlShippingCalculator() {
         <div className="flex items-start gap-3">
           <Gift className="h-5 w-5 text-gold-deep shrink-0 mt-0.5" />
           <p className="text-sm text-ink">
-            <strong>Sending to family IN Jamaica instead?</strong> Skip overseas shipping fees: pay online by international card and deliver locally from JMD $500 (or FREE in Kingston on JMD $6,000+).
+            <strong>Sending to family IN Jamaica instead?</strong> Skip overseas shipping fees: place your order in the Harvest Bag, confirm via WhatsApp (+1 658-218-2734), and deliver locally from JMD $500 (or FREE in Kingston on JMD $6,000+).
           </p>
         </div>
         <a

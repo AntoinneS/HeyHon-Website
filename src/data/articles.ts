@@ -70,7 +70,7 @@ export const ARTICLES: ArticleItem[] = [
     publishedDate: '2026-11-16',
     directAnswer:
       'Raw honey crystallizes naturally because it is full of natural flower sugars and fine pollen grains. It has not spoiled. Stand the closed glass jar in a bowl of warm (never boiling) water for 10 to 15 minutes and stir gently to turn it silky smooth again without losing nutrients.',
-    image: '/media/raw-honey.png',
+    image: '/media/raw-honey.webp',
     sections: [
       {
         heading: 'Crystallization Is Proof It Is Real & Unheated',
@@ -105,7 +105,7 @@ export const ARTICLES: ArticleItem[] = [
     publishedDate: '2026-11-15',
     directAnswer:
       'Yes, you can bring Hey Hon Jamaican honey home to the USA, Canada, or the UK in your checked luggage. Because both 266ml and 500ml jars are over the 100ml (3.4 oz) carry-on liquid limit, they cannot go in hand luggage. Always declare sealed food items to customs on arrival.',
-    image: '/media/islandwide.png',
+    image: '/media/islandwide.webp',
     sections: [
       {
         heading: 'Carry-On vs. Checked Luggage (The 100ml Rule)',
@@ -141,7 +141,7 @@ export const ARTICLES: ArticleItem[] = [
     publishedDate: '2026-11-12',
     directAnswer:
       'Jamaican Logwood honey (Dec to Feb) is pale golden and light, while St. Mary wildflower honey blends seasonal nectar from 39 local hillside plants including Logwood, Spanish Needle, Moringa, Citrus, Ackee, Pimento, Banana, and Sorrel, creating deeper layers of flavor and natural nutrients across the year.',
-    image: '/media/st-mary-hills.jpg',
+    image: '/media/st-mary-hills.webp',
     sections: [
       {
         heading: 'Why St. Mary Hills Yield Such Rich Multi-Floral Honey',
@@ -175,8 +175,8 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '3 min read',
     publishedDate: '2026-11-10',
     directAnswer:
-      'Family and friends living in the USA, Canada, or the UK can order Hey Hon online by Visa or Mastercard, add a free handwritten card, hide prices on the delivery slip, and have jars delivered straight to loved ones in Jamaica from JMD $500 in Portmore or free in Kingston on orders JMD $6,000+.',
-    image: '/media/hey-hon-hero.png',
+      'Family and friends living in the USA, Canada, or the UK can build an order in the Harvest Bag, add a free handwritten card, hide prices on the delivery slip, and confirm via WhatsApp (+1 658-218-2734) to have jars delivered straight to loved ones in Jamaica from JMD $500 in Portmore or free in Kingston on orders JMD $6,000+.',
+    image: '/media/hey-hon-hero.webp',
     sections: [
       {
         heading: 'Skip Expensive Overseas Postage When Gifting Home',
@@ -190,7 +190,7 @@ export const ARTICLES: ArticleItem[] = [
         bullets: [
           '1. Pick single jars (266ml JMD $2,200 / 500ml JMD $3,200) or the Free Kingston Delivery bundle (2× 500ml, JMD $6,400 / ~US$40.50).',
           '2. Enter your loved one’s name, phone number, and parish or Knutsford station, plus your personal card message (handwritten free).',
-          '3. Pay by card online and we confirm delivery straight to your recipient on WhatsApp.',
+          '3. Confirm your order on WhatsApp (+1 658-218-2734), where we finalize delivery day and payment details directly.',
         ],
       },
     ],
@@ -210,7 +210,7 @@ export const ARTICLES: ArticleItem[] = [
     publishedDate: '2026-11-08',
     directAnswer:
       'Hey Hon supplies bulk raw St. Mary wildflower honey across Jamaica starting at just 10 jars, with tiered discounts for 10 to 24, 25 to 49, and 50+ jars for cafés, hotels, gift boxes, and wedding favors.',
-    image: '/media/hives-in-trunk.jpg',
+    image: '/media/hives-in-trunk.webp',
     sections: [
       {
         heading: 'Real Jamaican Honey Elevates Every Table & Event',

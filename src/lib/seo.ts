@@ -14,7 +14,7 @@ export function buildOrganizationSchema() {
         name: BRAND.legalName,
         alternateName: [...BRAND.alternateNames],
         url: BRAND.domain,
-        logo: `${BRAND.domain}/media/hey-hon-hero.png`,
+        logo: `${BRAND.domain}/media/hey-hon-hero.webp`,
         founder: {
           '@type': 'Person',
           name: BRAND.founder,
@@ -35,9 +35,11 @@ export function buildOrganizationSchema() {
         name: BRAND.legalName,
         alternateName: [...BRAND.alternateNames],
         url: BRAND.domain,
-        image: `${BRAND.domain}/media/hey-hon-hero.png`,
+        image: `${BRAND.domain}/media/hey-hon-og.jpg`,
         telephone: '+1-658-218-2734',
         priceRange: 'JMD $2,200 - $6,600',
+        paymentAccepted: 'WhatsApp-confirmed bank transfer, Lynk, or cash on delivery/pickup',
+        sameAs: [BRAND.contact.instagramUrl, BRAND.contact.gbpUrl],
         address: {
           '@type': 'PostalAddress',
           addressLocality: "Guy's Hill",
@@ -138,6 +140,8 @@ export function buildArticleSchema(article: ArticleItem) {
     author: {
       '@type': 'Person',
       name: BRAND.founder,
+      jobTitle: BRAND.founderTitle,
+      url: `${BRAND.domain}/story`,
     },
     publisher: { '@id': `${BRAND.domain}/#organization` },
     mainEntityOfPage: `${BRAND.domain}/learn/${article.slug}`,

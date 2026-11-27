@@ -23,7 +23,7 @@ export const RECIPES: RecipeItem[] = [
     prepTimeIso: 'PT7M',
     prepTimeLabel: '7 mins',
     servings: '1 tall glass',
-    image: '/media/matcha-latte.png',
+    image: '/media/matcha-latte.webp',
     summary:
       'Replace refined syrups with cold-extracted St. Mary wildflower honey for an earthy, velvety layered matcha ritual.',
     tip: 'Whisk Hey Hon into warm (never boiling) water or chilled cream so living wildflower enzymes and aroma stay vibrant.',
@@ -54,7 +54,7 @@ export const RECIPES: RecipeItem[] = [
     prepTimeIso: 'PT5M',
     prepTimeLabel: '5 mins',
     servings: '1 glass',
-    image: '/media/shaken-espresso.png',
+    image: '/media/shaken-espresso.webp',
     summary:
       'Freshly pulled Blue Mountain espresso melts St. Mary raw wildflower honey instantly before being shaken hard over ice for café-grade crema.',
     tip: 'Stir the honey with espresso first, then add ice immediately so the temperature drops right after dissolving.',
@@ -82,7 +82,7 @@ export const RECIPES: RecipeItem[] = [
     prepTimeIso: 'PT10M',
     prepTimeLabel: '10 mins',
     servings: '2 toasts',
-    image: '/media/ricotta-toast.png',
+    image: '/media/ricotta-toast.webp',
     summary:
       'Creamy whipped ricotta over crisp olive-oil sourdough, finished with Scotch bonnet or red-pepper infused Hey Hon Raw Honey and fresh Jamaican thyme.',
     tip: 'For an unmistakable Jamaican twist, infuse 2 tbsp of Hey Hon with a sliver of deseeded Scotch bonnet for 10 minutes before drizzling.',
@@ -112,7 +112,7 @@ export const RECIPES: RecipeItem[] = [
     prepTimeIso: 'PT8M',
     prepTimeLabel: '8 mins',
     servings: '2 mugs',
-    image: '/media/bee-forage.jpg',
+    image: '/media/bee-forage.webp',
     summary:
       'A soothing Jamaican hillside tonic pairing crushed fresh ginger, bruised pimento berries, fresh lime juice, and unheated St. Mary raw honey.',
     tip: 'Always let ginger tea cool below 45°C (drinkably warm) before stirring in raw honey so its natural enzymes remain active.',

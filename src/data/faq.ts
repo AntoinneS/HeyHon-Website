@@ -72,8 +72,8 @@ export const FAQS: FaqEntry[] = [
     category: 'Ordering & Payments',
     question: 'How can I pay for my order?',
     answer:
-      'You can pay online by Visa or Mastercard (both local Jamaican and international cards work), or choose WhatsApp Order (+1 658-218-2734) to confirm payment and delivery directly with us.',
-    tags: ['pay', 'payment', 'card', 'visa', 'mastercard', 'handypay', 'whatsapp', 'online', 'cash'],
+      'Place your order through the website Harvest Bag and confirm via WhatsApp (+1 658-218-2734), where we finalize your delivery day and payment details directly with you (bank transfer, Lynk, or cash on delivery/pickup).',
+    tags: ['pay', 'payment', 'whatsapp', 'transfer', 'lynk', 'cash', 'order'],
     ctaLabel: 'Shop Now',
     ctaHref: '/shop',
   },
@@ -110,7 +110,7 @@ export const FAQS: FaqEntry[] = [
     category: 'Sending Gifts & Travel',
     question: 'Can I order from the USA, UK, or Canada for delivery to family in Jamaica?',
     answer:
-      'Yes! You can pay online with an international Visa or Mastercard, see approximate USD, CAD, or GBP totals, include a free handwritten gift note, hide prices on the delivery slip, and deliver directly to loved ones anywhere in Jamaica.',
+      'Yes! Build your gift in the Harvest Bag, see approximate USD, CAD, or GBP totals, include a free handwritten gift note, hide prices on the delivery slip, and confirm via WhatsApp (+1 658-218-2734) to finalize delivery day and payment for your loved ones anywhere in Jamaica.',
     tags: ['diaspora', 'usa', 'uk', 'canada', 'abroad', 'overseas', 'family', 'gift', 'send to jamaica'],
     ctaLabel: 'Send a Gift to Jamaica',
     ctaHref: '/gifting',

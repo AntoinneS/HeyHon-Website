@@ -89,6 +89,7 @@ export default function ProductCard({ product, effectiveAvailable, status, showA
           src={product.image}
           alt={product.name}
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-contain drop-shadow-[0_12px_20px_rgba(38,25,18,0.18)] transition duration-500 group-hover:scale-105"
         />
       </div>

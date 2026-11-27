@@ -21,12 +21,12 @@ const schemas = [
 
 <BaseLayout
   title="Hey Hon | 100% Pure Raw Jamaican Honey from St. Mary"
-  description="100% pure, unheated raw wildflower honey from St. Mary, Jamaica. 266ml JMD $2,200, 500ml JMD $3,200. Pay online by card or order via WhatsApp. Free Kingston delivery over JMD $6,000 & Knutsford Express islandwide."
+  description="100% pure, unheated raw wildflower honey from St. Mary, Jamaica. 266ml JMD $2,200, 500ml JMD $3,200. Order via the Harvest Bag and confirm on WhatsApp. Free Kingston delivery over JMD $6,000 & Knutsford Express islandwide."
   canonicalPath="/"
   activeNav="home"
   schemas={schemas}
 >
-  <!-- 1. ACTION-FIRST VELVET ESPRESSO HERO + RAW COMB SHOWCASE -->
+  <!-- 1. ACTION-FIRST VELVET ESPRESSO HERO + RAW HONEY SHOWCASE -->
   <section class="mx-auto max-w-[1400px] px-3 sm:px-6 pt-4 pb-4 sm:pt-6 sm:pb-6">
     <div class="grid grid-cols-1 gap-5 lg:gap-6 lg:grid-cols-12 lg:items-stretch">
       <div class="lg:col-span-7 velvet-studio-shell p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-8">
@@ -63,18 +63,16 @@ const schemas = [
       <div class="lg:col-span-5">
         <div class="glass-pearl relative h-full flex flex-col justify-between gap-3 overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] p-3 sm:p-4">
           <div class="relative aspect-[4/3] lg:aspect-auto lg:flex-1 min-h-[240px] overflow-hidden rounded-2xl border border-obsidian/12 bg-obsidian">
-            <video
-              src="/media/honeycomb-drip.mp4"
-              poster="/media/bee-forage.jpg"
-              autoplay
-              muted
-              loop
-              playsinline
+            <img
+              src="/media/hey-hon-hero.webp"
+              alt="Hey Hon 100% pure raw wildflower honey in glass jars from St. Mary, Jamaica"
+              fetchpriority="high"
+              decoding="async"
               class="h-full w-full object-cover"
             />
             <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-obsidian/20"></div>
             <span class="pointer-events-none absolute left-3 top-3 rounded-full border border-gold-bright/35 bg-obsidian/80 px-3 py-1 text-[11px] font-semibold text-gold-bright backdrop-blur-sm">
-              Straight From The Comb · St. Mary
+              Single-Origin · St. Mary, Jamaica
             </span>
           </div>
 
@@ -168,7 +166,7 @@ const schemas = [
               Send a Gift in Jamaica
             </h3>
             <p class="mt-1.5 text-sm text-ink-muted leading-relaxed">
-              Order from abroad by card with a free handwritten note and local delivery.
+              Order from abroad via Harvest Bag &amp; WhatsApp with a free handwritten note and local delivery.
             </p>
           </div>
           <span class="mt-4 inline-block text-xs font-semibold text-gold-deep">Build a gift →</span>

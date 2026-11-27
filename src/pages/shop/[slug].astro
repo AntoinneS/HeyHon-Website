@@ -61,6 +61,8 @@ const schemas = [
             <img
               src={product.image}
               alt={product.name}
+              loading="lazy"
+              decoding="async"
               class="h-full w-full object-contain drop-shadow-[0_18px_28px_rgba(38,25,18,0.18)]"
             />
           </div>
@@ -68,7 +70,7 @@ const schemas = [
           <div class="grid grid-cols-3 gap-3">
             {product.gallery.map((img) => (
               <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-obsidian/12 bg-sandstone/55">
-                <img src={img} alt={product.shortName} loading="lazy" class="h-full w-full object-cover" />
+                <img src={img} alt={product.shortName} loading="lazy" decoding="async" class="h-full w-full object-cover" />
               </div>
             ))}
           </div>
@@ -183,7 +185,7 @@ const schemas = [
         name: btn.getAttribute('data-name') || '',
         sizeLabel: btn.getAttribute('data-size') || '',
         priceJmd: Number(btn.getAttribute('data-price') || 0),
-        image: btn.getAttribute('data-image') || '/media/raw-honey.png',
+        image: btn.getAttribute('data-image') || '/media/raw-honey.webp',
       });
     });
   </script>

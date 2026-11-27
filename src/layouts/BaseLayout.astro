@@ -18,7 +18,7 @@ const {
   title,
   description,
   canonicalPath = '/',
-  ogImage = '/media/hey-hon-hero.png',
+  ogImage = '/media/hey-hon-og.jpg',
   schemas = [],
   activeNav = '',
 } = Astro.props;
@@ -209,8 +209,11 @@ const navLinks = [
                 </span>
                 <span class="font-serif text-2xl font-semibold text-ivory">Hey Hon</span>
               </div>
-              <p class="text-xs sm:text-sm text-ivory/70">
-                100% pure raw honey from St. Mary, Jamaica.
+              <p class="text-xs sm:text-sm text-ivory/75">
+                {BRAND.legalName} · 100% pure raw honey from Guy's Hill &amp; Louisiana, St. Mary, Jamaica.
+              </p>
+              <p class="text-[11px] text-ivory/55">
+                Serving Kingston, Portmore, Spanish Town &amp; Islandwide Jamaica
               </p>
             </div>
 
@@ -232,9 +235,13 @@ const navLinks = [
 
           <div class="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ivory/55">
             <p class="text-center sm:text-left">
-              © {new Date().getFullYear()} {BRAND.name} ·{' '}
+              © {new Date().getFullYear()} {BRAND.legalName} ·{' '}
+              <a href={`tel:+${BRAND.contact.whatsappDigits}`} class="hover:text-gold-bright transition">
+                {BRAND.contact.whatsappDisplay}
+              </a>{' '}
+              ·{' '}
               <a href={BRAND.contact.whatsappUrl} target="_blank" rel="noopener noreferrer" class="hover:text-gold-bright transition">
-                WhatsApp {BRAND.contact.whatsappDisplay}
+                WhatsApp
               </a>{' '}
               ·{' '}
               <a href={BRAND.contact.instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-gold-bright transition">
@@ -242,14 +249,28 @@ const navLinks = [
               </a>{' '}
               ·{' '}
               <a href={BRAND.contact.gbpUrl} target="_blank" rel="noopener noreferrer" class="hover:text-gold-bright transition">
-                Google Reviews ↗
+                Google Business Profile ↗
               </a>
             </p>
-            <p>
-              <a href="/privacy" class="hover:text-gold-bright transition">Privacy</a> ·{' '}
-              <a href="/terms" class="hover:text-gold-bright transition">Terms</a> ·{' '}
-              <a href="/refunds" class="hover:text-gold-bright transition">Refunds</a>
-            </p>
+            <div class="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-1">
+              <p>
+                <a href="/privacy" class="hover:text-gold-bright transition">Privacy</a> ·{' '}
+                <a href="/terms" class="hover:text-gold-bright transition">Terms</a> ·{' '}
+                <a href="/refunds" class="hover:text-gold-bright transition">Refunds</a>
+              </p>
+              <span class="hidden sm:inline text-ivory/25">|</span>
+              <p class="text-ivory/55">
+                Website created and designed by{' '}
+                <a
+                  href="https://avancejm.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-ivory/80 hover:text-gold-bright transition underline underline-offset-2"
+                >
+                  Avance
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </footer>

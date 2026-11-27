@@ -32,8 +32,15 @@ const schemas = [
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         <div class="glass-pearl rounded-3xl p-7">
           <span class="font-mono text-[10px] uppercase tracking-widest text-gold-deep">Fastest Response</span>
-          <h2 class="mt-2 font-serif text-2xl font-bold text-ink">WhatsApp Order Desk</h2>
-          <p class="mt-2 text-sm text-ink-muted">{BRAND.contact.whatsappDisplay}</p>
+          <h2 class="mt-2 font-serif text-2xl font-bold text-ink">{BRAND.legalName}</h2>
+          <p class="mt-2 text-sm text-ink-muted">
+            <a href={`tel:+${BRAND.contact.whatsappDigits}`} class="font-semibold text-ink hover:text-gold-deep transition">
+              {BRAND.contact.whatsappDisplay}
+            </a>
+          </p>
+          <p class="mt-1.5 text-xs text-ink-muted">
+            Kingston, Portmore, Spanish Town &amp; Islandwide Jamaica; Apiaries in Guy's Hill &amp; Louisiana, St. Mary
+          </p>
           <a
             href={BRAND.contact.whatsappUrl}
             target="_blank"

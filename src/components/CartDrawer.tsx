@@ -5,7 +5,6 @@ import {
   Plus,
   Minus,
   Trash2,
-  CreditCard,
   MessageCircle,
   Gift,
   Truck,
@@ -109,7 +108,7 @@ export default function CartDrawer() {
     writeCart(next);
   };
 
-  const submitCheckout = async (channel: 'HandyPay' | 'WhatsApp') => {
+  const submitCheckout = async () => {
     setErrorMsg(null);
     if (!customerName.trim() || !phone.trim()) {
       setErrorMsg('Please enter your name and phone/WhatsApp number.');
@@ -126,7 +125,7 @@ export default function CartDrawer() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          channel,
+          channel: 'WhatsApp',
           customerName,
           phone,
           email,
@@ -146,7 +145,6 @@ export default function CartDrawer() {
         ok: boolean;
         error?: string;
         orderId?: string;
-        checkoutUrl?: string;
         whatsappUrl?: string;
         whatsappFallbackUrl?: string;
         message?: string;
@@ -158,35 +156,21 @@ export default function CartDrawer() {
         return;
       }
 
-      if (channel === 'HandyPay' && data.checkoutUrl) {
-        writeCart([]);
-        window.location.href = data.checkoutUrl;
-        return;
-      }
-
-      if (channel === 'WhatsApp' && data.whatsappUrl) {
-        writeCart([]);
-        setDoneResult({
-          orderId: data.orderId || 'HH-ORDER',
-          message: 'Your order is logged in our system! Tap below if WhatsApp did not open automatically.',
-          whatsappUrl: data.whatsappUrl,
-        });
-        setStep('done');
-        window.open(data.whatsappUrl, '_blank', 'noopener,noreferrer');
-        setSubmitting(false);
-        return;
-      }
-
+      const waLink = data.whatsappUrl || data.whatsappFallbackUrl;
+      writeCart([]);
       setDoneResult({
         orderId: data.orderId || 'HH-ORDER',
         message:
           data.message ||
-          'Your order is saved. Tap below to confirm your delivery or pickup time on WhatsApp:',
-        whatsappUrl: data.whatsappFallbackUrl,
+          'Your order is saved! Tap below to confirm your delivery day and payment details on WhatsApp.',
+        whatsappUrl: waLink,
       });
       setStep('done');
+      if (waLink) {
+        window.open(waLink, '_blank', 'noopener,noreferrer');
+      }
     } catch {
-      setErrorMsg('Network hiccup. Please check your connection or use WhatsApp Express.');
+      setErrorMsg('Network hiccup. Please check your connection and try again.');
     } finally {
       setSubmitting(false);
     }
@@ -285,6 +269,8 @@ export default function CartDrawer() {
                         <img
                           src={item.image}
                           alt={item.name}
+                          loading="lazy"
+                          decoding="async"
                           className="jar-pedestal-light h-20 w-20 rounded-xl object-contain p-1.5 border border-obsidian/10"
                         />
                         <div className="flex flex-1 flex-col">
@@ -591,27 +577,18 @@ export default function CartDrawer() {
                 <button
                   type="button"
                   disabled={submitting}
-                  onClick={() => submitCheckout('HandyPay')}
+                  onClick={submitCheckout}
                   className="flex w-full items-center justify-center gap-2 rounded-full bg-obsidian px-6 py-3.5 text-sm font-semibold text-ivory hover:bg-gold-deep transition disabled:opacity-50 shadow-sm"
                 >
-                  <CreditCard className="h-4 w-4" strokeWidth={1.75} />
-                  {submitting ? 'Saving Order...' : `Pay by Card (${formatJmd(totalJmd)})`}
-                </button>
-                <button
-                  type="button"
-                  disabled={submitting}
-                  onClick={() => submitCheckout('WhatsApp')}
-                  className="flex w-full items-center justify-center gap-2 rounded-full border border-ink/15 bg-ivory px-6 py-3 text-xs font-semibold text-ink hover:border-gold hover:text-gold-deep transition disabled:opacity-50"
-                >
                   <MessageCircle className="h-4 w-4" strokeWidth={1.75} />
-                  Order on WhatsApp Instead
+                  {submitting ? 'Saving Order...' : `Complete Order on WhatsApp (${formatJmd(totalJmd)})`}
                 </button>
                 <div className="flex items-center justify-between pt-1 text-[11px] text-ink-muted">
                   <button type="button" onClick={() => setStep('bag')} className="underline hover:text-ink">
                     ← Edit Bag
                   </button>
                   <span className="inline-flex items-center gap-1">
-                    <Lock className="h-3 w-3 text-gold-deep" strokeWidth={1.75} /> Secure card or WhatsApp checkout
+                    <Lock className="h-3 w-3 text-gold-deep" strokeWidth={1.75} /> Delivery &amp; payment finalized on WhatsApp
                   </span>
                 </div>
               </div>

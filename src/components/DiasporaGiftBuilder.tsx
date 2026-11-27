@@ -166,7 +166,7 @@ export default function DiasporaGiftBuilder() {
         </div>
 
         <p className="mt-6 text-xs leading-relaxed text-ivory/75">
-          Pay easily from the US, UK, or Canada using any Visa or Mastercard. We deliver across Kingston, Portmore, Spanish Town &amp; Knutsford Express islandwide.
+          Order from the US, UK, or Canada via your Harvest Bag and confirm directly on WhatsApp (+1 658-218-2734) to finalize delivery day and payment. We deliver across Kingston, Portmore, Spanish Town &amp; Knutsford Express islandwide.
         </p>
       </div>
     </div>
