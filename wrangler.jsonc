@@ -11,6 +11,10 @@
   "observability": {
     "enabled": true
   },
+  "routes": [
+    { "pattern": "heyhonjamaica.com", "custom_domain": true },
+    { "pattern": "www.heyhonjamaica.com", "custom_domain": true }
+  ],
   "vars": {
     "SITE_URL": "https://heyhonjamaica.com",
     "GOOGLE_SHEET_ID": "1kVxhtemSDtAVdAZj9w3npNVIenHG2uCHB_8FSwTYMPQ",
